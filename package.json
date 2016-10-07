@@ -1,0 +1,14 @@
+{
+    "name": "trimark-backoffice",
+    "version": "0.0.0",
+    "dependencies": {
+        "express": "*",
+        "morgan": "*",
+        "connect": "*"
+    },
+    "devDependencies": {
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    }
+}
