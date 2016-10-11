@@ -7,45 +7,46 @@
         </md-toolbar>
     </md-card-header>
     <md-card-content>
-        <md-virtual-repeat-container id="vertical-container" style="max-width: 400px; height: 292px;">
         <div layout="row">
-            <span flex></span>
-            <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled': data.opened}">
-                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-            </span>
-            <md-button class="md-button-toggle" ng-click="onToggleMenu()" aria-controls="bo-menu-{{data.id}}" aria-expanded="true">
-                Kamote 1
-                <span class="md-visually-hidden">
-                    Toggle {{data.opened ? 'expanded' : 'collapsed'}}
-                </span>
-            </md-button>
-            <!--
-            <ul id="bo-menu-{{data.id}}" class="menu-toggle-list" style="height: 0px;">
-                <li ng-repeat="subMenu in data.subMenus track by subMenu.id"><menu-link-directive data="subMenu"></menu-link-directive></li>
-            </ul>
-            -->
+            <div flex="50">
+                <md-virtual-repeat-container class="treeview-container" style="max-width: 90%; height: 200px;">
+                    <treeview-directive class="treeview">
+                        <ul>
+                            <li class="collapsed">
+                                <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Operator A</span></span>
+                                <ul class="sub">
+                                    <li><span>Brand A</span></li>
+                                    <li><span>Brand B</span></li>
+                                    <li><span>Brand C</span></li>
+                                </ul>
+                            </li>
+                            <li class="collapsed">
+                                <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Operator B</span></span>
+                                <ul class="sub">
+                                    <li><span>Brand A</span></li>
+                                    <li><span>Brand B</span></li>
+                                    <li><span>Brand C</span></li>
+                                </ul>
+                            </li>
+                            <li class="collapsed">
+                                <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Operator C</span></span>
+                                <ul class="sub">
+                                    <li><span>Brand A</span></li>
+                                    <li><span>Brand B</span></li>
+                                    <li><span>Brand C</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </treeview-directive>
+                </md-virtual-repeat-container>
+            </div>
+            <div flex="50">
+                <div flex="50" layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Edit</md-button></div>
+                <div flex="50" layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Add</md-button></div>
+                <div flex="50" layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Acitivate</md-button></div>
+                <div flex="50" layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">InAcitivate</md-button></div>
+            </div>    
         </div>
-
-        <div layout="row">
-            <md-button class="md-button-toggle" ng-click="onToggleMenu()" aria-controls="bo-menu-{{data.id}}" aria-expanded="true">
-                <div layout="row">
-                    <span flex></span>
-                    <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled': data.opened}">
-                        <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-                    </span>
-                    Kamote 1
-                </div>
-                <span class="md-visually-hidden">
-                    Toggle {{data.opened ? 'expanded' : 'collapsed'}}
-                </span>
-            </md-button>
-            <!--
-            <ul id="bo-menu-{{data.id}}" class="menu-toggle-list" style="height: 0px;">
-                <li ng-repeat="subMenu in data.subMenus track by subMenu.id"><menu-link-directive data="subMenu"></menu-link-directive></li>
-            </ul>
-            -->
-        </div>
-        </md-virtual-repeat-container>
     </md-card-content>
     <md-card-footer>
         <div flex layout="row" layout-align="end">

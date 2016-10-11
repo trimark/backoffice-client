@@ -220,10 +220,17 @@ span.name {
 
 /*halika't mag-treeview*/
 
+.md-virtual-repeat-container .md-virtual-repeat-scroller {
+	overflow-y: scroll;
+}
 
+.treeview-container {
+	border: solid 1px grey;	
+}
 
 .treeview ul {
 	padding-left: 25px;
+	list-style: none;
 }
 
 .treeview > ul:first-child {
