@@ -1,0 +1,16 @@
+<md-button class="md-button-toggle" ng-click="onToggleMenu()" aria-controls="bo-menu-{{data.id}}" aria-expanded="true">
+    <div flex layout="row">
+        {{data.name}}
+    <span flex></span>
+    <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled': data.opened}">
+        <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+    </span>
+    </div>
+    <span class="md-visually-hidden">
+        Toggle {{data.opened ? 'expanded' : 'collapsed'}}
+    </span>
+</md-button>
+
+<ul id="bo-menu-{{data.id}}" class="menu-toggle-list" style="height: 0px;">
+    <li ng-repeat="subMenu in data.subMenus track by subMenu.id"><menu-link-directive data="subMenu"></menu-link-directive></li>
+</ul>

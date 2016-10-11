@@ -1,16 +1,21 @@
-angular.module('trimark-backoffice', [ 'ngMaterial']).config(['$mdIconProvider', '$mdThemingProvider',
-    function($mdIconProvider, $mdThemingProvider)
+angular.module('trimark-backoffice', [ 'ngRoute', 'ngMaterial']).config(['$routeProvider', '$mdIconProvider', '$mdThemingProvider',
+    function($routeProvider, $mdIconProvider, $mdThemingProvider)
     {
-        $mdIconProvider.defaultIconSet("./assets/svg/avatars.svg", 128)
-        .icon("menu", "./assets/svg/menu.svg", 24)
-        .icon("share", "./assets/svg/share.svg", 24)
-        .icon("google_plus", "./assets/svg/google_plus.svg", 24)
-        .icon("hangouts", "./assets/svg/hangouts.svg", 24)
-        .icon("twitter", "./assets/svg/twitter.svg", 24)
-        .icon("phone", "./assets/svg/phone.svg", 24);
+		$routeProvider.when('/', {
+			templateUrl: 'partials/home.html'
+		});
 
-        $mdThemingProvider.theme('default').primaryPalette('brown')
+		$routeProvider.when('/myaccount', {
+			templateUrl: 'partials/my-account.html'
+		});
+
+		$routeProvider.when('/organizations', {
+			templateUrl: 'partials/organizations.html'
+		});
+
+        $mdIconProvider.icon('md-toggle-arrow', 'img/icons/toggle-arrow.svg', 48);
+
+        $mdThemingProvider.theme('default').primaryPalette('grey')
         .accentPalette('red');
-        console.log("Patatas");
     }
 ]);
