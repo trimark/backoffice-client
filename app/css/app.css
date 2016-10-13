@@ -253,3 +253,18 @@ span.name {
 	border: 0;
 	outline: none;
 }
+
+
+.header {
+	padding: 10px;
+}
+
+.header .title {
+	display: inline-block;
+	margin: 0;
+	font-size: 16px;
+}
+
+.header .title-to {
+	display: inline-block;
+}

@@ -39,14 +39,14 @@
 		<!-- Container #4 -->
 		<md-content md-scroll-y flex>
 			<div flex layout="row" class="bread-crumb">
-				<span>
-					<span> Administration</span>
-					<span style="transform: translate3d(0, 1px, 0)">
+				<div class="header">
+					<h4 class="title">Administration</h4>
+					<span class="title-to">
 						<span class="md-visually-hidden">-</span>
-						<md-icon aria-hidden="true" md-svg-src="img/icons/ic_chevron_right_24px.svg" style="margin-top: -2px"></md-icon>
+						<md-icon aria-hidden="true" md-svg-src="img/icons/ic_chevron_right_24px.svg"></md-icon>
 					</span>
-				</span>
-				<span>My Account</span>
+					<h4 class="title">My Account</h4>
+				</div>
 			</div>
 			<ng-view></ng-view>
 		</md-content>
