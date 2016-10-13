@@ -8,8 +8,9 @@ var treeviewDirective = function($timeout, $mdUtil)
 			{
 				var el = angular.element($event.currentTarget),
 					li = el.parent();
-					li.toggleClass('collapsed'),
-					iconName = el.find('md-icon').text();
+
+				li.toggleClass('collapsed');
+				iconName = el.find('md-icon').text();
 
 				el.find('md-icon').text(iconName === 'add_box' ? 'indeterminate_check_box' : 'add_box');
 			};
