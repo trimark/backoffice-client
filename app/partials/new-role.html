@@ -31,42 +31,141 @@
             <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
                 <span>Game Definitions</span>
             </div>
-            <div layout="colum">
-                <ul>
-                    <li class="collapsed">
-                        <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Operator A</span></span>
-                        <ul class="sub">
-                            <li><span>Brand A</span></li>
-                            <li><span>Brand B</span></li>
-                            <li><span>Brand C</span></li>
-                        </ul>
-                    </li>
-                    <li class="collapsed">
-                        <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Operator B</span></span>
-                        <ul class="sub">
-                            <li><span>Brand A</span></li>
-                            <li><span>Brand B</span></li>
-                            <li class="collapsed">
-                                <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Brand C Test 3rd Level</span></span>
-                                <ul class="sub">
-                                    <li><span>Brand 1</span></li>
-                                    <li><span>Brand 2</span></li>
-                                    <li><span>Brand 3</span></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="collapsed">
-                        <span class="toggle" ng-click="onToggleMenu($event)"><md-icon>add_box</md-icon><span>Operator C</span></span>
-                        <ul class="sub">
-                            <li><span>Brand A</span></li>
-                            <li><span>Brand B</span></li>
-                            <li><span>Brand C</span></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div layout="row">
+                <div>
+                    <ul style="list-style: none">
+                        <li class="collapsed">
+                            <md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox>
+                            <ul class="sub" style="list-style: none">
+                                <li><md-checkbox md-no-ink class="md-primary">BetFairGroup A</md-checkbox></li>
+                                <li><md-checkbox md-no-ink class="md-primary">BetFairGroup B</md-checkbox></li>
+                                <li><md-checkbox md-no-ink class="md-primary">BetFairGroup C</md-checkbox></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul style="list-style: none">
+                        <li class="collapsed">
+                            <md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox>
+                            <ul class="sub" style="list-style: none">
+                                <li><md-checkbox md-no-ink class="md-primary">Bet365 A</md-checkbox></li>
+                                <li><md-checkbox md-no-ink class="md-primary">Bet365 B</md-checkbox></li>
+                                <li><md-checkbox md-no-ink class="md-primary">Bet365 C</md-checkbox></li>
+                                <li><md-checkbox md-no-ink class="md-primary">Bet365 D</md-checkbox></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>    
+        </div>
+        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                <span>Organizations</span>
+            </div>
+            <div layout="row">
+                <div layout="row" layout-align="space-around center" flex="30">
+                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                    <div flex="80">
+                        <md-select ng-model="ctrl.userState">
+                            <md-option>Create</md-option>
+                            <md-option>Read</md-option>
+                            <md-option>Update</md-option>
+                            <md-option>Delete</md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center" flex="70">
+                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                </div>    
+            </div>    
+        </div>
+        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                <span>Roles</span>
+            </div>
+            <div layout="row">
+                <div layout="row" layout-align="space-around center" flex="30">
+                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                    <div flex="80">
+                        <md-select ng-model="ctrl.userState">
+                            <md-option>Create</md-option>
+                            <md-option>Read</md-option>
+                            <md-option>Update</md-option>
+                            <md-option>Delete</md-option>
+                        </md-select>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                <span>Users</span>
+            </div>
+            <div layout="row">
+                <div layout="row" layout-align="space-around center" flex="30">
+                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                    <div flex="80">
+                        <md-select ng-model="ctrl.userState">
+                            <md-option>Create</md-option>
+                            <md-option>Read</md-option>
+                            <md-option>Update</md-option>
+                            <md-option>Delete</md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <div layout="row" layout-wrap layout-align="center center" flex="70">
+                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Profile</md-checkbox></div>
+                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Change Password</md-checkbox></div>
+                </div>    
+            </div>
+        </div>
+        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                <span>Game Definitions</span>
+            </div>
+            <div layout="row">
+                <div layout="row" layout-align="space-around center" flex="30">
+                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                    <div flex="80">
+                        <md-select ng-model="ctrl.userState">
+                            <md-option>Create</md-option>
+                            <md-option>Read</md-option>
+                            <md-option>Update</md-option>
+                            <md-option>Delete</md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center" flex="70">
+                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                </div>    
+            </div>
+        </div>
+        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                <span>Game Configurations</span>
+            </div>
+            <div layout="row">
+                <div layout="row" layout-align="space-around center" flex="30">
+                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                    <div flex="80">
+                        <md-select ng-model="ctrl.userState">
+                            <md-option>Create</md-option>
+                            <md-option>Read</md-option>
+                            <md-option>Update</md-option>
+                            <md-option>Delete</md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center" flex="70">
+                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                </div>    
+            </div>
         </div>
     </md-card-content>
     <md-card-footer>
