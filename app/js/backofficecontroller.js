@@ -24,7 +24,7 @@ var backofficeController = function($scope, $mdPanel)
 			subMenus: [
 				{id: "myaccount", name: "My Account", url: "#/myaccount", selected: false},
 				{id: "organizations", name: "Organizations", url: "#/organizations", selected: false},
-				{id: "roles", name: "Roles", url: "/", selected: false},
+				{id: "roles", name: "Roles", url: "#/roles", selected: false},
 				{id: "users", name: "Users", url: "/", selected: false}
 			]
 		}

@@ -211,7 +211,7 @@ span.name {
 }
 
 .treeview-container {
-	border: solid 1px grey;	
+	border: solid 1px rgb(225,225,225);	
 }
 
 .treeview ul {
@@ -253,4 +253,21 @@ span.name {
 
 .header .title-to {
 	display: inline-block;
+}
+
+md-list {
+    padding: 0px !important;
+}
+
+md-list-item, md-list-item .md-list-item-inner {
+	min-height: 0px !important;
+}
+
+md-list-item::before, md-list-item .md-list-item-inner::before {
+    min-height: 0px !important;
+    display: none !important;
+}
+
+md-list-item.md-no-proxy, md-list-item .md-no-style {
+	padding: 0px !important;
 }

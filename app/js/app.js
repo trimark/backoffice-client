@@ -13,6 +13,18 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ngMaterial']).config(['$route
 			templateUrl: 'partials/organizations.html'
 		});
 
+		$routeProvider.when('/new-organization', {
+			templateUrl: 'partials/new-organization.html'
+		});
+
+		$routeProvider.when('/roles', {
+			templateUrl: 'partials/roles.html'
+		});
+
+		$routeProvider.when('/new-role', {
+			templateUrl: 'partials/new-role.html'
+		});
+
         $mdIconProvider.icon('md-toggle-arrow', 'img/icons/toggle-arrow.svg', 48);
 
         $mdThemingProvider.theme('default').primaryPalette('grey')
