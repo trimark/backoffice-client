@@ -4,13 +4,23 @@ var treeviewDirective = function($timeout, $mdUtil)
 		restrict: 'E',
 		link: function(scope, element)
 		{
-			scope.onToggleMenu = function($event)
+			var prevEl;
+
+			scope.onItemClick = function($event)
 			{
 				var el = angular.element($event.currentTarget),
 					li = el.parent();
 
+				if (prevEl) 
+				{
+					prevEl.removeClass('active');
+				}
+
 				li.toggleClass('collapsed');
+				el.toggleClass('active');
+
 				iconName = el.find('md-icon').text();
+				prevEl = el;
 
 				el.find('md-icon').text(iconName === 'add_box' ? 'indeterminate_check_box' : 'add_box');
 			};

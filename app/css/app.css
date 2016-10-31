@@ -225,6 +225,7 @@ span.name {
 
 .treeview li {
 	margin-left: 15px;
+	margin-bottom: 5px;
 }
 
 .treeview li.collapsed .sub {
@@ -238,6 +239,25 @@ span.name {
 .treeview .toggle  {
 	border: 0;
 	outline: none;
+}
+
+.treeview .item {
+	cursor: pointer;
+	border: 0;
+	background: none;
+	outline: 0 none;
+	padding: 0;
+	margin: 0;
+}
+
+.treeview .item:hover {
+	color: #5a5a5a;
+}
+
+.treeview .item.active,
+.treeview .item.active:hover{
+	font-weight: 700;
+	color: #153961;
 }
 
 
