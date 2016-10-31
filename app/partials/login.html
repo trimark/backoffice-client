@@ -1,0 +1,26 @@
+<div role="dialog" layout="column" layout-align="center" ng-controller="LoginCtrl as loginCtrl">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Please enter your credentials</h2>
+        </div>
+    </md-toolbar>
+    <div style="padding: 0px 10px">
+        <md-input-container class="md-block" flex>
+            <label>Username</label>
+            <input ng-model="loginCtrl.userName">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block" flex>
+            <label>Password</label>
+            <input type="password" ng-model="loginCtrl.password">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block" flex>
+            <label>Organization</label>
+            <md-select ng-model="loginCtrl.organization">
+                <md-option ng-repeat="organization in loginCtrl.organizations" ng-value="organization">{{organization.name}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout="row" layout-align="center center" flex>
+        <md-button class="md-raised" ng-click="loginCtrl.onLogin()">Login</md-button>
+    </div>
+</div>

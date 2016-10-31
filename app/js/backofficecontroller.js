@@ -1,7 +1,9 @@
-var backofficeController = function($scope, $mdPanel)
+var backofficeController = function($scope, $mdPanel, $mdDialog)
 {
 	var self = this;
+	self.isUserLoggedIn = false;
 	self.selectedMenu = null;
+	self.loginPanel = null;
 
 	$scope.menus = [
 		{
@@ -57,6 +59,62 @@ var backofficeController = function($scope, $mdPanel)
 			focusOnOpen: true
 		});
 	};
+
+	this.init = function()
+	{
+		if (!self.isUserLoggedIn)
+		{
+			var position = $mdPanel.newPanelPosition().absolute().center();
+			$mdPanel.open({
+				attachTo: angular.element(document.body), 
+				disableParentScroll: false,
+				templateUrl: "partials/login.html",
+				hasBackdrop: true,
+				panelClass: "bo-dialog",
+				position: position,
+				trapFocus: true,
+				clickOutsideToClose: false,
+				escapeToClose: false,
+				focusOnOpen: true
+			}).
+			then(
+				function(result)
+				{
+					self.loginPanel = result;
+				}
+			);
+		}
+	};
+
+	$scope.$on("loginSuccess",
+		function(event, data)
+		{
+			self.loginPanel.close();
+			self.isUserLoggedIn = true;			
+			console.log("Patalinghug >>> ", data);
+		}
+	);
+
+	$scope.$on("showMessage",
+		function(event, message)
+		{
+			var position = $mdPanel.newPanelPosition().absolute().right();
+			$mdPanel.open({
+				attachTo: angular.element(document.body), 
+				disableParentScroll: false,
+				template: "<div style='padding: 24px;'>" + message + "</div>",
+				hasBackdrop: false,
+				panelClass: "bo-dialog",
+				position: position,
+				trapFocus: true,
+				clickOutsideToClose: true,
+				escapeToClose: true,
+				focusOnOpen: true
+			});
+		}
+	);
+
+	self.init();
 };
 
-angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$scope", '$mdPanel', backofficeController]);
+angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$scope", '$mdPanel', '$mdDialog', backofficeController]);

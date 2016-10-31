@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="trimark-backoffice">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>Trimark</title>
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="lib/css/angular-material/angular-material.css" />
+	</head>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<title>Trimark</title>
-	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="css/app.css" />
-	<link rel="stylesheet" href="lib/css/angular-material/angular-material.css" />
-</head>
-
-<body ng-cloak layout="column" ng-controller="BackofficeCtrl as backOfficeCtrl">
-	<!-- Container #1 (see wireframe) -->
-	<md-toolbar layout="row" class="bo-toolbar">
-		<md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
-		</md-button>
-		<h1>Trimark</h1>
-	</md-toolbar>
-	
-	<!-- Container #2 -->
-	<div flex layout="row">
-		<!-- Container #3 -->
-		<md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="toggleList()">
-			<!-- Custom UsersList component -->
-			<md-content flex="" role="navigation" class="_md flex">				
-				<ul class="bo-menu">
-					<li ng-repeat="menu in menus track by menu.id">
-						<menu-toggle-directive data="menu"></menu-toggle-directive>
-					</li>
-				</ul>
-			</md-content>
-			<!-- <users-list users="app.users" selected="app.selected" on-selected="app.selectUser(user)"></users-list> -->
-		</md-sidenav>
+	<body ng-cloak layout="column" ng-controller="BackofficeCtrl as backOfficeCtrl">
+		<!-- Container #1 (see wireframe) -->
+		<md-toolbar layout="row" class="bo-toolbar" ng-if="backOfficeCtrl.isUserLoggedIn">
+			<md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
+			</md-button>
+			<h1>Trimark</h1>
+		</md-toolbar>
 		
-		<!-- Container #4 -->
-		<md-content md-scroll-y flex>
-			<div flex layout="row" class="bread-crumb">
-				<div class="header">
-					<h4 class="title">Administration</h4>
-					<span class="title-to">
-						<span class="md-visually-hidden">-</span>
-						<md-icon aria-hidden="true" md-svg-src="img/icons/ic_chevron_right_24px.svg"></md-icon>
-					</span>
-					<h4 class="title">My Account</h4>
+		<!-- Container #2 -->
+		<div flex layout="row" ng-if="backOfficeCtrl.isUserLoggedIn">
+			<!-- Container #3 -->
+			<md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="toggleList()">
+				<!-- Custom UsersList component -->
+				<md-content flex="" role="navigation" class="_md flex">				
+					<ul class="bo-menu">
+						<li ng-repeat="menu in menus track by menu.id">
+							<menu-toggle-directive data="menu"></menu-toggle-directive>
+						</li>
+					</ul>
+				</md-content>
+				<!-- <users-list users="app.users" selected="app.selected" on-selected="app.selectUser(user)"></users-list> -->
+			</md-sidenav>
+			
+			<!-- Container #4 -->
+			<md-content md-scroll-y flex>
+				<div flex layout="row" class="bread-crumb">
+					<div class="header">
+						<h4 class="title">Administration</h4>
+						<span class="title-to">
+							<span class="md-visually-hidden">-</span>
+							<md-icon aria-hidden="true" md-svg-src="img/icons/ic_chevron_right_24px.svg"></md-icon>
+						</span>
+						<h4 class="title">My Account</h4>
+					</div>
 				</div>
-			</div>
-			<ng-view></ng-view>
-		</md-content>
-	</div>
+				<ng-view></ng-view>
+			</md-content>
+		</div>
 
-	<script src="lib/js/angular/angular.js"></script>
-	<script src="lib/js/angular-route/angular-route.js"></script>
-	<script src="lib/js/angular-animate/angular-animate.js"></script>
-	<script src="lib/js/angular-aria/angular-aria.js"></script>
-	<script src="lib/js/angular-material/angular-material.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/backofficecontroller.js"></script>
-	<script src="js/menutoggledirective.js"></script>
-	<script src="js/menulinkdirective.js"></script>
-	<script src="js/treeviewdirective.js"></script>
-</body>
+		<script src="lib/js/angular/angular.js"></script>
+		<script src="lib/js/angular-route/angular-route.js"></script>
+		<script src="lib/js/angular-animate/angular-animate.js"></script>
+		<script src="lib/js/angular-aria/angular-aria.js"></script>
+		<script src="lib/js/angular-material/angular-material.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/service/dataservice.js"></script>
+		<script src="js/backofficecontroller.js"></script>
+		<script src="js/logincontroller.js"></script>
+		<script src="js/menutoggledirective.js"></script>
+		<script src="js/menulinkdirective.js"></script>
+		<script src="js/treeviewdirective.js"></script>
+	</body>
 
 </html>
