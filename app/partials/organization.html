@@ -1,26 +1,25 @@
+<div ng-controller="OrganizationCtrl as organizationCtrl">
 <md-card id="profile">
     <md-card-heade>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>New Organization</h2>
+                <h2>{{organizationCtrl.organization.id === 0 ? 'New Organization' : 'Edit Organization'}}</h2>
             </div>
         </md-toolbar>
     </md-card-header>
     <md-card-content>
         <md-input-container class="md-block" flex>
             <label>Parent Organization</label>
-            <input ng-model="backOfficeCtrl.organization.parent" disabled>
+            <input ng-model="organizationCtrl.parentOrganization.name" disabled>
         </md-input-container>
         <md-input-container class="md-block" flex>
             <label>Organization Name</label>
-            <input ng-model="backOfficeCtrl.organization.name">
+            <input ng-model="organizationCtrl.organization.name">
         </md-input-container>
         <md-input-container class="md-block" flex>
             <label>Organization Role</label>
-            <md-select ng-model="ctrl.userState">
-                <md-option>Administrator</md-option>
-                <md-option>Distributor</md-option>
-                <md-option>Operator</md-option>
+            <md-select ng-model="organizationCtrl.organization.role" ng-model-options="{trackBy: '$value.id'}">
+                <md-option ng-repeat="role in organizationCtrl.roles track by role.id" ng-value="role">{{role.name}}</md-option>
             </md-select>
         </md-input-container>
         <md-input-container class="md-block" flex>
@@ -38,8 +37,9 @@
     </md-card-content>
     <md-card-footer>
         <div flex layout="row" layout-align="end">
-            <md-button class="md-raised" ng-click="backOfficeCtrl.changePassword()">Save</md-button>
-            <md-button class="md-raised">Cancel</md-button>
+            <md-button class="md-raised" ng-click="organizationCtrl.save()">Save</md-button>
+            <md-button class="md-raised" ng-href="#/organizations">Cancel</md-button>
         </div>
     </md-card-footer>
 </md-card>
+</div>
