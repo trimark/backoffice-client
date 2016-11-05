@@ -13,7 +13,7 @@ var loginController = function($rootScope, dataService)
 			{
 				if (response && response.data && response.data.code === 0)
 				{
-					self.organizations = response.data.response;
+					self.organizations = response.data.data;
 				}
 			}
 		);
@@ -26,7 +26,7 @@ var loginController = function($rootScope, dataService)
 			{
 				if (response && response.data && response.data.code === 0)
 				{
-					$rootScope.$broadcast("loginSuccess", response.data.response);
+					$rootScope.$broadcast("loginSuccess", response.data.data);
 				}
 			}
 		);

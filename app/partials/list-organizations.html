@@ -1,3 +1,4 @@
+<launch-list-organization-directive>
 <md-card id="profile">
     <md-card-heade>
         <md-toolbar>
@@ -15,6 +16,13 @@
                         <md-virtual-repeat-container class="treeview-container" style="max-width: 90%; height: 200px;">
                             <treeview-directive class="treeview">
                                 <ul>
+                                    <li ng-repeat="organization in listOrganizationCtrl.organizations track by organization.id" class="collapsed">
+                                        <button ng-class="{'item toggle': (organization.children.length), 'item': !organization.children.length}" ng-click="onItemClick($event); listOrganizationCtrl.onSelectOrganization(organization);"><md-icon ng-if="organization.children.length">add_box</md-icon>{{organization.name}}</button>
+                                        <ul class="sub" ng-if="organization.children.length">
+                                            <li ng-repeat="child in organization.children track by child.id"><button class="item" ng-click="onItemClick($event); listOrganizationCtrl.onSelectOrganization(organization);">{{child.name}}</button></li>
+                                        </ul>
+                                    </li>
+                                    <!--
                                     <li class="collapsed">
                                         <button class="item toggle" ng-click="onItemClick($event)"><md-icon>add_box</md-icon>Operator A</button>
                                         <ul class="sub">
@@ -47,35 +55,38 @@
                                             <li><button class="item" ng-click="onItemClick($event)">Brand C</button></li>
                                         </ul>
                                     </li>
+                                    -->
                                 </ul>
                             </treeview-directive>
                         </md-virtual-repeat-container>
                     </div>
                     <div flex="25">
-                        <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Edit</md-button></div>
-                        <div flex layout="column"><md-button class="md-raised" ng-href="#/new-organization">Add</md-button></div>
+                        <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/{{listOrganizationCtrl.selectedOrganization.parent.id}}/{{listOrganizationCtrl.selectedOrganization.id}}" ng-disabled="listOrganizationCtrl.selectedOrganization === listOrganizationCtrl.rootOrganization">Edit</md-button></div>
+                        <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/{{listOrganizationCtrl.selectedOrganization.id}}/0">Add</md-button></div>
                         <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Acitivate</md-button></div>
                         <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">InAcitivate</md-button></div>
                     </div>    
                 </div>
             </md-list-item>
-            <md-list-item>
+            <md-list-item ng-if="listOrganizationCtrl.selectedOrganization !== listOrganizationCtrl.rootOrganization">
                 <div flex layout="row" layout-align="center">
                 <div flex="75" style="border: solid 1px #f6f6f6; margin-top: 5px;">
                     <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                        <span>Operator A</span>
+                        <span>{{listOrganizationCtrl.selectedOrganization.name}}</span>
                     </div>
+                    <!--
                     <div flex layout="row">
                         <div flex="50" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">Organization Type</div>
-                        <div flex="50" style="padding: 5px;">Operator</div>
+                        <div flex="50" style="padding: 5px;">{{listOrganizationCtrl.selectedOrganization.type}}</div>
                     </div>
+                    -->
                     <div flex layout="row">
                         <div flex="50" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">Parent Organization</div>
-                        <div flex="50" style="padding: 5px;">EveryMatrix</div>
+                        <div flex="50" style="padding: 5px;">{{listOrganizationCtrl.selectedOrganization.parent.name}}</div>
                     </div>
                     <div flex layout="row">
                         <div flex="50" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">Role</div>
-                        <div flex="50" style="padding: 5px;">Administrator</div>
+                        <div flex="50" style="padding: 5px;">{{listOrganizationCtrl.selectedOrganization.role.name}}</div>
                     </div>
                     <div flex layout="row">
                         <div flex="50" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">Status</div>
@@ -87,3 +98,4 @@
         </md-list>
     </md-card-content>
 </md-card>
+</launch-list-organization-directive>

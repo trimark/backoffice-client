@@ -1,3 +1,4 @@
+<launch-role-directive>
 <md-card id="profile">
     <md-card-heade>
         <md-toolbar>
@@ -10,21 +11,20 @@
         <div layout="row">
             <md-input-container class="md-block" flex="60">
                 <label>Role Name</label>
-                <input ng-model="backOfficeCtrl.userAccount.organization" disabled>
+                <input ng-model="roleCtrl.role.name">
             </md-input-container>
             <md-input-container class="md-block" flex="40">
                 <label>Type</label>
-                <md-select ng-model="ctrl.userState">
-                    <md-option>Administrator</md-option>
-                    <md-option>Distributor</md-option>
-                    <md-option>Operator</md-option>
+                <md-select ng-model="roleCtrl.role.type">
+                    <md-option value="Organization">Organization</md-option>
+                    <md-option value="User">User</md-option>
                 </md-select>
             </md-input-container>
         </div>
         <div layout="row">
             <md-input-container class="md-block" flex>
                 <label>Role Description</label>
-                <input ng-model="backOfficeCtrl.userAccount.organization" disabled>
+                <input ng-model="roleCtrl.role.description">
             </md-input-container>
         </div>
         <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
@@ -67,7 +67,7 @@
                 <div layout="row" layout-align="space-around center" flex="30">
                     <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
                     <div flex="80">
-                        <md-select ng-model="ctrl.userState">
+                        <md-select ng-model="roleCtrl.userState">
                             <md-option>Create</md-option>
                             <md-option>Read</md-option>
                             <md-option>Update</md-option>
@@ -89,7 +89,7 @@
                 <div layout="row" layout-align="space-around center" flex="30">
                     <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
                     <div flex="80">
-                        <md-select ng-model="ctrl.userState">
+                        <md-select ng-model="roleCtrl.userState">
                             <md-option>Create</md-option>
                             <md-option>Read</md-option>
                             <md-option>Update</md-option>
@@ -107,7 +107,7 @@
                 <div layout="row" layout-align="space-around center" flex="30">
                     <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
                     <div flex="80">
-                        <md-select ng-model="ctrl.userState">
+                        <md-select ng-model="roleCtrl.userState">
                             <md-option>Create</md-option>
                             <md-option>Read</md-option>
                             <md-option>Update</md-option>
@@ -131,7 +131,7 @@
                 <div layout="row" layout-align="space-around center" flex="30">
                     <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
                     <div flex="80">
-                        <md-select ng-model="ctrl.userState">
+                        <md-select ng-model="roleCtrl.userState">
                             <md-option>Create</md-option>
                             <md-option>Read</md-option>
                             <md-option>Update</md-option>
@@ -153,7 +153,7 @@
                 <div layout="row" layout-align="space-around center" flex="30">
                     <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
                     <div flex="80">
-                        <md-select ng-model="ctrl.userState">
+                        <md-select ng-model="roleCtrl.userState">
                             <md-option>Create</md-option>
                             <md-option>Read</md-option>
                             <md-option>Update</md-option>
@@ -170,8 +170,9 @@
     </md-card-content>
     <md-card-footer>
         <div flex layout="row" layout-align="end">
-            <md-button class="md-raised" ng-click="backOfficeCtrl.changePassword()">Save</md-button>
-            <md-button class="md-raised">Cancel</md-button>
+            <md-button class="md-raised" ng-click="roleCtrl.save()">Save</md-button>
+            <md-button class="md-raised" ng-href="#/roles">Cancel</md-button>
         </div>
     </md-card-footer>
 </md-card>
+</launch-role-directive>
