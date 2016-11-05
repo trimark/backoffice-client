@@ -1,0 +1,123 @@
+<md-card id="profile" ng-controller="RoyaltiesSettingsCtrl as ctrl">
+    <md-card-header>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Report Settings</h2>
+            </div>
+        </md-toolbar>
+    </md-card-header>
+    <md-card-content>
+        <div>
+        <md-list>
+            <md-list-item>
+                <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                        <span flex="20">Use saved report: </span>
+                    <md-select flex ng-model="reportPresets" placeholder="none selected" class="md-no-underline">
+                        <md-option value="none">none</md-option>
+                    </md-select>
+                </div>
+            </md-list-item>
+
+            <md-list-item style="margin-bottom: 10px;">
+                <div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+                    <div flex="100">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Period</span>
+                        </div>
+                    </div>
+                    <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                         <div flex="20">Period: </div>
+                         <md-select flex ng-model="periodPresets" placeholder="none" class="md-no-underline">
+                            <md-option value="lastWeek">Last Week</md-option>
+                            <md-option value="lastMonth">Last Month</md-option>
+                            <md-option value="lastQuarter">Last Quarter</md-option>
+                            <md-option value="lastYear">Last Year</md-option>
+                        </md-select>
+                    </div>
+                     <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                         <div flex="20">Custom Range: </div>
+                         <md-input-container>
+                            <label>From:</label>
+                            <md-datepicker ng-model="startDate" md-placeholder="Enter Start Date"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>To:</label>
+                            <md-datepicker ng-model="endDate" md-placeholder="Enter End Date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+
+                </div>
+            </md-list-item>
+
+            <md-list-item style="margin-bottom: 10px;">
+                <div flex layout="row" layout-align="start" style="border: solid 1px rgb(225,225,225);">
+                    <div flex="100">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Organizations</span>
+                        </div>
+                        <div ivh-treeview="ctrl.organizations" style="padding: 10px;">
+                          <script type="text/ng-template">
+                            <span ivh-treeview-toggle>
+                              <span ivh-treeview-twistie></span>
+                            </span>
+                            <md-box></md-box>
+                            <span class="ivh-treeview-node-label" ivh-treeview-toggle>
+                              {{trvw.label(node)}}
+                            </span>
+                            <div ivh-treeview-children></div>
+                          </script>
+                        </div>
+                    </div>
+                </div>
+            </md-list-item>
+
+            <md-list-item style="margin-bottom: 10px;">
+                <div flex layout="row" layout-align="start" style="border: solid 1px rgb(225,225,225);">
+                    <div flex="100">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Games</span>
+                        </div>
+                        <div ivh-treeview="ctrl.games" style="padding: 10px;">
+                          <script type="text/ng-template">
+                            <span ivh-treeview-toggle>
+                              <span ivh-treeview-twistie></span>
+                            </span>
+                            <md-box></md-box>
+                            <span class="ivh-treeview-node-label" ivh-treeview-toggle>
+                              {{trvw.label(node)}}
+                            </span>
+                            <div ivh-treeview-children></div>
+                          </script>
+                        </div>
+                    </div>
+                </div>
+            </md-list-item>
+
+           <md-list-item style="margin-bottom: 10px;">
+                <div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+                    <div flex="100">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Layout</span>
+                        </div>
+                    </div>
+                    <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                         <div flex="20">Grouping: </div>
+                         <md-select flex ng-model="periodPresets" placeholder="None" class="md-no-underline">
+                            <md-option value="none">None</md-option>
+                            <md-option value="game">Game</md-option>
+                            <md-option value="brand">Brand</md-option>
+                            <md-option value="operator">Operator</md-option>
+                            <md-option value="distributor">distributor</md-option>
+                        </md-select>
+                    </div>
+                     <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                         <div flex="20">Columns: </div>
+                         <md-input-container>
+                        </md-input-container>
+                    </div>
+
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-card-content>
+</md-card>

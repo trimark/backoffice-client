@@ -1,7 +1,7 @@
 var backofficeController = function($scope, $mdPanel, $mdDialog)
 {
 	var self = this;
-	self.isUserLoggedIn = false;
+	self.isUserLoggedIn = true;
 	self.selectedMenu = null;
 	self.loginPanel = null;
 
@@ -10,7 +10,7 @@ var backofficeController = function($scope, $mdPanel, $mdDialog)
 			id: "reports", name: "Reports", opened: false,
 			subMenus: [
 				{id: "gameresults", name: "Game Results", url: "/", selected: false},
-				{id: "royalties", name: "Royalties", url: "/", selected: false},
+				{id: "royalties", name: "Royalties", url: "#/royalties-settings", selected: false},
 				{id: "gamehistory", name: "Game History", url: "/", selected: false}
 			]
 		},
