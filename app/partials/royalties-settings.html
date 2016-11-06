@@ -101,13 +101,13 @@
                         </div>
                     </div>
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
-                         <div div flex="20">Show summary:</div>
-                         <div flex="80">
+                         <div flex="20">Show summary:</div>
+                         <div flex="80" ng-repeat="v in [0]">
                             <md-checkbox ng-checked="showSummary" ng-click="showSummary = !showSummary"></md-checkbox>
                         </div>
                     </div>
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
-                        <div flex="20">Summary data: </div>
+                        <div flex="20">Summary data:</div>
                         <div flex="80" flex-gt-sm="50" layout="column">
                             <div layout="row" layout-wrap flex>
                                 <div flex="50" ng-repeat="item in summaryData">
@@ -128,18 +128,18 @@
                             <md-option value="distributor">distributor</md-option>
                         </md-select>
                     </div>
-                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
-                         <div flex="20">Columns: </div>
-                         <div flex="80" flex-gt-sm="50" layout="column">
-
-                              <div layout="row" layout-wrap flex>
+                    <div flex layout="row" layout-align="start start" style="padding: 10px;">
+                        <div flex="20">Columns: </div>
+                        <div flex="80" flex-gt-sm="50" layout="column">
+                            <div layout="row" layout-wrap flex>
                                 <div flex="50" ng-repeat="item in columns">
-                                  <md-checkbox ng-checked="exists(item, selectedColumns)" ng-click="toggle(item, selectedColumns)">
+                                    <md-checkbox ng-checked="exists(item, selectedColumns)" ng-click="toggle(item, selectedColumns)">
                                     {{ item }}
-                                  </md-checkbox>
+                                    </md-checkbox>
                                 </div>
-                              </div>
+                            </div>
                         </div>
+                    </div>
                 </div>
             </md-list-item>
         </md-list>
