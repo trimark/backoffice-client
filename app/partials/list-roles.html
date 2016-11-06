@@ -37,7 +37,12 @@
                 <div flex>
                     <launch-role-directive>
                     <fieldset class="demo-fieldset" >
-                        <legend class="demo-legend">EveryMatrix/ADMIN</legend>
+                        <legend class="demo-legend">{{roleCtrl.role.organization.name}}/{{roleCtrl.role.name}}</legend>
+                        <div flex layout="row">
+                            <div flex="5" layout="row" layout-align="start center"><label>Type:</label></div>
+                            <div flex="10" layout="row" layout-align="start center"><span>{{roleCtrl.role.type}}</span></div>
+                            <div flex="85" layout="row" layout-align="end center"><span><md-button class="md-raised" ng-href="#/role/{{roleCtrl.role.id}}">Edit Role</md-button></span></div>
+                        </div>
                         <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
                             <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
                                 <span>Child Organization Access</span>
@@ -57,23 +62,22 @@
                                 <md-checkbox md-no-ink class="md-primary">Automatically give access to new organizations</md-checkbox>
                             </div>    
                         </div>
-                        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-                            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                                <span>Organization</span>
+                        <div ng-repeat="module in roleCtrl.modules track by module.id">
+                            <div ng-repeat="entry in module.entries track by entry.id" ng-if="entry.hasSomePermission" flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                                    <span>{{entry.name}}</span>
+                                </div>
+                                <div layout="colum">
+                                    <md-chips ng-if="entry.selectedMainPermission">
+                                        <md-chip>Level {{entry.selectedMainPermission.name}}</md-chip>
+                                    </md-chips>
+                                    <md-chips ng-model="entry.selectedAdditionalPermissions" readonly="true">
+                                        <md-chip-template>{{$chip.name}}</md-chip-template>
+                                    </md-chips>
+                                </div>
                             </div>
-                            <div layout="colum">
-                                <md-chips>
-                                    <md-chip>Level Edit</md-chip>
-                                    <md-chip>Activate/InActivate</md-chip>
-                                    <md-chip>Edit Roles</md-chip>
-                                </md-chips>
-                                <!--
-                                <div style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Level Edit</md-checkbox></div>
-                                <div style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                                <div style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
-                                -->
-                            </div>    
                         </div>
+                        <!--
                         <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
                             <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
                                 <span>Roles</span>
@@ -105,6 +109,7 @@
                                 <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Set Permissions</md-checkbox></div>
                             </div>    
                         </div>
+                        -->
                     </fieldset>
                     </launch-role-directive>
                 </div>    

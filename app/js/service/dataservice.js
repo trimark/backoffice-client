@@ -125,6 +125,20 @@ var dataService = function($http)
 		});
 	};
 
+	this.updateRole = function(data)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'POST',
+			url: "http://localhost:8003/roles/update",
+			data: data,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
 	this.login = function(organization, userName, password)
 	{
 		var self = this;
