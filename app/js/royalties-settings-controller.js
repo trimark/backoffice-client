@@ -89,9 +89,13 @@ $scope.organizations = self.organizations;
 
 
 
-$scope.items = [1,2,3,4,5];
-  $scope.selected = [1];
+  $scope.columns = ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+  $scope.selectedColumns = ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+  $scope.summaryData = ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+  $scope.selectedSummaryData = ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+
   $scope.toggle = function (item, list) {
+    console.log(">toggle: item=" + item + ",list=" +list)
     var idx = list.indexOf(item);
     if (idx > -1) {
       list.splice(idx, 1);
@@ -99,6 +103,7 @@ $scope.items = [1,2,3,4,5];
     else {
       list.push(item);
     }
+    console.log("<toggle");
   };
 
   $scope.exists = function (item, list) {
@@ -106,21 +111,22 @@ $scope.items = [1,2,3,4,5];
   };
 
   $scope.isIndeterminate = function() {
-    return ($scope.selected.length !== 0 &&
-        $scope.selected.length !== $scope.items.length);
+    return ($scope.selectedColumns.length !== 0 &&
+        $scope.selectedColumns.length !== $scope.columns.length);
   };
 
   $scope.isChecked = function() {
-    return $scope.selected.length === $scope.items.length;
+    return $scope.selectedColumns.length === $scope.columns.length;
   };
 
   $scope.toggleAll = function() {
-    if ($scope.selected.length === $scope.items.length) {
-      $scope.selected = [];
-    } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-      $scope.selected = $scope.items.slice(0);
+    if ($scope.selectedColumns.length === $scope.columns.length) {
+      $scope.selectedColumns = [];
+    } else if ($scope.selectedColumns.length === 0 || $scope.selectedColumns.length > 0) {
+      $scope.selectedColumns = $scope.columns.slice(0);
     }
   };
+  $scope.showSummary = true;
 
 	self.init();
 }
