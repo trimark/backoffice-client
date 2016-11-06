@@ -72,6 +72,19 @@ var dataService = function($http)
 		});
 	};
 
+	this.getRolesByOwner = function(organizationId)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'GET',
+			url: "http://localhost:8003/roles/listRolesByOwner/" + organizationId,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
 	this.getRolesByOwnerAndType = function(organizationId, roleType)
 	{
 		var self = this;
@@ -79,6 +92,19 @@ var dataService = function($http)
 		{
 			method: 'GET',
 			url: "http://localhost:8003/roles/listRolesByOwnerAndType/" + organizationId + "/" + roleType,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
+	this.getRole = function(roleId)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'GET',
+			url: "http://localhost:8003/roles/findById/" + roleId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}

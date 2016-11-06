@@ -27,8 +27,8 @@
 				<!-- Custom UsersList component -->
 				<md-content flex="" role="navigation" class="_md flex">				
 					<ul class="bo-menu">
-						<li ng-repeat="menu in menus track by menu.id">
-							<menu-toggle-directive data="menu"></menu-toggle-directive>
+						<li ng-repeat="module in backOfficeCtrl.modules track by module.id">
+							<menu-toggle-directive data="module"></menu-toggle-directive>
 						</li>
 					</ul>
 				</md-content>
@@ -60,10 +60,12 @@
 		<script src="js/controller/organizationcontroller.js"></script>
 		<script src="js/controller/listorganizationcontroller.js"></script>
 		<script src="js/controller/rolecontroller.js"></script>
+		<script src="js/controller/listrolecontroller.js"></script>
 		<script src="js/service/dataservice.js"></script>
 		<script src="js/backofficecontroller.js"></script>
 		<script src="js/logincontroller.js"></script>
 		<script src="js/directive/launchlistorganizationdirective.js"></script>
+		<script src="js/directive/launchlistroledirective.js"></script>
 		<script src="js/directive/launchroledirective.js"></script>
 		<script src="js/menutoggledirective.js"></script>
 		<script src="js/menulinkdirective.js"></script>

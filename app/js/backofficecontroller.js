@@ -1,39 +1,259 @@
 var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
 {
 	var self = this;
+	self.modules = [];
 	self.organization = null;
 	self.isUserLoggedIn = false;
 	self.selectedMenu = null;
 	self.loginPanel = null;
 
-	this.initMenus = function()
+	this.initModules = function()
 	{
-		$scope.menus = [
-			{
-				id: "reports", name: "Reports", opened: false,
-				subMenus: [
-					{id: "gameresults", name: "Game Results", url: "/", selected: false},
-					{id: "royalties", name: "Royalties", url: "/", selected: false},
-					{id: "gamehistory", name: "Game History", url: "/", selected: false}
-				]
-			},
-			{
-				id: "games", name: "Games", opened: false,
-				subMenus: [
-					{id: "gamedefinitions", name: "Game Definitions", url: "/", selected: false},
-					{id: "mygames", name: "My Games", url: "/", selected: false}
-				]
-			},
-			{
-				id: "administration", name: "administration", opened: false,
-				subMenus: [
-					{id: "myaccount", name: "My Account", url: "#/myaccount", selected: false},
-					{id: "organizations", name: "Organizations", url: "#/organizations", selected: false},
-					{id: "roles", name: "Roles", url: "#/roles", selected: false},
-					{id: "users", name: "Users", url: "/", selected: false}
-				]
-			}
-		];
+		self.modules.push({
+			id: "reports", name: "Reports", opened: false,
+			entries: [
+				{
+					id: "GAMERESULTS",
+					name: "Game Results",
+					menu: {
+						name: "Game Results", 
+						url: "/", 
+						selected: false
+					}
+				},
+				{
+					id: "ROYALTIES",
+					name: "Royalties",
+					menu: {
+						name: "Royalties", 
+						url: "/", 
+						selected: false
+					}
+				},
+				{
+					id: "GAMEHISTORY",
+					name: "Game History",
+					menu: {
+						name: "Game History", 
+						url: "/", 
+						selected: false
+					}
+				}
+			]
+		});
+		self.modules.push({
+			id: "games", name: "Games", opened: false,
+			entries: [
+				{
+					id: "GAMEDEFINITIONS",
+					name: "Game Definitions",
+					mainPermissions: [{
+							id: "READ",
+							name: "Read"
+						},
+						{
+							id: "UPDATE",
+							name: "Update"
+						},
+						{
+							id: "CREATE",
+							name: "Create"
+						},
+						{
+							id: "DELETE",
+							name: "Delete"
+						},
+						{
+							id: "FULL",
+							name: "Full"
+						}
+					],
+					additionalPermissions: [{
+							id: "ACTIVATEINACTIVATE",
+							name: "Activate/Inactivate"
+						},
+						{
+							id: "SETPERMISSIONS",
+							name: "Set Permissions"
+						}
+					],
+					menu: {
+						name: "Game Definitions", 
+						url: "/", 
+						selected: false
+					}
+				},
+				{
+					id: "MYGAMES",
+					name: "Game Configurations",
+					mainPermissions: [{
+							id: "READ",
+							name: "Read"
+						},
+						{
+							id: "UPDATE",
+							name: "Update"
+						},
+						{
+							id: "CREATE",
+							name: "Create"
+						},
+						{
+							id: "DELETE",
+							name: "Delete"
+						},
+						{
+							id: "FULL",
+							name: "Full"
+						}
+					],
+					additionalPermissions: [{
+							id: "ACTIVATEINACTIVATE",
+							name: "Activate/Inactivate"
+						},
+						{
+							id: "SETPERMISSIONS",
+							name: "Set Permissions"
+						}
+					],
+					menu: {
+						name: "My Games", 
+						url: "/", 
+						selected: false
+					} 
+				}
+			]
+		});
+		self.modules.push({
+			id: "administration", name: "administration", opened: false,
+			entries: [
+				{
+					id: "MYACCOUNT",
+					name: "My Account",
+					menu: {
+						name: "My Account", 
+						url: "#/myaccount", 
+						selected: false
+					}
+				},
+				{
+					id: "ORGANIZATIONS",
+					name: "Organizations",
+					mainPermissions: [{
+							id: "READ",
+							name: "Read"
+						},
+						{
+							id: "UPDATE",
+							name: "Update"
+						},
+						{
+							id: "CREATE",
+							name: "Create"
+						},
+						{
+							id: "DELETE",
+							name: "Delete"
+						},
+						{
+							id: "FULL",
+							name: "Full"
+						}
+					],
+					additionalPermissions: [{
+							id: "ACTIVATEINACTIVATE",
+							name: "Activate/Inactivate"
+						},
+						{
+							id: "EDITROLES",
+							name: "Edit Roles"
+						}
+					],
+					menu: {
+						name: "Organizations", 
+						url: "#/organizations", 
+						selected: false						
+					}
+				},
+				{
+					id: "ROLES", 
+					name: "Roles",
+					mainPermissions: [{
+							id: "READ",
+							name: "Read"
+						},
+						{
+							id: "UPDATE",
+							name: "Update"
+						},
+						{
+							id: "CREATE",
+							name: "Create"
+						},
+						{
+							id: "DELETE",
+							name: "Delete"
+						},
+						{
+							id: "FULL",
+							name: "Full"
+						}
+					],
+					menu: {
+						name: "Roles", 
+						url: "#/roles", 
+						selected: false
+					}
+				},
+				{
+					id: "USERS",
+					name: "Users",
+					mainPermissions: [{
+							id: "READ",
+							name: "Read"
+						},
+						{
+							id: "UPDATE",
+							name: "Update"
+						},
+						{
+							id: "CREATE",
+							name: "Create"
+						},
+						{
+							id: "DELETE",
+							name: "Delete"
+						},
+						{
+							id: "FULL",
+							name: "Full"
+						}
+					],
+					additionalPermissions: [{
+							id: "ACTIVATEINACTIVATE",
+							name: "Activate/Inactivate"
+						},
+						{
+							id: "EDITROLES",
+							name: "Edit Roles"
+						},
+						{
+							id: "EDITPROFILE",
+							name: "Edit Profile"
+						},
+						{
+							id: "CHANGEPASSWORD",
+							name: "Change Password"
+						}
+					],
+					menu: {
+						name: "Users", 
+						url: "/", 
+						selected: false
+					}
+				}
+			]
+		});
 	};
 
 	this.toggleMenu = function(menu)
@@ -90,7 +310,7 @@ var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
 		}
 		else
 		{
-			self.initMenus();
+			self.initModules();
 		}
 	};
 
@@ -101,7 +321,7 @@ var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
 			self.loginPanel.close();
 			self.isUserLoggedIn = true;
 			self.organization = data.organization;
-			self.initMenus();		
+			self.initModules();		
 		}
 	);
 

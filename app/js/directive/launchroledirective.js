@@ -9,7 +9,15 @@ var launchRoleDirective = function($route)
 				function(event, next, current) 
 				{
 					var parentController = element.parent().controller();
-					controller.init(parentController.organization, $route.current.params.roleId);
+					controller.init(parentController.organization, parentController.modules, $route.current.params.roleId);
+				}
+			);
+
+			scope.$on("loadRole", 
+				function(event, roleId)
+				{
+					var parentController = element.parent().controller();
+					controller.init(parentController.organization, parentController.modules, roleId);
 				}
 			);
 		}

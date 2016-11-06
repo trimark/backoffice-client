@@ -1,6 +1,6 @@
-<md-button ng-class="{'active' : data.selected}" ng-href="{{data.url}}" ng-click="focusSection()">
-	{{data.name}}
-	<span class="md-visually-hidden" ng-if="data.selected">
+<md-button ng-class="{'active' : data.menu.selected}" ng-href="{{data.menu.url}}" ng-click="focusSection()">
+	{{data.menu.name}}
+	<span class="md-visually-hidden" ng-if="data.menu.selected">
 		current page
 	</span>
 </md-button>
