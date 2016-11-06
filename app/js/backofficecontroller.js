@@ -1,4 +1,4 @@
-var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
+var backofficeController = function($scope, $mdPanel, $mdDialog)
 {
 	var self = this;
 	self.modules = [];
@@ -26,7 +26,7 @@ var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
 					name: "Royalties",
 					menu: {
 						name: "Royalties", 
-						url: "/", 
+						url: "#/royalties-settings", 
 						selected: false
 					}
 				},
@@ -317,11 +317,12 @@ var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
 	$scope.$on("loginSuccess",
 		function(event, data)
 		{
-			dataService.setJwtToken(data.jwtToken);
 			self.loginPanel.close();
 			self.isUserLoggedIn = true;
 			self.organization = data.organization;
 			self.initModules();		
+			self.isUserLoggedIn = true;			
+			console.log("Patalinghug >>> ", data);
 		}
 	);
 
@@ -347,4 +348,4 @@ var backofficeController = function($scope, $mdPanel, $mdDialog, dataService)
 	self.init();
 };
 
-angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$scope", "$mdPanel", "$mdDialog", "DataService", backofficeController]);
+angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$scope", '$mdPanel', '$mdDialog', backofficeController]);
