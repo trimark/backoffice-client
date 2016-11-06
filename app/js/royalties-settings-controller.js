@@ -11,37 +11,49 @@ var royaltiesSettingsController = function($scope)
 
 	};
 	self.games = [{
-  label: 'Hats',
-  children: [
-    {label: 'Flat cap'},
-    {label: 'Top hat'},
-    {label: 'Gatsby'}
-  ]
-},{
-  label: 'Pens',
   selected: true,
+  label: 'Lottery',
   children: [
-    {label: 'Fountain'},
-    {label: 'Gel ink'},
-    {label: 'Fedora'},
-    {label: 'Baseball', selected: true},
-    {label: 'Roller ball'},
-    {label: 'Fiber tip'},
-    {label: 'Ballpoint'}
+    {label: 'EuroMillions'},
+    {label: 'Powerball'}
   ]
 },{
-  label: 'Whiskey',
+  selected: true,
+  label: 'ScratchCards',
   children: [
-    {label: 'Irish'},
-    {label: 'Scotch'},
-    {label: 'Rye'},
-    {label: 'Tennessee'},
-    {label: 'Bourbon'}
+    {label: 'The Amazing Circus'},
+    {label: 'Astro'},
+    {label: 'Beauty Salon'},
+    {label: 'Geisha Memoirs'},
+    {label: 'Genie´s Gold'},
+    {label: 'Haunted Mansion'},
+    {label: 'Hillbilly Haven'},
+    {label: 'Jester´s Gold'},
+    {label: 'Knights of Atlantis'},
+    {label: 'Mermaids and Pearls'},
+    {label: 'Nefertiti´s Fortune'},
+    {label: 'Pirate´s Treasure Trove'},
+    {label: 'Rockstar Riches'},
+    {label: 'Shopping Spree'},
+    {label: 'Sky Kingdom'},
+    {label: 'Tiki Treasure'},
+    {label: 'Sassy Sevens'},
+    {label: 'Wicked Witch'},
+    {label: 'Astro'},
+    {label: 'Astro'}
+  ]
+},{
+  selected: true,
+  label: 'Slots',
+  children: [
+    {label: 'Dwarves & Dragons'},
+    {label: 'Funhouse'}
   ]
 }];
 $scope.games = self.games;
 
 self.organizations = [{
+  selected: true,
   label: 'Distributor',
   children: [
     {
