@@ -1,5 +1,5 @@
-var royaltiesSettingsController = function ($scope, $location) {
-	//console.log(">royaltiesSettingsController")
+var royaltiesSettingsController = function ($scope, $location, $royaltiesReportDataService) {
+	console.log(">royaltiesSettingsController: $royaltiesReportDataService=" + $royaltiesReportDataService)
 	var self = this;
 	self.userName = "";
 	self.password = "";
@@ -77,7 +77,7 @@ var royaltiesSettingsController = function ($scope, $location) {
 			]
 		}
 	];
-	$scope.games = self.games;
+	this.games = self.games;
 
 	self.organizations = [{
 			selected : true,
@@ -152,4 +152,4 @@ var royaltiesSettingsController = function ($scope, $location) {
 	self.init();
 }
 
-angular.module('trimark-backoffice').controller("RoyaltiesSettingsCtrl", ["$rootScope", "$location", royaltiesSettingsController]);
+angular.module('trimark-backoffice').controller("RoyaltiesSettingsCtrl", ["$rootScope", "$location", "RoyaltiesReportService", royaltiesSettingsController]);
