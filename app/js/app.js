@@ -9,6 +9,9 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 			$routeProvider.when('/royalties-settings', {
 				templateUrl: 'partials/royalties-settings.html'
 			});
+			$routeProvider.when('/royalties-report', {
+				templateUrl: 'partials/royalties-report.html'
+			});
 
 			$routeProvider.when('/myaccount', {
 				templateUrl: 'partials/my-account.html'

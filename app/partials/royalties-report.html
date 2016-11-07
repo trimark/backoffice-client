@@ -1,0 +1,58 @@
+<md-card id="royaltiesSettings" ng-controller="RoyaltiesSettingsCtrl as ctrl">
+    <md-card-header>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Royalties</h2>
+            </div>
+        </md-toolbar>
+    </md-card-header>
+    <md-card-content>
+        <div>
+        <md-list>
+            <md-list-item style="margin-bottom: 10px;">
+                <div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+                    <div flex="100">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Report Settings</span>
+                        </div>
+                    </div>
+                    <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                        <md-button class="md-raised" ng-href="#/royalties-settings">Edit Settings</md-button>
+                    </div>
+
+                </div>
+            </md-list-item>
+            <md-list-item ng-if="ctrl.getShowSummary()" style="margin-bottom: 10px;">
+                <div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+                    <div flex="100">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Totals</span>
+                        </div>
+                    </div>
+                    <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                         <div flex="20">Period: </div>
+                         <md-select flex="20" ng-model="periodPresets" placeholder="none" class="md-no-underline">
+                            <md-option value="lastWeek">Last Week</md-option>
+                            <md-option value="lastMonth">Last Month</md-option>
+                            <md-option value="lastQuarter">Last Quarter</md-option>
+                            <md-option value="lastYear">Last Year</md-option>
+                        </md-select>
+                    </div>
+                     <div flex layout="row" layout-align="start center" style="padding: 10px;">
+                         <div flex="20">Custom Range: </div>
+                         <md-input-container>
+                            <label>From:</label>
+                            <md-datepicker ng-model="startDate" md-placeholder="Enter Start Date"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>To:</label>
+                            <md-datepicker ng-model="endDate" md-placeholder="Enter End Date"></md-datepicker>
+                        </md-input-container>
+                    </div>
+
+                </div>
+            </md-list-item>
+
+        </md-list>
+    </md-card-content>
+</md-card>
