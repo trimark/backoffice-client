@@ -1,5 +1,5 @@
 var royaltiesSettingsController = function ($scope, $location) {
-	console.log(">royaltiesSettingsController")
+	//console.log(">royaltiesSettingsController")
 	var self = this;
 	self.userName = "";
 	self.password = "";
@@ -8,13 +8,13 @@ var royaltiesSettingsController = function ($scope, $location) {
 
 	this.init = function () {};
   this.onClickedCreate = function(){
-    console.log(">onClickedCreate");
+    //console.log(">onClickedCreate");
     $location.path('/royalties-report');
-    console.log("<onClickedCreate");
+    //console.log("<onClickedCreate");
   }
   this.onClickedCancel = function(){
-    console.log(">onClickedCancel");
-    console.log("<onClickedCancel");
+    //console.log(">onClickedCancel");
+    //console.log("<onClickedCancel");
   }
 	self.games = [{
 			selected : true,
@@ -64,10 +64,6 @@ var royaltiesSettingsController = function ($scope, $location) {
 					label : 'Sassy Sevens'
 				}, {
 					label : 'Wicked Witch'
-				}, {
-					label : 'Astro'
-				}, {
-					label : 'Astro'
 				}
 			]
 		}, {
@@ -120,53 +116,36 @@ var royaltiesSettingsController = function ($scope, $location) {
 			]
 		}
 	]
-	$scope.organizations = self.organizations;
 
-	$scope.columns = ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
-	$scope.selectedColumns = ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
-	$scope.summaryData = ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
-	$scope.selectedSummaryData = ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+	this.columns = ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+	this.selectedColumns = ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+	this.summaryData = ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
+	this.selectedSummaryData = ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"];
 
-	$scope.toggle = function (item, list) {
-		console.log(">toggle: item=" + item + ",list=" + list)
+	this.toggle = function (item, list) {
+		//console.log(">toggle: item=" + item + ",list=" + list)
 		var idx = list.indexOf(item);
 		if (idx > -1) {
 			list.splice(idx, 1);
 		} else {
 			list.push(item);
 		}
-		console.log("<toggle");
+		//console.log("<toggle");
 	};
 
 	$scope.exists = function (item, list) {
 		return list.indexOf(item) > -1;
 	};
 
-	$scope.isIndeterminate = function () {
-		return ($scope.selectedColumns.length !== 0 &&
-			$scope.selectedColumns.length !== $scope.columns.length);
-	};
-
-	$scope.isChecked = function () {
-		return $scope.selectedColumns.length === $scope.columns.length;
-	};
-
-	$scope.toggleAll = function () {
-		if ($scope.selectedColumns.length === $scope.columns.length) {
-			$scope.selectedColumns = [];
-		} else if ($scope.selectedColumns.length === 0 || $scope.selectedColumns.length > 0) {
-			$scope.selectedColumns = $scope.columns.slice(0);
-		}
-	};
 	self.getShowSummary = function(){
-		console.log(">getShowSummary")
-		console.log("<getShowSummary: ret=" + self.showSummary)
+		//console.log(">getShowSummary")
+		//console.log("<getShowSummary: ret=" + self.showSummary)
 		return self.showSummary;
 	}
 	self.setShowSummary = function(val){
-		console.log(">getShowSummary val=" + val);
+		//console.log(">getShowSummary val=" + val);
 		self.showSummary = val;
-		console.log("<getShowSummary: showSummary=" + self.showSummary)
+		//console.log("<getShowSummary: showSummary=" + self.showSummary)
 	}
 	self.showSummary = true;
 
