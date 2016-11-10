@@ -1,7 +1,7 @@
 var dummyData = null;
 var winPercFeed = [0.87612, 0.93132, 0.83565, 0.916298, 0.763467, 0.83421, 0.98475, 0.87503, 0.90211,  0.89976] ;
 var winPercFeedIX = 0;
-var betFeed1 = [3582, 8458, 7335, 1843, 9475, 6584, 2854, 4844, 5229, 3284, 5343];
+var betFeed1 = [358, 845, 733, 184, 947, 658, 285, 484, 522, 328, 534];
 var betFeed1IX = 0;
 var betFeed2 = [358, 458, 335, 843, 475, 584, 854, 844, 229, 284, 654, 345, 234, 567, 345, 456, 434];
 var betFeed2IX = 0;
@@ -14,7 +14,7 @@ var n = amount,
     s = n < 0 ? "-" : "", 
     i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
     j = (j = i.length) > 3 ? j % 3 : 0;
-   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+   return "€" + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
  };
  function formatPercentage(val){
 	return Math.round(val * 100).toString() + "%";
@@ -232,6 +232,8 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 	};
 	this.init();
 
-	$scope.exists = this.exists; 
+	$scope.exists = this.exists;
+	$scope.formatCurrency = formatCurrency;
+	$scope.formatPercentage = formatPercentage;
 }
 angular.module('trimark-backoffice').controller("RoyaltiesReportCtrl", ["$rootScope", "$location", "RoyaltiesSettingsFactory",  royaltiesReportController]);

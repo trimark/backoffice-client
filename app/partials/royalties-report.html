@@ -40,27 +40,27 @@
 						<div flex layout="column">
 							<div flex row>{{ctrl.totals.playerCount}}</div>
 							<div flex row>{{ctrl.totals.betCount}}</div>
-							<div flex row>{{ctrl.totals.bets}}</div>
-							<div flex row>{{ctrl.totals.wins}}</div>
-							<div flex row>{{ctrl.totals.net}}</div>
+							<div flex row>{{formatCurrency(ctrl.totals.bets)}}</div>
+							<div flex row>{{formatCurrency(ctrl.totals.wins)}}</div>
+							<div flex row>{{formatCurrency(ctrl.totals.net)}}</div>
 						</div>
 						<div flex layout="column">
 							<div flex row>Royalties: </div>
 							<div flex row ng-repeat="item in ctrl.totals.royaltiesPerBrand">
 								<span>{{item.id}}</span>
-								<span>{{item.amount}}</span>
+								<span>{{formatCurrency(item.amount)}}</span>
 							</div>
 						</div>
 						<div flex layout="column">
 							<div flex row>Distributor shares:</div>
 							<div flex row ng-repeat="item in ctrl.totals.sharesPerDistributor">
 								<span>{{item.id}}</span>
-								<span>{{item.amount}}</span>
+								<span>{{formatCurrency(item.amount)}}</span>
 							</div>
 						</div>
 						<div flex layout="column">
 							<div flex row>Trimark shares: </div>
-							<div flex row>{{ctrl.totals.vendorShareAmount}}</div>
+							<div flex row>{{formatCurrency(ctrl.totals.vendorShareAmount)}}</div>
 						</div>
                     </div>
                 </div>
@@ -86,15 +86,15 @@
 								<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.operator}}</div>
                                 <div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.brand}}</div>
                                 <div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
-								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.bets}}</div>
-								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.wins}}</div>
-								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.net}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.royaltyAmount}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.royaltyPercentage}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distShareAmount}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distSharePercentage}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.vendorSharePercentage}}</div>							
-                                <div flex="5" style="text-align: right; padding: 5px;">{{row.vendorShareAmount}}</div>
+								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.bets)}}</div>
+								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.wins)}}</div>
+								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.net)}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.royaltyAmount)}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.royaltyPercentage)}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.distShareAmount)}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.distSharePercentage)}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.vendorSharePercentage)}}</div>							
+                                <div flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(row.vendorShareAmount)}}</div>
                             </div>
                         </md-list-item>
                     </md-list>
