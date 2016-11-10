@@ -63,6 +63,34 @@ function getGamesArray(gamesTree, selectedOnly){
 	return ret;
 }
 
+function getBrandsArray(organizationTree, selectedOnly){
+	console.log(">getBrandsArray: ");
+	var ret = [];
+	for (var i = 0; i<organizationTree.length;i++){
+		var operators = organizationTree[i].children;
+		for (var j = 0; j<operators.length; j++){
+			var operator = operators[j];
+			for (var k = 0; k<operator.children.length; k++)
+			{
+				var brand = operator.children[k];
+				var add = true;
+				if (selectedOnly){
+					
+					if(!brand.selected){
+						add = false;
+					}
+				}
+				if (add){
+					ret.push(brand.label);
+				}
+			}
+		}
+	}
+	console.log("<getBrandsArray: ret=" +ret);
+	return ret;
+}
+
+
 function getDataRowString(row){
 	return "{brand: " + row.brand	+ ", game: " + row.game  + ", bets: " + row.bets + ", wins: " + row.wins + ", net: " + row.net + " , royaltyPercentage: " + row.royaltyPercentage + ", royaltyAmount: " + row.royaltyAmount +" , distSharePercentage: " + row.distSharePercentage + ", distShareAmount: " + row.distShareAmount +" , vendorSharePercentage: " + row.vendorSharePercentage + ", vendorShareAmount: " + row.vendorShareAmount + "}";
 }
@@ -129,23 +157,34 @@ function generateDummyData(settings){
 }
 var royaltiesReportController = function ($scope, $location, $royaltiesSettingsFactory) {
 	console.log(">royaltiesReportController: dummyData=" + dummyData);
-	
+	this.init = function(){
 	this.settings = $royaltiesSettingsFactory;
 	
 		if (dummyData == null){
 			generateDummyData(this.settings);
 		}
-		this.data = dummyData;
-		var games = getGamesArray(this.settings.games, true);
+		this.data = [];
+		var selectedGames = getGamesArray(this.settings.games, true);
+		var selectedBrands = getBrandsArray(this.settings.organizations, true);
 		
-		for (var i = 0; i<this.data.length;i++){
-			var row = this.data[i];
+		for (var i = 0; i<dummyData.length;i++){
+			var row = dummyData[i];
 			var rowMatches = true;
-			//if (this.settings.
+			if (!this.exists(row.game, selectedGames)){
+				rowMatches = false;
+			} else if (!this.exists(row.brand, selectedBrands)){
+				rowMatches = false;
+			}
+			if (rowMatches){
+				this.data.push(row);
+			}
 		}
-
-	$scope.exists = function (item, list) {
+	}
+	this.exists = function(item, list) {
 		return list.indexOf(item) > -1;
 	};
+	this.init();
+
+	$scope.exists = this.exists; 
 }
 angular.module('trimark-backoffice').controller("RoyaltiesReportCtrl", ["$rootScope", "$location", "RoyaltiesSettingsFactory",  royaltiesReportController]);
