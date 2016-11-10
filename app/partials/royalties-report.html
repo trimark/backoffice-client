@@ -38,27 +38,29 @@
 							<div flex row>Net Gaming</div>
 						</div>
 						<div flex layout="column">
-							<div flex row>PC1234</div>
-							<div flex row>BC1234</div>
+							<div flex row>{{ctrl.totals.playerCount}}</div>
+							<div flex row>{{ctrl.totals.betCount}}</div>
+							<div flex row>{{ctrl.totals.bets}}</div>
+							<div flex row>{{ctrl.totals.wins}}</div>
+							<div flex row>{{ctrl.totals.net}}</div>
 						</div>
 						<div flex layout="column">
 							<div flex row>Royalties: </div>
-							<div flex row>1234</div>
+							<div flex row ng-repeat="item in ctrl.totals.royaltiesPerBrand">
+								<span>{{item.id}}</span>
+								<span>{{item.amount}}</span>
+							</div>
 						</div>
 						<div flex layout="column">
 							<div flex row>Distributor shares:</div>
-							<div flex row layout-align="space-between start">
-								<span>EveryMatrix: </span>
-								<span>EM12341234</span>
-							</div>
-							<div flex row layout-align="space-between start">
-								<span>Nyx: </span>
-								<span>Nyx123</span>
+							<div flex row ng-repeat="item in ctrl.totals.sharesPerDistributor">
+								<span>{{item.id}}</span>
+								<span>{{item.amount}}</span>
 							</div>
 						</div>
 						<div flex layout="column">
 							<div flex row>Trimark shares: </div>
-							<div flex row>1234</div>
+							<div flex row>{{ctrl.totals.vendorShareAmount}}</div>
 						</div>
                     </div>
                 </div>

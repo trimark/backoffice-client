@@ -131,23 +131,41 @@ function generateDummyData(settings){
 			var distShareAmount = Math.round(net * distSharePercentage);
 			var vendorSharePercentage = 0.05;
 			var vendorShareAmount = Math.round(net * vendorSharePercentage);
-			var row = 
+			// var row = 
+			// {
+				// distributor: distributor,  
+				// operator: operator, 
+				// brand: brand, 
+				// game: game, 
+				// bets: formatCurrency(bets), 
+				// wins: formatCurrency(wins), 
+				// net: formatCurrency(net), 
+				// royaltyPercentage: formatPercentage(royaltyPercentage), 
+				// royaltyAmount: formatCurrency(royaltyAmount), 
+				// distSharePercentage:  formatPercentage(distSharePercentage), 
+				// distShareAmount: formatCurrency(distShareAmount), 
+				// vendorSharePercentage:  formatPercentage(vendorSharePercentage), 
+				// vendorShareAmount: formatCurrency(vendorShareAmount),
+				// playerCount: 17,
+				// betCount: 43
+			// }
+						var row = 
 			{
 				distributor: distributor,  
 				operator: operator, 
 				brand: brand, 
 				game: game, 
-				bets: formatCurrency(bets), 
-				wins: formatCurrency(wins), 
-				net: formatCurrency(net), 
-				royaltyPercentage: formatPercentage(royaltyPercentage), 
-				royaltyAmount: formatCurrency(royaltyAmount), 
-				distSharePercentage:  formatPercentage(distSharePercentage), 
-				distShareAmount: formatCurrency(distShareAmount), 
-				vendorSharePercentage:  formatPercentage(vendorSharePercentage), 
-				vendorShareAmount: formatCurrency(vendorShareAmount),
-				numberOfPlayers: 17,
-				numberOfBets: 43
+				bets: bets, 
+				wins: wins, 
+				net: net, 
+				royaltyPercentage: royaltyPercentage, 
+				royaltyAmount: royaltyAmount, 
+				distSharePercentage:  distSharePercentage, 
+				distShareAmount: distShareAmount, 
+				vendorSharePercentage:  vendorSharePercentage, 
+				vendorShareAmount: vendorShareAmount,
+				playerCount: 17,
+				betCount: 43
 			}
 			//console.log(getDataRowString(row));
 			dummyData.push(row);
@@ -166,7 +184,15 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 		this.data = [];
 		var selectedGames = getGamesArray(this.settings.games, true);
 		var selectedBrands = getBrandsArray(this.settings.organizations, true);
-		
+		this.totals = {};
+		this.totals.playerCount = 0;
+		this.totals.betCount = 0;
+		this.totals.bets = 0;
+		this.totals.wins = 0;
+		this.totals.net = 0;
+		this.totals.royaltiesPerBrand = [];
+		this.totals.sharesPerDistributor = [];
+		this.totals.vendorShareAmount = 0;
 		for (var i = 0; i<dummyData.length;i++){
 			var row = dummyData[i];
 			var rowMatches = true;
@@ -177,7 +203,28 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 			}
 			if (rowMatches){
 				this.data.push(row);
+				this.totals.playerCount += row.playerCount;
+				this.totals.betCount += row.betCount;
+				this.totals.bets += row.bets;
+				this.totals.wins += row.wins;
+				this.totals.net += row.net;
+				this.totals.vendorShareAmount += row.vendorShareAmount
+				accProp(row.royaltyAmount, row.operator, this.totals.royaltiesPerBrand);
+				accProp(row.distShareAmount, row.distributor, this.totals.sharesPerDistributor);
 			}
+		}
+	}
+	function accProp(amount, propId, array){
+		var found = false;
+		for (var i = 0; i< array.length; i++){
+			var o = array[i];
+			if (o.id == propId){
+				o.amount += amount;
+				found = true;
+			}
+		}
+		if (!found){
+		 array.push({id: propId, amount: amount});
 		}
 	}
 	this.exists = function(item, list) {
