@@ -22,21 +22,21 @@ var royaltiesSettingsFactory = function () {
 					}, {
 						label : 'Geisha Memoirs'
 					}, {
-						label : 'Genie큦 Gold'
+						label : 'Genie\'s Gold'
 					}, {
 						label : 'Haunted Mansion'
 					}, {
 						label : 'Hillbilly Haven'
 					}, {
-						label : 'Jester큦 Gold'
+						label : 'Jester\'s Gold'
 					}, {
 						label : 'Knights of Atlantis'
 					}, {
 						label : 'Mermaids and Pearls'
 					}, {
-						label : 'Nefertiti큦 Fortune'
+						label : 'Nefertiti\'s Fortune'
 					}, {
-						label : 'Pirate큦 Treasure Trove'
+						label : 'Pirate\'s Treasure Trove'
 					}, {
 						label : 'Rockstar Riches'
 					}, {
@@ -64,35 +64,59 @@ var royaltiesSettingsFactory = function () {
 		],
 		organizations : [{
 				selected : true,
-				label : 'Distributor',
+				label : 'Distributor A' ,
 				children : [{
-						label : 'Operator A',
+						label : 'Operator AA',
 						children : [{
-								label : 'Brand A1'
+								label : 'Brand AA1'
 							}, {
-								label : 'Brand A2'
+								label : 'Brand AA2'
 							}, {
-								label : 'Brand A3'
+								label : 'Brand AA3'
 							}
 						]
 					}, {
-						label : 'Operator B',
+						label : 'Operator AB',
 						children : [{
-								label : 'Brand B1'
+								label : 'Brand AB1'
 							}, {
-								label : 'Brand B2'
+								label : 'Brand AB2'
 							}, {
-								label : 'Brand B3'
+								label : 'Brand AB3'
 							}
 						]
 					}, {
-						label : 'Operator C',
+						label : 'Operator AC',
 						children : [{
-								label : 'Brand C1'
+								label : 'Brand AC1'
 							}, {
-								label : 'Brand C2'
+								label : 'Brand AC2'
 							}, {
-								label : 'Brand C3'
+								label : 'Brand AC3'
+							}
+						]
+					}
+				]
+			},
+			{
+				selected : true,
+				label : 'Distributor B',
+				children : [{
+						label : 'Operator BA',
+						children : [{
+								label : 'Brand BA1'
+							}, {
+								label : 'Brand BA2'
+							}, {
+								label : 'Brand BA3'
+							}
+						]
+					}, {
+						label : 'Operator BB',
+						children : [{
+								label : 'Brand BB1'
+							}, {
+								label : 'Brand BB2'
 							}
 						]
 					}
@@ -101,9 +125,9 @@ var royaltiesSettingsFactory = function () {
 		],
 		columns : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
 		selectedColumns : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		summaryData : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		selectedSummaryData : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		showSummary: true
+		totalsData : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
+		selectedTotalsData : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
+		showTotals: true
 	}
 	return ret;
 }

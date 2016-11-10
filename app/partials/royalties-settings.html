@@ -101,17 +101,17 @@
                         </div>
                     </div>
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
-                         <div flex="20">Show summary:</div>
+                         <div flex="20">Show totals:</div>
                          <div flex="80" ng-repeat="v in [0]">
-                            <md-checkbox ng-checked="ctrl.settings.showSummary" ng-click="ctrl.settings.showSummary = !ctrl.settings.showSummary"></md-checkbox>
+                            <md-checkbox ng-checked="ctrl.settings.showTotals" ng-click="ctrl.settings.showTotals = !ctrl.settings.showTotals"></md-checkbox>
                         </div>
                     </div>
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
-                        <div flex="20">Summary data:</div>
+                        <div flex="20">Totals data:</div>
                         <div flex="80" flex-gt-sm="50" layout="column">
                             <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-repeat="item in ctrl.settings.summaryData">
-                                    <md-checkbox ng-disabled="!ctrl.settings.showSummary" ng-checked="exists(item, ctrl.settings.selectedSummaryData)" ng-click="ctrl.settings.toggle(item, ctrl.settings.selectedSummaryData)">
+                                <div flex="50" ng-repeat="item in ctrl.settings.totalsData">
+                                    <md-checkbox ng-disabled="!ctrl.settings.showTotals" ng-checked="exists(item, ctrl.settings.selectedTotalsData)" ng-click="ctrl.settings.toggle(item, ctrl.settings.selectedTotalsData)">
                                     {{ item }}
                                     </md-checkbox>
                                 </div>
