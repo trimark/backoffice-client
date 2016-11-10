@@ -37,6 +37,31 @@ function getBet(){
 	}
 	return betFeed1[betFeed1IX] * betFeed2[betFeed2IX];
 }
+function getGamesArray(gamesTree, selectedOnly){
+	console.log(">getGamesArray: ");
+	var ret = [];
+	for (var i = 0; i<gamesTree.length;i++){
+		var categoryName = gamesTree[i].label;
+		var children = gamesTree[i].children;
+		for (var j = 0; j<children.length; j++){
+			var game = children[j];
+			
+			var add = true;
+			//console.log("game.selected=" + game.selected);
+			if (selectedOnly){
+				
+				if(!game.selected){
+					add = false;
+				}
+			}
+			if (add){
+				ret.push(game.label);
+			}
+		}
+	}
+	console.log("<getGamesArray: ret=" +ret);
+	return ret;
+}
 
 function getDataRowString(row){
 	return "{brand: " + row.brand	+ ", game: " + row.game  + ", bets: " + row.bets + ", wins: " + row.wins + ", net: " + row.net + " , royaltyPercentage: " + row.royaltyPercentage + ", royaltyAmount: " + row.royaltyAmount +" , distSharePercentage: " + row.distSharePercentage + ", distShareAmount: " + row.distShareAmount +" , vendorSharePercentage: " + row.vendorSharePercentage + ", vendorShareAmount: " + row.vendorShareAmount + "}";
@@ -60,8 +85,9 @@ function generateDummyData(settings){
 	{brand: "Brand BB1", operator: "Operator BB", distributor: "Distributor B"},
 	{brand: "Brand BB2", operator: "Operator BB", distributor: "Distributor B"}
 	];
-	var gameNames = ['EuroMillions',  'Powerball', 'The Amazing Circus', 'Astro',  'Beauty Salon', 'Geisha Memoirs', 'Genie\'s Gold', 'Haunted Mansion', 'Hillbilly Haven', 'Jester\'s Gold', 'Knights of Atlantis', 'Mermaids and Pearls', 'Nefertiti\'s Fortune', 'Pirate\'s Treasure Trove', 'Rockstar Riches', 'Shopping Spree', 'Sky Kingdom', 'Tiki Treasure', 'Sassy Sevens', 'Wicked Witch', 'Dwarves & Dragons', 'Funhouse'];
-	
+
+	var gameNames = getGamesArray(settings.games, false);
+	console.log("gameNames=" + gameNames);
 	for (var i = 0; i<brandNames.length; i++){
 		var brand = brandNames[i].brand;
 		var operator = brandNames[i].operator;
@@ -91,7 +117,9 @@ function generateDummyData(settings){
 				distSharePercentage:  formatPercentage(distSharePercentage), 
 				distShareAmount: formatCurrency(distShareAmount), 
 				vendorSharePercentage:  formatPercentage(vendorSharePercentage), 
-				vendorShareAmount: formatCurrency(vendorShareAmount)
+				vendorShareAmount: formatCurrency(vendorShareAmount),
+				numberOfPlayers: 17,
+				numberOfBets: 43
 			}
 			//console.log(getDataRowString(row));
 			dummyData.push(row);
@@ -100,13 +128,21 @@ function generateDummyData(settings){
 	console.log("<generateDummyData: settings=" + settings);
 }
 var royaltiesReportController = function ($scope, $location, $royaltiesSettingsFactory) {
-	console.log(">royaltiesReportController: dummyData=" + dummyData)
+	console.log(">royaltiesReportController: dummyData=" + dummyData);
+	
 	this.settings = $royaltiesSettingsFactory;
 	
 		if (dummyData == null){
 			generateDummyData(this.settings);
 		}
 		this.data = dummyData;
+		var games = getGamesArray(this.settings.games, true);
+		
+		for (var i = 0; i<this.data.length;i++){
+			var row = this.data[i];
+			var rowMatches = true;
+			//if (this.settings.
+		}
 
 	$scope.exists = function (item, list) {
 		return list.indexOf(item) > -1;
