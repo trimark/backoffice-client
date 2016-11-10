@@ -1,4 +1,5 @@
 var royaltiesSettingsFactory = function () {
+	console.log("royaltiesSettingsFactory");
 	var ret = {
 		games : [{
 				selected : true,
