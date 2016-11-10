@@ -248,7 +248,7 @@ var backofficeController = function($scope, $mdPanel, $mdDialog)
 					],
 					menu: {
 						name: "Users", 
-						url: "/", 
+						url: "#/users", 
 						selected: false
 					}
 				}

@@ -33,6 +33,10 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 				templateUrl: 'partials/role.html'
 			});
 
+			$routeProvider.when('/users', {
+				templateUrl: 'partials/list-users.html'
+			});
+
 	        $mdIconProvider.icon('md-toggle-arrow', 'img/icons/toggle-arrow.svg', 48);
 
 	        $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('red');

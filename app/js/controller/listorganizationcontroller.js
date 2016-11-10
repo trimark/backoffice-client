@@ -1,4 +1,3 @@
-
 var listOrganizationController = function(dataService)
 {
 	var self = this;
