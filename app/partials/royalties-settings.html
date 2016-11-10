@@ -55,7 +55,7 @@
                         <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
                             <span>Organizations</span>
                         </div>
-                        <div ivh-treeview="ctrl.organizations" ivh-treeview-expand-to-depth="0" style="padding: 10px;">
+                        <div ivh-treeview="ctrl.settings.organizations" ivh-treeview-expand-to-depth="0" style="padding: 10px;">
                           <script type="text/ng-template">
                             <span ivh-treeview-toggle>
                               <span ivh-treeview-twistie></span>
@@ -77,7 +77,7 @@
                         <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
                             <span>Games</span>
                         </div>
-                        <div ivh-treeview="ctrl.games" ivh-treeview-expand-to-depth="0" style="padding: 10px;">
+                        <div ivh-treeview="ctrl.settings.games" ivh-treeview-expand-to-depth="0" style="padding: 10px;">
                           <script type="text/ng-template">
                             <span ivh-treeview-toggle>
                               <span ivh-treeview-twistie></span>
@@ -103,15 +103,15 @@
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
                          <div flex="20">Show summary:</div>
                          <div flex="80" ng-repeat="v in [0]">
-                            <md-checkbox ng-checked="ctrl.getShowSummary()" ng-click="ctrl.setShowSummary(!ctrl.showSummary)"></md-checkbox>
+                            <md-checkbox ng-checked="ctrl.settings.showSummary" ng-click="ctrl.settings.showSummary = !ctrl.settings.showSummary"></md-checkbox>
                         </div>
                     </div>
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
                         <div flex="20">Summary data:</div>
                         <div flex="80" flex-gt-sm="50" layout="column">
                             <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-repeat="item in ctrl.summaryData">
-                                    <md-checkbox ng-disabled="!ctrl.showSummary" ng-checked="exists(item, ctrl.selectedSummaryData)" ng-click="ctrl.toggle(item, ctrl.selectedSummaryData)">
+                                <div flex="50" ng-repeat="item in ctrl.settings.summaryData">
+                                    <md-checkbox ng-disabled="!ctrl.settings.showSummary" ng-checked="exists(item, ctrl.settings.selectedSummaryData)" ng-click="ctrl.settings.toggle(item, ctrl.settings.selectedSummaryData)">
                                     {{ item }}
                                     </md-checkbox>
                                 </div>
@@ -132,8 +132,8 @@
                         <div flex="20">Columns: </div>
                         <div flex="80" flex-gt-sm="50" layout="column">
                             <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-repeat="item in ctrl.columns">
-                                    <md-checkbox ng-checked="exists(item, ctrl.selectedColumns)" ng-click="ctrl.toggle(item, ctrl.selectedColumns)">
+                                <div flex="50" ng-repeat="item in ctrl.settings.columns">
+                                    <md-checkbox ng-checked="exists(item, ctrl.settings.selectedColumns)" ng-click="ctrl.settings.toggle(item, ctrl.settings.selectedColumns)">
                                     {{ item }}
                                     </md-checkbox>
                                 </div>
