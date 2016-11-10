@@ -63,22 +63,19 @@
                     </div>
                 </div>
             </md-list-item>
-			<md-list-item ng-if="ctrl.settings.showTotals" style="margin-bottom: 10px;">
-			<div flex style="font-size: 13px; border: solid 1px #f6f6f6; margin-top: 5px;">
-                    <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                        <span>Roles</span>
-                    </div>
-                    <div flex layout="row">
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
-                        <div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Brand</div>
-                        <div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Bets</div>
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Wins</div>
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
-						<div flex="5" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
-                        <div flex="5" style="background: rgb(250, 250, 250); padding: 5px;">Share(Supplier)</div>
+			<md-list-item 	style="border: solid 1px rgb(225,225,225)">
+			<div flex style="font-size: 13px; border: solid 1px #f6f6f6;">
+                    <div flex layout="row" style="font-size: 13px; border: solid 1px #rgb(225,225,225);">
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
+                        <div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Brand</div>
+                        <div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bets</div>
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Wins</div>
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
+						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
+                        <div flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
                     </div>
                     <md-list>
                         <md-list-item ng-repeat="row in ctrl.data">
@@ -88,14 +85,14 @@
                                 <div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.brand}}</div>
                                 <div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
 								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.bets}}</div>
-								<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.wins}}</div>
-								<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.net}}</div>
-								<div flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.royaltyAmount}}</div>
-								<div flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.royaltyPercentage}}</div>
-								<div flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distShareAmount}}</div>
-								<div flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distSharePercentage}}</div>
-								<div flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.vendorSharePercentage}}</div>							
-                                <div flex="5" style="padding: 5px;">{{row.vendorShareAmount}}</div>
+								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.wins}}</div>
+								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.net}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.royaltyAmount}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.royaltyPercentage}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distShareAmount}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distSharePercentage}}</div>
+								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.vendorSharePercentage}}</div>							
+                                <div flex="5" style="text-align: right; padding: 5px;">{{row.vendorShareAmount}}</div>
                             </div>
                         </md-list-item>
                     </md-list>

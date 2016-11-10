@@ -8,7 +8,7 @@ var betFeed2IX = 0;
 
 function formatCurrency(amount, c, d, t){
 var n = amount, 
-    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    c = isNaN(c = Math.abs(c)) ? 0 : c, 
     d = d == undefined ? "." : d, 
     t = t == undefined ? "," : t, 
     s = n < 0 ? "-" : "", 
