@@ -65,42 +65,42 @@
 						</div>
 					</div>
 				</md-list-item>
-				<md-list-item 	style="margin-bottom: 10px" ng-repeat="(groupName, rows) in ctrl.data">
+				<md-list-item style="margin-bottom: 10px" ng-repeat="(groupName, rows) in ctrl.data">
 					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
-						<div flex="100">
-							<div flex layout="row"ayout="row" style="background: #f6f6f6; padding: 10px;">
+						<div ng-if="ctrl.groupBy != 'all'" flex="100">
+							<div flex layout="row" style="background: #f6f6f6; border-bottom: solid 1px rgb(225,225,225); padding: 10px;">
 								<span>{{groupName}}</span>
 							</div>
 						</div>
 						<div flex style="font-size: 13px; border: solid 1px #f6f6f6;">
 							<div flex layout="row" style="font-size: 13px; border: solid 1px #rgb(225,225,225);">
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Brand</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bets</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Wins</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
-								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
-								<div flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
+								<div ng-if="exists('Distributor', ctrl.settings.selectedColumns) && ctrl.groupBy != 'distributor' && ctrl.groupBy != 'operator' && ctrl.groupBy != 'brand'" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
+								<div ng-if="exists('Operator', ctrl.settings.selectedColumns) && ctrl.groupBy != 'operator' && ctrl.groupBy != 'brand'" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
+								<div ng-if="ctrl.groupBy != 'brand'" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Brand</div>
+								<div ng-if=" ctrl.groupBy != 'game'" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
+								<div ng-if="exists('Bets', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bets</div>
+								<div ng-if="exists('Wins', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Wins</div>
+								<div ng-if="exists('Net Gaming', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
+								<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
+								<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
+								<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
 							</div>
 							<md-list>
 								<md-list-item ng-repeat="row in rows">
 									<div flex layout="row">
-										<div flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distributor}}</div>
-										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.operator}}</div>
-										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.brand}}</div>
-										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
-										<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.bets)}}</div>
-										<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.wins)}}</div>
-										<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.net)}}</div>
-										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.royaltyAmount)}}</div>
-										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.royaltyPercentage)}}</div>
-										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.distShareAmount)}}</div>
-										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.distSharePercentage)}}</div>
-										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.vendorSharePercentage)}}</div>							
-										<div flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(row.vendorShareAmount)}}</div>
+										<div ng-if="exists('Distributor', ctrl.settings.selectedColumns) ctrl.groupBy != 'distributor' && ctrl.groupBy != 'operator' && ctrl.groupBy != 'brand'" flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distributor}}</div>
+										<div ng-if="exists('Operator', ctrl.settings.selectedColumns) ctrl.groupBy != 'operator' && ctrl.groupBy != 'brand'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.operator}}</div>
+										<div ng-if="ctrl.groupBy != 'brand'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.brand}}</div>
+										<div ng-if="ctrl.groupBy != 'game'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
+										<div ng-if="exists('Bets', ctrl.settings.selectedColumns)" flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.bets)}}</div>
+										<div ng-if="exists('Wins', ctrl.settings.selectedColumns)" flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.wins)}}</div>
+										<div ng-if="exists('Net Gaming', ctrl.settings.selectedColumns)" flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.net)}}</div>
+										<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.royaltyAmount)}}</div>
+										<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.royaltyPercentage)}}</div>
+										<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.distShareAmount)}}</div>
+										<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.distSharePercentage)}}</div>
+										<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.vendorSharePercentage)}}</div>							
+										<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(row.vendorShareAmount)}}</div>
 									</div>
 								</md-list-item>
 							</md-list>

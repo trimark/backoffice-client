@@ -123,10 +123,10 @@ var royaltiesSettingsFactory = function () {
 				]
 			}
 		],
-		columns : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		selectedColumns : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		totalsData : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		selectedTotalsData : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
+		columns : ["Distributor", "Operator", "Brand", "Game", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor Share", "Supplier Share", "Operator Share"],
+		selectedColumns : ["Distributor", "Operator", "Brand", "Game", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor Share", "Supplier Share", "Operator Share"],
+		totalsData : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor Share", "Supplier Share", "Operator Share"],
+		selectedTotalsData : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor Share", "Supplier Share", "Operator Share"],
 		showTotals: true,
 		groupBy: "None"
 	}

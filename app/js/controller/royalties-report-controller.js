@@ -247,8 +247,8 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 		if (dummyData == null) {
 			generateDummyData(this.settings);
 		}
-		var groupBy = mapGrouping(this.settings.groupBy)
-		debug("groupBy=" + groupBy);
+		this.groupBy = mapGrouping(this.settings.groupBy)
+		debug("this.groupBy=" + this.groupBy);
 
 		this.data = {};
 		var selectedGames = getGamesArray(this.settings.games, true);
@@ -271,10 +271,10 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 				rowMatches = false;
 			}
 			if (rowMatches) {
-				if (groupBy == "all"){
+				if (this.groupBy == "all"){
 					this.getDataGroup("all").push(row);
 				} else {
-					this.getDataGroup(row[groupBy]).push(row);
+					this.getDataGroup(row[this.groupBy]).push(row);
 				}
 				//this.data.push(row);
 				this.totals.playerCount += row.playerCount;
@@ -314,7 +314,10 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 		}
 	}
 	this.exists = function (item, list) {
-		return list.indexOf(item) > -1;
+		//debug (">exists: item=" + item + ", list=" + list);
+		var ret = list.indexOf(item) > -1;
+		//debug ("<exists: ret=" + ret);
+		return ret;
 	};
 	this.init();
 
