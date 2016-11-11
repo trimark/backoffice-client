@@ -111,7 +111,7 @@
                         <div flex="80" flex-gt-sm="50" layout="column">
                             <div layout="row" layout-wrap flex>
                                 <div flex="50" ng-repeat="item in ctrl.settings.totalsData">
-                                    <md-checkbox ng-disabled="!ctrl.settings.showTotals" ng-checked="exists(item, ctrl.settings.selectedTotalsData)" ng-click="ctrl.settings.toggle(item, ctrl.settings.selectedTotalsData)">
+                                    <md-checkbox ng-disabled="!ctrl.settings.showTotals" ng-checked="exists(item, ctrl.settings.selectedTotalsData)" ng-click="ctrl.toggle(item, ctrl.settings.selectedTotalsData)">
                                     {{ item }}
                                     </md-checkbox>
                                 </div>
@@ -133,7 +133,7 @@
                         <div flex="80" flex-gt-sm="50" layout="column">
                             <div layout="row" layout-wrap flex>
                                 <div flex="50" ng-repeat="item in ctrl.settings.columns">
-                                    <md-checkbox ng-checked="exists(item, ctrl.settings.selectedColumns)" ng-click="ctrl.settings.toggle(item, ctrl.settings.selectedColumns)">
+                                    <md-checkbox ng-checked="exists(item, ctrl.settings.selectedColumns)" ng-click="ctrl.toggle(item, ctrl.settings.selectedColumns)">
                                     {{ item }}
                                     </md-checkbox>
                                 </div>
