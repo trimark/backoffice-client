@@ -2,6 +2,8 @@ var royaltiesSettingsController = function ($scope, $location, $royaltiesSetting
 	console.log(">royaltiesSettingsController: $royaltiesSettingsFactory=" + $royaltiesSettingsFactory.columns)
 	this.settings = $royaltiesSettingsFactory;
 
+  this.groupings = ["None", "Distributor", "Operator", "Brand", "Game"];
+  
   this.onClickedCreate = function(){
     //console.log(">onClickedCreate");
     $location.path('/royalties-report');

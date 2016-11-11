@@ -120,13 +120,21 @@
                     </div>
                     <div flex layout="row" layout-align="start center" style="padding: 10px;">
                          <div flex="20">Grouping: </div>
+						 <!--
                          <md-select flex ng-model="periodPresets" placeholder="None" class="md-no-underline">
                             <md-option value="none">None</md-option>
                             <md-option value="game">Game</md-option>
                             <md-option value="brand">Brand</md-option>
                             <md-option value="operator">Operator</md-option>
-                            <md-option value="distributor">distributor</md-option>
+                            <md-option value="distributor">Distributor</md-option>
                         </md-select>
+						-->
+						
+						<md-select flex="20" ng-model="ctrl.settings.groupBy">
+						  <md-option ng-repeat="group in ctrl.groupings" ng-value="group">
+							{{group}}
+						  </md-option>
+						</md-select>
                     </div>
                     <div flex layout="row" layout-align="start start" style="padding: 10px;">
                         <div flex="20">Columns: </div>

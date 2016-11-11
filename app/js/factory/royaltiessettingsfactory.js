@@ -127,7 +127,8 @@ var royaltiesSettingsFactory = function () {
 		selectedColumns : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
 		totalsData : ["Distributor", "Operator", "Brand", "Player Count", "Bet Count", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
 		selectedTotalsData : ["Distributor", "Operator", "Brand", "Bets", "Wins", "Net Gaming", "Royalty", "Distributor share", "Supplier share", "Operator Share"],
-		showTotals: true
+		showTotals: true,
+		groupBy: "None"
 	}
 	return ret;
 }

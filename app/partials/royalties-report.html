@@ -1,106 +1,112 @@
 <md-card id="royaltiesSettings" ng-controller="RoyaltiesReportCtrl as ctrl">
-    <md-card-header>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Royalties</h2>
-            </div>
-        </md-toolbar>
-    </md-card-header>
-    <md-card-content>
-        <div>
-        <md-list>
-            <md-list-item style="margin-bottom: 10px;">
-                <div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
-                    <div flex="100">
-                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                            <span>Report Settings</span>
-                        </div>
-                    </div>
-                    <div flex layout="row" layout-align="start center" style="padding: 10px;">
-                        <md-button class="md-raised" ng-href="#/royalties-settings">Edit Settings</md-button>
-                    </div>
+	<md-card-header>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Royalties</h2>
+			</div>
+		</md-toolbar>
+	</md-card-header>
+	<md-card-content>
+		<div>
+			<md-list>
+				<md-list-item style="margin-bottom: 10px;">
+					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+						<div flex="100">
+							<div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+								<span>Report Settings</span>
+							</div>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<md-button class="md-raised" ng-href="#/royalties-settings">Edit Settings</md-button>
+						</div>
 
-                </div>
-            </md-list-item>
-            <md-list-item ng-if="ctrl.settings.showTotals" style="margin-bottom: 10px;">
-                <div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
-                    <div flex="100">
-                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                            <span>Totals</span>
-                        </div>
-                    </div>
-                    <div flex layout="row" layout-align="start start" style="padding: 10px;">
-						<div flex layout="column">
-							<div flex row>Player count</div>
-							<div flex row>Bet count</div>
-							<div flex row>Bets</div>
-							<div flex row>Wins</div>
-							<div flex row>Net Gaming</div>
-						</div>
-						<div flex layout="column">
-							<div flex row>{{ctrl.totals.playerCount}}</div>
-							<div flex row>{{ctrl.totals.betCount}}</div>
-							<div flex row>{{formatCurrency(ctrl.totals.bets)}}</div>
-							<div flex row>{{formatCurrency(ctrl.totals.wins)}}</div>
-							<div flex row>{{formatCurrency(ctrl.totals.net)}}</div>
-						</div>
-						<div flex layout="column">
-							<div flex row>Royalties: </div>
-							<div flex row ng-repeat="item in ctrl.totals.royaltiesPerBrand">
-								<span>{{item.id}}</span>
-								<span>{{formatCurrency(item.amount)}}</span>
+					</div>
+				</md-list-item>
+				<md-list-item ng-if="ctrl.settings.showTotals" style="margin-bottom: 10px;">
+					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+						<div flex="100">
+							<div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+								<span>Totals</span>
 							</div>
 						</div>
-						<div flex layout="column">
-							<div flex row>Distributor shares:</div>
-							<div flex row ng-repeat="item in ctrl.totals.sharesPerDistributor">
-								<span>{{item.id}}</span>
-								<span>{{formatCurrency(item.amount)}}</span>
+						<div flex layout="row" layout-align="start start" style="padding: 10px;">
+							<div flex layout="column">
+								<div flex row>Player count</div>
+								<div flex row>Bet count</div>
+								<div flex row>Bets</div>
+								<div flex row>Wins</div>
+								<div flex row>Net Gaming</div>
+							</div>
+							<div flex layout="column">
+								<div flex row>{{ctrl.totals.playerCount}}</div>
+								<div flex row>{{ctrl.totals.betCount}}</div>
+								<div flex row>{{formatCurrency(ctrl.totals.bets)}}</div>
+								<div flex row>{{formatCurrency(ctrl.totals.wins)}}</div>
+								<div flex row>{{formatCurrency(ctrl.totals.net)}}</div>
+							</div>
+							<div flex layout="column">
+								<div flex row>Royalties: </div>
+								<div flex row ng-repeat="item in ctrl.totals.royaltiesPerBrand">
+									<span>{{item.id}}</span>
+									<span>{{formatCurrency(item.amount)}}</span>
+								</div>
+							</div>
+							<div flex layout="column">
+								<div flex row>Distributor shares:</div>
+								<div flex row ng-repeat="item in ctrl.totals.sharesPerDistributor">
+									<span>{{item.id}}</span>
+									<span>{{formatCurrency(item.amount)}}</span>
+								</div>
+							</div>
+							<div flex layout="column">
+								<div flex row>Trimark shares: </div>
+								<div flex row>{{formatCurrency(ctrl.totals.vendorShareAmount)}}</div>
 							</div>
 						</div>
-						<div flex layout="column">
-							<div flex row>Trimark shares: </div>
-							<div flex row>{{formatCurrency(ctrl.totals.vendorShareAmount)}}</div>
+					</div>
+				</md-list-item>
+				<md-list-item 	style="margin-bottom: 10px" ng-repeat="(groupName, rows) in ctrl.data">
+					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+						<div flex="100">
+							<div flex layout="row"ayout="row" style="background: #f6f6f6; padding: 10px;">
+								<span>{{groupName}}</span>
+							</div>
 						</div>
-                    </div>
-                </div>
-            </md-list-item>
-			<md-list-item 	style="border: solid 1px rgb(225,225,225)">
-			<div flex style="font-size: 13px; border: solid 1px #f6f6f6;">
-                    <div flex layout="row" style="font-size: 13px; border: solid 1px #rgb(225,225,225);">
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
-                        <div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Brand</div>
-                        <div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bets</div>
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Wins</div>
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
-						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
-                        <div flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
-                    </div>
-                    <md-list>
-                        <md-list-item ng-repeat="row in ctrl.data">
-                            <div flex layout="row">
-								<div flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distributor}}</div>
-								<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.operator}}</div>
-                                <div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.brand}}</div>
-                                <div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
-								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.bets)}}</div>
-								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.wins)}}</div>
-								<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.net)}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.royaltyAmount)}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.royaltyPercentage)}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.distShareAmount)}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.distSharePercentage)}}</div>
-								<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.vendorSharePercentage)}}</div>							
-                                <div flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(row.vendorShareAmount)}}</div>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                </div>
-            </div>
-			</md-list-item>
-        </md-list>
-    </md-card-content>
-</md-card>
+						<div flex style="font-size: 13px; border: solid 1px #f6f6f6;">
+							<div flex layout="row" style="font-size: 13px; border: solid 1px #rgb(225,225,225);">
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Brand</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bets</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Wins</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
+								<div flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
+							</div>
+							<md-list>
+								<md-list-item ng-repeat="row in rows">
+									<div flex layout="row">
+										<div flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distributor}}</div>
+										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.operator}}</div>
+										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.brand}}</div>
+										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
+										<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.bets)}}</div>
+										<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.wins)}}</div>
+										<div flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.net)}}</div>
+										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.royaltyAmount)}}</div>
+										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.royaltyPercentage)}}</div>
+										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.distShareAmount)}}</div>
+										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.distSharePercentage)}}</div>
+										<div flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.vendorSharePercentage)}}</div>							
+										<div flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(row.vendorShareAmount)}}</div>
+									</div>
+								</md-list-item>
+							</md-list>
+						</div>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-card-content>
+	</md-card>
