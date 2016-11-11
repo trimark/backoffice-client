@@ -120,7 +120,7 @@ function generateDummyData(settings){
 		var brand = brandNames[i].brand;
 		var operator = brandNames[i].operator;
 		var distributor = brandNames[i].distributor;
-		for (var j = 1; j < gameNames.length; j++){
+		for (var j = 0; j < gameNames.length; j++){
 			var game = gameNames[j];
 			var bets = getBet();
 			var wins = getWin(bets);

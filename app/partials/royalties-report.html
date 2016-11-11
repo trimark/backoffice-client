@@ -66,7 +66,7 @@
                 </div>
             </md-list-item>
 			<md-list-item 	style="border: solid 1px rgb(225,225,225)">
-			<div flex style="font-size: 13px; border: solid 1px #f6f6f6;" ng-model = ctrl>
+			<div flex style="font-size: 13px; border: solid 1px #f6f6f6;">
                     <div flex layout="row" style="font-size: 13px; border: solid 1px #rgb(225,225,225);">
 						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Distributor</div>
 						<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Operator</div>
@@ -80,7 +80,7 @@
                         <div flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
                     </div>
                     <md-list>
-                        <md-list-item ng-repeat="row in data">
+                        <md-list-item ng-repeat="row in ctrl.data">
                             <div flex layout="row">
 								<div flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.distributor}}</div>
 								<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.operator}}</div>
