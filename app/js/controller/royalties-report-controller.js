@@ -63,6 +63,45 @@ function getGamesArray(gamesTree, selectedOnly) {
 	return ret;
 }
 
+function getGamesChipsArray(gamesTree, selectedOnly) {
+	console.log(">getGamesArray: ");
+	var ret = [];
+	for (var i = 0; i < gamesTree.length; i++) {
+		var category = gamesTree[i];
+		var categoryName = gamesTree[i].label;
+		var add = true;
+		//console.log("game.selected=" + game.selected);
+		if (selectedOnly) {
+
+			if (!category.selected) {
+				add = false;
+			}
+		}
+		if (add) {
+			ret.push(category.label);
+		} else {
+			var children = gamesTree[i].children;
+			for (var j = 0; j < children.length; j++) {
+				var game = children[j];
+
+				var add = true;
+				//console.log("game.selected=" + game.selected);
+				if (selectedOnly) {
+
+					if (!game.selected) {
+						add = false;
+					}
+				}
+				if (add) {
+					ret.push(game.label);
+				}
+			}
+		}
+	}
+	console.log("<getGamesArray: ret=" + ret);
+	return ret;
+}
+
 function getBrandsArray(organizationTree, selectedOnly) {
 	console.log(">getBrandsArray: ");
 	var ret = [];
@@ -86,6 +125,56 @@ function getBrandsArray(organizationTree, selectedOnly) {
 		}
 	}
 	console.log("<getBrandsArray: ret=" + ret);
+	return ret;
+}
+function getOrganizationsArray(organizationTree, selectedOnly) {
+	console.log(">getOrganizationsArray: ");
+	var ret = [];
+	for (var i = 0; i < organizationTree.length; i++) {
+		var distributor = organizationTree[i];
+		debug ("distributor=" + distributor.label);
+		debug ("distributor.selected=" + distributor.selected);
+		var add = true;
+		if (selectedOnly) {
+			if (!distributor.selected) {
+				add = false;
+			}
+		}
+		if (add) {
+			ret.push(distributor.label);
+			debug("added: " + distributor.label);
+		} else {
+			var operators = organizationTree[i].children;
+			for (var j = 0; j < operators.length; j++) {
+				var operator = operators[j];
+				var add = true;
+				if (selectedOnly) {
+
+					if (!operator.selected) {
+						add = false;
+					}
+				}
+				if (add) {
+					ret.push(operator.label);
+				} else {
+					for (var k = 0; k < operator.children.length; k++) {
+						var brand = operator.children[k];
+						var add = true;
+						if (selectedOnly) {
+
+							if (!brand.selected) {
+								add = false;
+							}
+						}
+						if (add) {
+							ret.push(brand.label);
+						}
+					}
+				}
+			}
+		}
+	}
+	console.log("<getOrganizationsArray: ret=" + ret);
 	return ret;
 }
 
@@ -248,7 +337,7 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 			generateDummyData(this.settings);
 		}
 		this.groupBy = mapGrouping(this.settings.groupBy)
-		debug("this.groupBy=" + this.groupBy);
+			debug("this.groupBy=" + this.groupBy);
 
 		this.data = {};
 		var selectedGames = getGamesArray(this.settings.games, true);
@@ -272,7 +361,7 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 			}
 			if (rowMatches) {
 				var elem
-				if (this.groupBy == "all"){
+				if (this.groupBy == "all") {
 					elem = this.getDataGroup("all");
 					//this.getDataGroup("all").rows.push(row);
 				} else {
@@ -299,12 +388,29 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 				accProp(row.distShareAmount, row.distributor, this.totals.sharesPerDistributor);
 			}
 		}
-		debug("this.data=" + this.data);
+		this.periodChips = ["All"];
+		this.organizationsChips = getOrganizationsArray(this.settings.organizations, true);
+		this.gamesChips = getGamesChipsArray(this.settings.games, true);
+		this.groupChips = [this.settings.groupBy];
+		//debug("this.data=" + this.data);
 	}
-	this.getDataGroup = function (groupId){
+
+	this.getDataGroup = function (groupId) {
 		//debug(">getDataGroup: groupId=" + groupId);
-		if (!this.data[groupId]){
-			this.data[groupId] = {rows:[], totals:{playerCount: 0, betCount: 0, bets: 0, wins: 0, net: 0, vendorShareAmount: 0, royaltyAmount: 0,  distShareAmount: 0}};
+		if (!this.data[groupId]) {
+			this.data[groupId] = {
+				rows : [],
+				totals : {
+					playerCount : 0,
+					betCount : 0,
+					bets : 0,
+					wins : 0,
+					net : 0,
+					vendorShareAmount : 0,
+					royaltyAmount : 0,
+					distShareAmount : 0
+				}
+			};
 		}
 		//debug("<getDataGroup: this.data["+groupId+"]=" + this.data[groupId]);
 		return this.data[groupId];

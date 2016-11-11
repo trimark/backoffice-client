@@ -17,6 +17,23 @@
 							</div>
 						</div>
 						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Period:</label>
+							 <md-chips ng-model="ctrl.periodChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Organizations:</label>
+							<md-chips ng-model="ctrl.organizationsChips" readonly="true" md-removable="false"></md-chips>
+							
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Games:</label>
+							<md-chips ng-model="ctrl.gamesChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Grouping:</label>
+							<md-chips ng-model="ctrl.groupChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="end end" style="padding: 10px;">
 							<md-button class="md-raised" ng-href="#/royalties-settings">Edit Settings</md-button>
 						</div>
 					</div>
