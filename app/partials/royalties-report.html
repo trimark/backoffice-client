@@ -36,7 +36,7 @@
 								<div  ng-if="exists('Wins', ctrl.settings.selectedTotalsData)" flex row>Wins</div>
 								<div  ng-if="exists('Net Gaming', ctrl.settings.selectedTotalsData)" flex row>Net Gaming</div>
 							</div>
-							
+
 							<div flex="10" layout="column" style="text-align: right;">
 								<div ng-if="exists('Player Count', ctrl.settings.selectedTotalsData)" flex row>{{ctrl.totals.playerCount}}</div>
 								<div ng-if="exists('Bet Count', ctrl.settings.selectedTotalsData)"  flex row>{{ctrl.totals.betCount}}</div>
@@ -125,8 +125,7 @@
 						</div>
 					</div>
 				</md-list-item>
-				<md-list-item> <div layout="row" layout-align="end end" style="text-align: right;">Report date: {{1288323623006 | date:'medium'}}</div>
-				</md-list-item>
 			</md-list>
+			<div layout="row" layout-align="end end" style="text-align: right;">Report date: {{1288323623006 | date:'medium'}}</div>
 		</md-card-content>
 	</md-card>
