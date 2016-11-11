@@ -271,11 +271,23 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 				rowMatches = false;
 			}
 			if (rowMatches) {
+				var elem
 				if (this.groupBy == "all"){
-					this.getDataGroup("all").push(row);
+					elem = this.getDataGroup("all");
+					//this.getDataGroup("all").rows.push(row);
 				} else {
-					this.getDataGroup(row[this.groupBy]).push(row);
+					elem = this.getDataGroup(row[this.groupBy]);
+					//this.getDataGroup(row[this.groupBy]).rows.push(row);
 				}
+				elem.rows.push(row);
+				elem.totals.playerCount += row.playerCount;
+				elem.totals.betCount += row.betCount;
+				elem.totals.bets += row.bets;
+				elem.totals.wins += row.wins;
+				elem.totals.net += row.net;
+				elem.totals.vendorShareAmount += row.vendorShareAmount;
+				elem.totals.royaltyAmount += row.royaltyAmount;
+				elem.totals.distShareAmount += row.distShareAmount;
 				//this.data.push(row);
 				this.totals.playerCount += row.playerCount;
 				this.totals.betCount += row.betCount;
@@ -290,11 +302,11 @@ var royaltiesReportController = function ($scope, $location, $royaltiesSettingsF
 		debug("this.data=" + this.data);
 	}
 	this.getDataGroup = function (groupId){
-		debug(">getDataGroup: groupId=" + groupId);
+		//debug(">getDataGroup: groupId=" + groupId);
 		if (!this.data[groupId]){
-			this.data[groupId] = [];
+			this.data[groupId] = {rows:[], totals:{playerCount: 0, betCount: 0, bets: 0, wins: 0, net: 0, vendorShareAmount: 0, royaltyAmount: 0,  distShareAmount: 0}};
 		}
-		debug("<getDataGroup: this.data["+groupId+"]=" + this.data[groupId]);
+		//debug("<getDataGroup: this.data["+groupId+"]=" + this.data[groupId]);
 		return this.data[groupId];
 	}
 	function accProp(amount, propId, array) {
