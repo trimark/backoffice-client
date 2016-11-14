@@ -1,8 +1,9 @@
-var backofficeController = function($scope, $mdPanel, $mdDialog)
+var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $mdDialog)
 {
 	var self = this;
 	self.modules = [];
 	self.organization = null;
+	self.modulePermissions = null;
 	self.isUserLoggedIn = false;
 	self.selectedMenu = null;
 	self.loginPanel = null;
@@ -133,7 +134,8 @@ var backofficeController = function($scope, $mdPanel, $mdDialog)
 					menu: {
 						name: "My Account", 
 						url: "#/myaccount", 
-						selected: false
+						selected: false,
+						authenticate: true
 					}
 				},
 				{
@@ -173,7 +175,19 @@ var backofficeController = function($scope, $mdPanel, $mdDialog)
 						name: "Organizations", 
 						url: "#/organizations", 
 						selected: false						
-					}
+					},
+					entries: [{
+						regexp: /^\/organizations$/,
+						allowedPermissions: ["READ", "UPDATE", "CREATE", "DELETE", "FULL", "ACTIVATEINACTIVATE", "EDITROLES"]
+					},
+					{
+						regexp: /^\/organization\/update\/(?:([^\/]+))$/,
+						allowedPermissions: ["UPDATE", "CREATE", "DELETE", "FULL", "ACTIVATEINACTIVATE", "EDITROLES"]
+					},
+					{
+						regexp: /^\/organization\/create\/(?:([^\/]+))$/,
+						allowedPermissions: ["CREATE", "DELETE", "FULL"]
+					}]
 				},
 				{
 					id: "ROLES", 
@@ -320,9 +334,14 @@ var backofficeController = function($scope, $mdPanel, $mdDialog)
 			self.loginPanel.close();
 			self.isUserLoggedIn = true;
 			self.organization = data.organization;
+			self.modulePermissions = data.role.modulePermissions;
 			self.initModules();		
-			self.isUserLoggedIn = true;			
-			console.log("Patalinghug >>> ", data);
+			self.isUserLoggedIn = true;
+			if (!self.isAuthorized($location.path()))
+			{
+				$location.path("/");
+				$rootScope.$broadcast("showMessage", "You are not authorized!!!");
+			}			
 		}
 	);
 
@@ -345,7 +364,87 @@ var backofficeController = function($scope, $mdPanel, $mdDialog)
 		}
 	);
 
+	this.isAuthorized = function(path)
+	{
+		for (var i = 0; i < self.modules.length; i++)
+		{
+			var entries = self.modules[i].entries;
+			for (var j = 0; j < entries.length; j++)
+			{
+				var modulePermission, k;
+				if (self.modulePermissions)
+				{
+					for (k = 0; k < self.modulePermissions.length; k++)
+					{
+						if (entries[j].id === self.modulePermissions[k].module)
+						{
+							modulePermission = self.modulePermissions[k]; 
+						}
+					}
+				}
+				if (entries[j].entries)
+				{
+					for (var k = 0; k < entries[j].entries.length; k++)
+					{
+						if (entries[j].entries[k].regexp.test(path))
+						{
+							if (self.hasPermission(modulePermission, entries[j].entries[k].allowedPermissions))
+							{
+								if (entries[j].entries[k].authenticate && !self.isUserLoggedIn)
+								{
+									return false;
+								}
+								return true;
+							}
+							else
+							{
+								return false;
+							}
+						}
+					}
+				}
+			}
+		}
+		return true;
+	};
+
+	this.hasPermission = function(modulePermission, allowedPermissions)
+	{
+		if (allowedPermissions)
+		{
+			if (modulePermission)
+			{
+				for (var i = 0; i < allowedPermissions.length; i++)
+				{
+					if (modulePermission.permissions.indexOf(allowedPermissions[i]) >= 0)
+					{
+						return true;
+					}
+				}
+				return false;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return true;
+	};
+
+	$rootScope.$on("$routeChangeStart",
+		function (event, next, current)
+		{
+			console.log("Patalinghug >>> ", $route);
+			if (!self.isAuthorized($location.path()))
+			{
+				$rootScope.$broadcast("showMessage", "You are not authorized!!!");
+				event.preventDefault();
+			}
+		}
+	);
+
 	self.init();
 };
 
-angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$scope", '$mdPanel', '$mdDialog', backofficeController]);
+angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$rootScope", "$scope", "$route", "$location", "$mdPanel", 
+	"$mdDialog", backofficeController]);

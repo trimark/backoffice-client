@@ -2,7 +2,7 @@ var launchListUserDirective = function()
 {
 	return {
 		controller: "ListUserCtrl",
-		controllerAs: "listuserCtrl",
+		controllerAs: "listUserCtrl",
 		link: function(scope, element, attrs, controller)
 		{
 			var parentController = element.parent().controller();

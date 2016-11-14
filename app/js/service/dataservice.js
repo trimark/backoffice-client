@@ -139,6 +139,60 @@ var dataService = function($http)
 		});
 	};
 
+	this.getUsers = function(organizationId)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'GET',
+			url: "http://localhost:8003/users/listAllByOrganization/" + organizationId,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
+	this.getUserByAccountId = function(accountId)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'GET',
+			url: "http://localhost:8003/users/findByAccountId/" + accountId,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
+	this.createUser = function(data)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'POST',
+			url: "http://localhost:8003/users/create",
+			data: data,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
+	this.updateUser = function(data)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'POST',
+			url: "http://localhost:8003/users/update",
+			data: data,
+			headers: {
+				"Jwt-Token": self.jwtToken
+			}
+		});
+	};
+
 	this.login = function(organization, userName, password)
 	{
 		var self = this;

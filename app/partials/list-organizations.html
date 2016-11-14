@@ -61,8 +61,8 @@
                         </md-virtual-repeat-container>
                     </div>
                     <div flex="25">
-                        <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/{{listOrganizationCtrl.selectedOrganization.parent.id}}/{{listOrganizationCtrl.selectedOrganization.id}}" ng-disabled="listOrganizationCtrl.selectedOrganization === listOrganizationCtrl.rootOrganization">Edit</md-button></div>
-                        <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/{{listOrganizationCtrl.selectedOrganization.id}}/0">Add</md-button></div>
+                        <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/update/{{listOrganizationCtrl.selectedOrganization.parent.id}}/{{listOrganizationCtrl.selectedOrganization.id}}" ng-disabled="listOrganizationCtrl.selectedOrganization === listOrganizationCtrl.rootOrganization">Edit</md-button></div>
+                        <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/create/{{listOrganizationCtrl.selectedOrganization.id}}">Add</md-button></div>
                         <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Acitivate</md-button></div>
                         <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">InAcitivate</md-button></div>
                     </div>    

@@ -21,7 +21,11 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 				templateUrl: 'partials/list-organizations.html'
 			});
 
-			$routeProvider.when('/organization/:parentOrganizationId/:organizationId', {
+			$routeProvider.when('/organization/create/:parentOrganizationId', {
+				templateUrl: 'partials/organization.html'
+			});
+
+			$routeProvider.when('/organization/update/:parentOrganizationId/:organizationId', {
 				templateUrl: 'partials/organization.html'
 			});
 
@@ -35,6 +39,10 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 
 			$routeProvider.when('/users', {
 				templateUrl: 'partials/list-users.html'
+			});
+
+			$routeProvider.when('/user/:accountId', {
+				templateUrl: 'partials/user.html'
 			});
 
 	        $mdIconProvider.icon('md-toggle-arrow', 'img/icons/toggle-arrow.svg', 48);
