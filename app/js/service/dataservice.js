@@ -2,6 +2,7 @@ var dataService = function($http)
 {
 	var self = this;
 	self.jwtToken = null;
+	self.serverUrl = "http://184.106.65.107:8003";
 
 	this.setJwtToken = function(jwtToken)
 	{
@@ -14,7 +15,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/organizations/listAll"
+			url: self.serverUrl + "/organizations/listAll"
 		});
 	};
 
@@ -24,7 +25,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/organizations/listChildOrganizations/" + organizationId,
+			url: self.serverUrl + "/organizations/listChildOrganizations/" + organizationId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -37,7 +38,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/organizations/findById/" + organizationId,
+			url: self.serverUrl + "/organizations/findById/" + organizationId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -50,7 +51,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/organizations/create",
+			url: self.serverUrl + "/organizations/create",
 			data: data,
 			headers: {
 				"Jwt-Token": self.jwtToken
@@ -64,7 +65,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/organizations/update",
+			url: self.serverUrl + "/organizations/update",
 			data: data,
 			headers: {
 				"Jwt-Token": self.jwtToken
@@ -78,7 +79,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/roles/listRolesByOwner/" + organizationId,
+			url: self.serverUrl + "/roles/listRolesByOwner/" + organizationId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -91,7 +92,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/roles/listRolesByOwnerAndType/" + organizationId + "/" + roleType,
+			url: self.serverUrl + "/roles/listRolesByOwnerAndType/" + organizationId + "/" + roleType,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -104,7 +105,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/roles/findById/" + roleId,
+			url: self.serverUrl + "/roles/findById/" + roleId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -117,7 +118,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/roles/create",
+			url: self.serverUrl + "/roles/create",
 			data: data,
 			headers: {
 				"Jwt-Token": self.jwtToken
@@ -131,7 +132,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/roles/update",
+			url: self.serverUrl + "/roles/update",
 			data: data,
 			headers: {
 				"Jwt-Token": self.jwtToken
@@ -145,7 +146,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/users/listAllByOrganization/" + organizationId,
+			url: self.serverUrl + "/users/listAllByOrganization/" + organizationId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -158,7 +159,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'GET',
-			url: "http://localhost:8003/users/findByAccountId/" + accountId,
+			url: self.serverUrl + "/users/findByAccountId/" + accountId,
 			headers: {
 				"Jwt-Token": self.jwtToken
 			}
@@ -171,7 +172,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/users/create",
+			url: self.serverUrl + "/users/create",
 			data: data,
 			headers: {
 				"Jwt-Token": self.jwtToken
@@ -185,7 +186,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/users/update",
+			url: self.serverUrl + "/users/update",
 			data: data,
 			headers: {
 				"Jwt-Token": self.jwtToken
@@ -199,7 +200,7 @@ var dataService = function($http)
 		return $http(
 		{
 			method: 'POST',
-			url: "http://localhost:8003/login",
+			url: self.serverUrl + "/login",
 			data: {
 				userName: userName,
 				password: password,
