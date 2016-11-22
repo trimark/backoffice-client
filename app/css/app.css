@@ -292,3 +292,7 @@ md-list-item::before, md-list-item .md-list-item-inner::before {
 md-list-item.md-no-proxy, md-list-item .md-no-style {
 	padding: 0px !important;
 }
+
+md-content.md-default-theme, md-content {
+	background-color: #ffffff;
+}
