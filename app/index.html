@@ -8,13 +8,11 @@
 		<title>Trimark</title>
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic'>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="lib/css/angular-material/angular-material.css" />
-
 		<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.0.5/docs.css'>
 		<link rel='stylesheet prefetch' href='http://rawgit.com/iVantage/angular-ivh-treeview/master/dist/ivh-treeview.css'>
 		<link rel='stylesheet prefetch' href='http://rawgit.com/iVantage/angular-ivh-treeview/master/dist/ivh-treeview-theme-basic.css'>
-
+		<link rel="stylesheet" href="css/app.css" />
 
 	</head>
 
@@ -22,7 +20,7 @@
 		<!-- Container #2 -->
 		<div flex layout="row" ng-if="backOfficeCtrl.isUserLoggedIn">
 			<!-- Container #3 -->
-			<md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop="true" md-component-id="left" md-disable-backdrop ng-click="toggleList()">
+			<md-sidenav  class="md-sidenav-right" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="toggleList()" >
 				<!-- Custom UsersList component -->
 				<md-content flex="" role="navigation" class="_md flex" d-disable-backdrop="true">				
 					<ul class="bo-menu">
