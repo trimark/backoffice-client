@@ -147,6 +147,11 @@ md-toolbar h1 {
 		font-weight: 500;
 }
 
+
+.bo-menu .menu-toggle-list a.md-button.active span {
+	color: red !important;
+}
+
 .md-button-toggle .md-toggle-icon {
 		display: block;
 		margin-left: auto;
@@ -399,4 +404,137 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
 
 .light-grey {
 	#999;
+}
+
+
+
+.ac-gn-menuicon-label {
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99)
+}
+.active .ac-gn-menuicon-label {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg)
+}
+
+.ac-gn-menuicon-bread  {
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	width: 48px;
+	height: 48px;
+	-webkit-transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
+}
+
+.ac-gn-menuicon-bread-crust {
+	display: block;
+	width: 17px;
+	height: 1px;
+	background: white;
+	position: absolute;
+	left: 16px;
+	z-index: 1;
+	-webkit-transition: -webkit-transform 0.2s;
+	transition: -webkit-transform 0.2s;
+	transition: transform 0.2s;
+	transition: transform 0.2s, -webkit-transform 0.2s
+}
+
+.ac-gn-menuicon-bread-crust-top {
+	top: 23px;
+	-webkit-transition: -webkit-transform 0.2s 0.2s;
+	transition: -webkit-transform 0.2s 0.2s;
+	transition: transform 0.2s 0.2s;
+	transition: transform 0.2s 0.2s, -webkit-transform 0.2s 0.2s;
+	-webkit-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	transform: translateY(-3px)
+}
+
+.active .ac-gn-menuicon-bread-crust-top {
+-webkit-transform: translateY(0);
+-ms-transform: translateY(0);
+transform: translateY(0);
+-webkit-transition-delay: 0;
+transition-delay: 0
+}
+
+
+.ac-gn-menuicon-bread-top {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	-webkit-transform: rotate(0);
+	-ms-transform: rotate(0);
+	transform: rotate(0);
+	z-index: 4
+}
+
+.ac-gn-menuicon-bread-bottom {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	-webkit-transform: rotate(0);
+	-ms-transform: rotate(0);
+	transform: rotate(0)
+}
+
+.active .ac-gn-menuicon-bread-crust-bottom  {
+	-webkit-transition: -webkit-transform 0.2s;
+	transition: -webkit-transform 0.2s;
+	transition: transform 0.2s;
+	transition: transform 0.2s, -webkit-transform 0.2s;
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0)
+}
+
+
+.active .ac-gn-menuicon-bread-top {
+	-webkit-transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg)
+}
+
+.active .ac-gn-menuicon-bread-bottom {
+	-webkit-transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	transition: transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99), -webkit-transform 0.25s 0.2s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg)
+}
+
+
+
+
+.ac-gn-menuicon-bread-crust-top {
+	top: 23px;
+	-webkit-transition: -webkit-transform 0.2s 0.2s;
+	transition: -webkit-transform 0.2s 0.2s;
+	transition: transform 0.2s 0.2s;
+	transition: transform 0.2s 0.2s, -webkit-transform 0.2s 0.2s;
+	-webkit-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	transform: translateY(-3px)
+}
+
+.ac-gn-menuicon-bread-crust-bottom {
+	bottom: 23px;
+	-webkit-transform: translateY(3px);
+	-ms-transform: translateY(3px);
+	transform: translateY(3px)
 }
