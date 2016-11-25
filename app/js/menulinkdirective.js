@@ -7,7 +7,12 @@ var menuLinkDirective = function()
 		templateUrl: 'partials/menu-link.html',
 		link: function(scope, element)
 		{
-			var controller = element.parent().controller();			
+			var controller = element.parent().controller();
+
+			scope.onSelectMenu = function()
+			{
+				controller.selectSubMenu(scope.data);
+			};
 		}
 	};
 };

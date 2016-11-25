@@ -12,5 +12,5 @@
 </md-button>
 
 <ul id="bo-menu-{{data.id}}" class="menu-toggle-list" style="height: 0px;">
-    <li ng-repeat="entry in data.entries track by entry.id"><menu-link-directive data="entry"></menu-link-directive></li>
+    <li ng-repeat="entry in data.entries track by entry.id"><menu-link-directive parent="data" data="entry"></menu-link-directive></li>
 </ul>

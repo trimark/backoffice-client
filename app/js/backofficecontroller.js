@@ -2,6 +2,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 {
 	var self = this;
 	self.modules = [];
+	self.breadCrumbs = [];
 	self.user = null;
 	self.organization = null;
 	self.modulePermissions = null;
@@ -128,7 +129,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 			]
 		});
 		self.modules.push({
-			id: "administration", name: "administration", opened: false,
+			id: "administration", name: "Administration", opened: false,
 			entries: [
 				{
 					id: "MYACCOUNT",
@@ -282,6 +283,13 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 		menu.opened = self.selectedMenu !== null;
 	};
 
+	this.selectSubMenu = function(subMenu)
+	{
+		self.breadCrumbs.length = 0;
+		self.breadCrumbs.push(self.selectedMenu.name);
+		self.breadCrumbs.push(subMenu.name);
+	};
+
 	this.changePassword = function()
 	{
 		var position = $mdPanel.newPanelPosition().absolute().center();
@@ -428,24 +436,6 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	$scope.$on("showMessage",
 		function(event, params)
 		{
-			//var position = $mdPanel.newPanelPosition().absolute().right();
-			// $mdPanel.open({
-			// 	attachTo: angular.element(document.body), 
-			// 	disableParentScroll: false,
-			// 	template: "<div class='status'>" + params.message + "</div>",
-			// 	hasBackdrop: false,
-			// 	panelClass: "bo-dialog",
-			// 	position: position,
-			// 	trapFocus: true,
-			// 	clickOutsideToClose: true,
-			// 	escapeToClose: true,
-			// 	focusOnOpen: true
-			// });
-
-			// $timeout(function() {
-			// 	$(".status").addClass("status-" + params.type)
-			// }, 100);
-
 			$timeout(function() {
 				var el = angular.element(document.getElementById("main-content"));
 				$mdToast.show({
@@ -531,7 +521,6 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	$rootScope.$on("$routeChangeStart",
 		function (event, next, current)
 		{
-			console.log("Patalinghug >>> ", $route);
 			if (!self.isAuthorized($location.path()))
 			{
 				$rootScope.$broadcast("showMessage", {
