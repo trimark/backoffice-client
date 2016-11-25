@@ -1,9 +1,11 @@
-var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $mdDialog)
+var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $mdDialog, dataService)
 {
 	var self = this;
 	self.modules = [];
+	self.user = null;
 	self.organization = null;
 	self.modulePermissions = null;
+	self.jwtToken = null;
 	self.isUserLoggedIn = false;
 	self.selectedMenu = null;
 	self.loginPanel = null;
@@ -283,7 +285,50 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	this.changePassword = function()
 	{
 		var position = $mdPanel.newPanelPosition().absolute().center();
-		$mdPanel.open({
+		var jwtToken = self.jwtToken;
+		var mdPanelRef = $mdPanel.open({
+			controller: function(mdPanelRef)
+			{
+				this.currentPassword = null;
+				this.newPassword = null;
+				this.verifyPassword = null;
+
+				this.save = function()
+				{
+					var self = this;
+					dataService.changePassword(jwtToken, this.currentPassword, this.newPassword, this.verifyPassword).then(
+						function(response)
+						{
+							if (response && response.data && response.data.code === 0)
+							{
+								$rootScope.$broadcast("showMessage", response.data.data);
+								self.close();
+							}
+							else
+							{
+								$rootScope.$broadcast("showMessage", "Password Change Failed!!!");
+								self.close();
+							}
+						},
+						function(response)
+						{
+							$rootScope.$broadcast("showMessage", "Password Change Failed!!!");
+							self.close();
+						}
+					);
+				};
+
+				this.close = function()
+				{
+					mdPanelRef && mdPanelRef.close().then(
+						function() 
+						{
+							mdPanelRef.destroy();
+						}
+					);
+				};
+			},
+			controllerAs: "changePasswordCtrl",
 			attachTo: angular.element(document.body), 
 			disableParentScroll: false,
 			templateUrl: "partials/change-password.html",
@@ -333,15 +378,25 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 		{
 			self.loginPanel.close();
 			self.isUserLoggedIn = true;
-			self.organization = data.organization;
-			self.modulePermissions = data.role.modulePermissions;
+			self.user = {
+				userName: data.userAccount.userName,
+				accountId: data.userAccount.accountId,
+				role: data.userAccount.role.name
+			};
+			for (var i = 0; i < data.userAccount.accountProperties.length; i++)
+			{
+				self.user[data.userAccount.accountProperties[i].name] = data.userAccount.accountProperties[i].value;
+			}
+			self.organization = data.userAccount.organization;
+			self.modulePermissions = data.userAccount.role.modulePermissions;
+			self.jwtToken = data.jwtToken;
 			self.initModules();		
 			self.isUserLoggedIn = true;
 			if (!self.isAuthorized($location.path()))
 			{
 				$location.path("/");
 				$rootScope.$broadcast("showMessage", "You are not authorized!!!");
-			}			
+			};			
 		}
 	);
 
@@ -447,4 +502,4 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 };
 
 angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$rootScope", "$scope", "$route", "$location", "$mdPanel", 
-	"$mdDialog", backofficeController]);
+	"$mdDialog", "DataService", backofficeController]);

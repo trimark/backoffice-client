@@ -3,6 +3,7 @@ var dataService = function($http)
 	var self = this;
 	self.jwtToken = null;
 	self.serverUrl = "http://184.106.65.107:8003";
+	//self.serverUrl = "http://localhost:8003";
 
 	this.setJwtToken = function(jwtToken)
 	{
@@ -205,6 +206,24 @@ var dataService = function($http)
 				userName: userName,
 				password: password,
 				organization: organization
+			}
+		});
+	};
+
+	this.changePassword = function(jwtToken, currentPassword, newPassword, verifyPassword)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'POST',
+			url: self.serverUrl + "/changePassword",
+			data: {
+				currentPassword: currentPassword,
+				newPassword: newPassword,
+				verifyPassword: verifyPassword
+			},
+			headers: {
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
