@@ -13,7 +13,7 @@
             <md-list-item>
                 <div flex layout="row" layout-align="center">
                     <div flex="50">
-                        <md-virtual-repeat-container class="treeview-container" style="max-width: 90%; height: 200px;">
+                        <md-virtual-repeat-container class="treeview-container" style="height: 200px;">
                             <treeview-directive class="treeview">
                                 <ul>
                                     <li ng-repeat="organization in listOrganizationCtrl.organizations track by organization.id" class="collapsed">
@@ -60,11 +60,11 @@
                             </treeview-directive>
                         </md-virtual-repeat-container>
                     </div>
-                    <div flex="25">
+                    <div>
                         <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/update/{{listOrganizationCtrl.selectedOrganization.parent.id}}/{{listOrganizationCtrl.selectedOrganization.id}}" ng-disabled="listOrganizationCtrl.selectedOrganization === listOrganizationCtrl.rootOrganization">Edit</md-button></div>
                         <div flex layout="column"><md-button class="md-raised" ng-href="#/organization/create/{{listOrganizationCtrl.selectedOrganization.id}}">Add</md-button></div>
-                        <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Acitivate</md-button></div>
-                        <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">InAcitivate</md-button></div>
+                        <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Activate</md-button></div>
+                        <div flex layout="column"><md-button class="md-raised" ng-click="ctrl.closeDialog()">Deactivate</md-button></div>
                     </div>    
                 </div>
             </md-list-item>
