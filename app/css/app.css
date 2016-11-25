@@ -519,8 +519,6 @@ transition-delay: 0
 }
 
 
-
-
 .ac-gn-menuicon-bread-crust-top {
 	top: 23px;
 	-webkit-transition: -webkit-transform 0.2s 0.2s;
@@ -538,3 +536,39 @@ transition-delay: 0
 	-ms-transform: translateY(3px);
 	transform: translateY(3px)
 }
+
+.status {
+	-webkit-transition: -webkit-transform 0.35s ease-out;
+	transition: -webkit-transform 0.35s ease-out;
+	transition: transform 0.35s ease-out;
+	transform: translateY(-100px);
+    top: 10px;
+    position: fixed;
+    right: 10px;
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+
+.status-success {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+
+	background: #95b77d;
+	border: 1px #6f9c0b solid;
+	color: white;
+}
+
+
+.status-error {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+
+    border: 1px #d4530f solid;
+    background: #d47543;
+    color: #ffd5d5;
+}
+

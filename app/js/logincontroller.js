@@ -27,11 +27,17 @@ var loginController = function($rootScope, dataService)
 				if (response && response.data && response.data.code === 0)
 				{
 					$rootScope.$broadcast("loginSuccess", response.data.data);
-					$rootScope.$broadcast("showMessage", "Success Andrea Batang Ina");
+					$rootScope.$broadcast("showMessage", {
+						type: "success",
+						message: "Success Andrea Batang Ina"
+					});
 				}
 				else
 				{
-					$rootScope.$broadcast("showMessage", "Failed Andrea Batang Ina");
+					$rootScope.$broadcast("showMessage", {
+						type: "error",
+						message: "Failed Ula: Batang Gubat"
+					});
 				}
 			}
 		);

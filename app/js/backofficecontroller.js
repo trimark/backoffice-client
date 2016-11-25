@@ -1,4 +1,4 @@
-var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $mdDialog, dataService)
+var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $element,  $timeout, $mdDialog, dataService)
 {
 	var self = this;
 	self.modules = [];
@@ -301,18 +301,27 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 						{
 							if (response && response.data && response.data.code === 0)
 							{
-								$rootScope.$broadcast("showMessage", response.data.data);
+								$rootScope.$broadcast("showMessage", {
+									type: "success",
+									message: response.data.data
+								});
 								self.close();
 							}
 							else
 							{
-								$rootScope.$broadcast("showMessage", "Password Change Failed!!!");
+								$rootScope.$broadcast("showMessage", {
+									type: "error",
+									message: "Password Change Failed!!!"
+								});
 								self.close();
 							}
 						},
 						function(response)
 						{
-							$rootScope.$broadcast("showMessage", "Password Change Failed!!!");
+							$rootScope.$broadcast("showMessage", {
+								type: "error",
+								message: "Password Change Failed!!!"
+							});
 							self.close();
 						}
 					);
@@ -395,19 +404,22 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 			if (!self.isAuthorized($location.path()))
 			{
 				$location.path("/");
-				$rootScope.$broadcast("showMessage", "You are not authorized!!!");
+				$rootScope.$broadcast("showMessage", {
+					type: "error:", 
+					message: "You are not authorized!!!"
+				});
 			};			
 		}
 	);
 
 	$scope.$on("showMessage",
-		function(event, message)
+		function(event, params)
 		{
 			var position = $mdPanel.newPanelPosition().absolute().right();
 			$mdPanel.open({
 				attachTo: angular.element(document.body), 
 				disableParentScroll: false,
-				template: "<div style='padding: 24px;'>" + message + "</div>",
+				template: "<div class='status'>" + params.message + "</div>",
 				hasBackdrop: false,
 				panelClass: "bo-dialog",
 				position: position,
@@ -416,6 +428,10 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 				escapeToClose: true,
 				focusOnOpen: true
 			});
+
+			$timeout(function() {
+				$(".status").addClass("status-" + params.type)
+			}, 100);
 		}
 	);
 
@@ -492,7 +508,10 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 			console.log("Patalinghug >>> ", $route);
 			if (!self.isAuthorized($location.path()))
 			{
-				$rootScope.$broadcast("showMessage", "You are not authorized!!!");
+				$rootScope.$broadcast("showMessage", {
+					type: "error",
+					message: "You are not authorized!!!"
+				});
 				event.preventDefault();
 			}
 		}
@@ -501,5 +520,5 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	self.init();
 };
 
-angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$rootScope", "$scope", "$route", "$location", "$mdPanel", 
+angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$rootScope", "$scope", "$route", "$location", "$mdPanel", "$element", "$timeout",
 	"$mdDialog", "DataService", backofficeController]);
