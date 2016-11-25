@@ -1,4 +1,4 @@
-var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $element,  $timeout, $mdDialog, dataService)
+var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $element,  $timeout, $mdDialog, $mdToast, dataService)
 {
 	var self = this;
 	self.modules = [];
@@ -416,22 +416,32 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 		function(event, params)
 		{
 			var position = $mdPanel.newPanelPosition().absolute().right();
-			$mdPanel.open({
-				attachTo: angular.element(document.body), 
-				disableParentScroll: false,
-				template: "<div class='status'>" + params.message + "</div>",
-				hasBackdrop: false,
-				panelClass: "bo-dialog",
-				position: position,
-				trapFocus: true,
-				clickOutsideToClose: true,
-				escapeToClose: true,
-				focusOnOpen: true
-			});
+			// $mdPanel.open({
+			// 	attachTo: angular.element(document.body), 
+			// 	disableParentScroll: false,
+			// 	template: "<div class='status'>" + params.message + "</div>",
+			// 	hasBackdrop: false,
+			// 	panelClass: "bo-dialog",
+			// 	position: position,
+			// 	trapFocus: true,
+			// 	clickOutsideToClose: true,
+			// 	escapeToClose: true,
+			// 	focusOnOpen: true
+			// });
+
+			// $timeout(function() {
+			// 	$(".status").addClass("status-" + params.type)
+			// }, 100);
 
 			$timeout(function() {
-				$(".status").addClass("status-" + params.type)
-			}, 100);
+				$mdToast.show({
+					hideDelay   : 3000,
+					position    : 'top right',
+					controller  : 'ToastCtrl',
+					templateUrl : "partials/status.html",
+					locals: { params: params } 
+				});
+			}, 1000);
 		}
 	);
 
@@ -521,4 +531,4 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 };
 
 angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$rootScope", "$scope", "$route", "$location", "$mdPanel", "$element", "$timeout",
-	"$mdDialog", "DataService", backofficeController]);
+	"$mdDialog", "$mdToast", "DataService", backofficeController]);
