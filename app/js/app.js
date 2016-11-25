@@ -48,8 +48,6 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 	        $mdIconProvider.icon('md-toggle-arrow', 'img/icons/toggle-arrow.svg', 48);
 
 	        $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('red');
-	        $mdThemingProvider.theme("success-toast");
-$mdThemingProvider.theme("error-toast");
 	    }
 	]).
 	config(function(ivhTreeviewOptionsProvider) 

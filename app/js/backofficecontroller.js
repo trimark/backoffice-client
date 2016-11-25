@@ -439,8 +439,8 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 					position    : 'top right',
 					controller  : 'ToastCtrl',
 					templateUrl : 'partials/status.html',
-					toastClass: 'status-' + params.type,
-					locals: { params: params } 
+					toastClass  : 'status-' + params.type,
+					locals      : { params: params } 
 				});
 			}, 1000);
 		}
