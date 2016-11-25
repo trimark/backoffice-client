@@ -46,7 +46,7 @@ html, body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 	font-synthesis: none;
-	font-size: 14px;
+	font-size: 16px;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -95,24 +95,35 @@ md-toolbar h1 {
 
 .bo-menu > li {
 	background: #fcfcfc;
-	border-bottom: 1px solid rgb(225,225,225);
+	border-bottom: 1px solid #e3e3e3;
+}
+
+.bo-menu md-icon {
+	fill: #e3e3e3;
+	height: 20px;
+	width: 20px;
+	min-height: 20px;
+	min-width: 20px;
 }
 
 .bo-menu .md-button {
-		border-radius: 0;
-		color: rgba(0, 0, 0, 0.87);
-		cursor: pointer;
-		display: block;
-		align-items: inherit;
-		line-height: 40px;
-		margin: 0;
-		max-height: 40px;
-		overflow: hidden;
-		padding: 0px 16px;
-		text-align: left;
-		text-decoration: none;
-		white-space: normal;
-		width: 100%;
+	background: #fcfcfc;
+	border-radius: 0;
+	color: #333;
+	cursor: pointer;
+	display: block;
+	align-items: inherit;
+	line-height: 40px;
+	margin: 0;
+	max-height: 40px;
+	overflow: hidden;
+	padding: 0px 16px;
+	text-align: left;
+	text-decoration: none;
+	text-transform: capitalize;
+	white-space: normal;
+	width: 100%;
+	font-size: 16px;
 }
 
 .menu-toggle-list {
@@ -324,9 +335,24 @@ span.name {
 	display: inline-block;
 }
 
+.header,
+.header .title,
+.header .title-to {
+	color: #999;
+	font-size: 15px;
+}
+
+.header md-icon svg {
+	fill: #cccccc;
+	height: 20px;
+	width: 20px;
+	min-height: 20px;
+	min-width: 20px;
+}
+
 .md-sidenav-right {
 	box-shadow: 0 0 0;
-	border-right: 1px solid rgb(225,225,225);
+	border-right: 1px solid #e3e3e3;
 }
 
 md-list {
