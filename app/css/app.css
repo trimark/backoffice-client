@@ -547,7 +547,6 @@ md-toast {
     text-align: center;
 }
 
-
 md-toast .md-toast-content {
 	padding: 10px;
 }
@@ -565,6 +564,3 @@ md-toast  .md-toast-text {
     background: #d44343;
     color: #ffe9e9;
 }
-
-
-  

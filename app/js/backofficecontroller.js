@@ -435,10 +435,11 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 
 			$timeout(function() {
 				$mdToast.show({
-					hideDelay   : 3000,
+					hideDelay   : 6000,
 					position    : 'top right',
 					controller  : 'ToastCtrl',
-					templateUrl : "partials/status.html",
+					templateUrl : 'partials/status.html',
+					toastClass: 'status-' + params.type,
 					locals: { params: params } 
 				});
 			}, 1000);
