@@ -18,20 +18,13 @@
 
 	</head>
 
-	<body ng-cloak layout="column" ng-controller="BackofficeCtrl as backOfficeCtrl">
-		<!-- Container #1 (see wireframe) -->
-		<md-toolbar layout="row" class="bo-toolbar" ng-if="backOfficeCtrl.isUserLoggedIn">
-			<md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
-			</md-button>
-			<h1>Trimark</h1>
-		</md-toolbar>
-		
+	<body ng-cloak layout="column" ng-controller="BackofficeCtrl as backOfficeCtrl">		
 		<!-- Container #2 -->
 		<div flex layout="row" ng-if="backOfficeCtrl.isUserLoggedIn">
 			<!-- Container #3 -->
-			<md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="toggleList()">
+			<md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop="true" md-component-id="left" md-disable-backdrop ng-click="toggleList()">
 				<!-- Custom UsersList component -->
-				<md-content flex="" role="navigation" class="_md flex">				
+				<md-content flex="" role="navigation" class="_md flex" d-disable-backdrop="true">				
 					<ul class="bo-menu">
 						<li ng-repeat="module in backOfficeCtrl.modules track by module.id">
 							<menu-toggle-directive data="module"></menu-toggle-directive>
@@ -43,6 +36,12 @@
 			
 			<!-- Container #4 -->
 			<md-content md-scroll-y flex>
+				<md-toolbar layout="row" class="bo-toolbar" ng-if="backOfficeCtrl.isUserLoggedIn">
+					<md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
+					</md-button>
+					<h1>Trimark</h1>
+				</md-toolbar>
+
 				<div flex layout="row" class="bread-crumb">
 					<div class="header">
 						<h4 class="title">Administration</h4>
