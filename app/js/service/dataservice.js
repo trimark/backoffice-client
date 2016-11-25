@@ -1,8 +1,8 @@
 var dataService = function($http)
 {
 	var self = this;
-	//self.serverUrl = "http://184.106.65.107:8003";
-	self.serverUrl = "http://localhost:8003";
+	self.serverUrl = "http://184.106.65.107:8003";
+	//self.serverUrl = "http://localhost:8003";
 
 	this.getAllOrganizations = function()
 	{
