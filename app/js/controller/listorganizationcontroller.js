@@ -6,11 +6,11 @@ var listOrganizationController = function(dataService)
 	self.selectedOrganization = null;
 	self.organizations = null; 
 	
-	this.init = function(organization)
+	this.init = function(jwtToken, organization)
 	{
 		self.rootOrganization = organization;
 		self.selectedOrganization = organization;
-		dataService.getChildOrganizations(organization.id).then(
+		dataService.getChildOrganizations(jwtToken, organization.id).then(
 			function(response)
 			{
 				if (response && response.data && response.data.code === 0)
@@ -20,6 +20,9 @@ var listOrganizationController = function(dataService)
 			},
 			function(response, status)
 			{
+				if (response.data && response.data.status === 403)
+				{
+				}
 			}
 		);
 	};

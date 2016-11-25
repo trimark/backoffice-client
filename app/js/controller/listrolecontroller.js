@@ -7,11 +7,11 @@ var listRoleController = function($rootScope, $timeout, dataService)
 	self.modules = null;
 	self.selectedRole = null; 
 	
-	this.init = function(organization, modules)
+	this.init = function(jwtToken, organization, modules)
 	{
 		self.organization = organization;
 		self.modules = modules;
-		dataService.getRolesByOwner(organization.id).then(
+		dataService.getRolesByOwner(jwtToken, organization.id).then(
 			function(response)
 			{
 				if (response && response.data && response.data.code === 0)

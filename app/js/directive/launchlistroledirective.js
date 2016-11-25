@@ -6,7 +6,7 @@ var launchListRoleDirective = function()
 		link: function(scope, element, attrs, controller)
 		{
 			var parentController = element.parent().controller();
-			controller.init(parentController.organization, parentController.modules);
+			controller.init(parentController.jwtToken, parentController.organization, parentController.modules);
 		}
 	};
 };

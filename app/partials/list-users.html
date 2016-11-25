@@ -1,109 +1,109 @@
 <launch-list-user-directive>
-<md-card id="users">
-    <md-card-heade>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Users</h2>
-            </div>
-        </md-toolbar>
-    </md-card-header>
-    <md-card-content>
-        <div layout="column">
-            <div layout="row">
-                <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-                    <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                        <span>Users</span>
+    <md-card id="users">
+        <md-card-heade>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Users</h2>
+                </div>
+            </md-toolbar>
+        </md-card-header>
+        <md-card-content>
+            <div layout="column">
+                <div layout="row">
+                    <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                        <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                            <span>Users</span>
+                        </div>
+                        <div flex layout="row">
+                            <div flex="25" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Username</div>
+                            <div flex="25" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Name</div>
+                            <div flex="25" style="background: rgb(250, 250, 250); padding: 5px;">Organization</div>
+                            <div flex="25" style="background: rgb(250, 250, 250); padding: 5px;">Role</div>
+                        </div>
+                        <md-list>
+                            <md-list-item ng-repeat="user in listUserCtrl.users track by user.accountId" ng-click="listUserCtrl.selectUser(user)">
+                                <div flex layout="row">
+                                    <div flex="25" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{user.userName}}</div>
+                                    <div flex="25" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{user.firstName}} {{user.lastName}}</div>
+                                    <div flex="25" style="border-right: solid 1px rgb(225,225,225);padding: 5px;">{{user.organization}}</div>
+                                    <div flex="25" style="border-right: solid 1px rgb(225,225,225);padding: 5px;">{{user.role}}</div>
+                                </div>
+                            </md-list-item>
+                        </md-list>
                     </div>
-                    <div flex layout="row">
-                        <div flex="25" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Username</div>
-                        <div flex="25" style="background: rgb(250, 250, 250); border-right: solid 1px rgb(225,225,225); padding: 5px;">Name</div>
-                        <div flex="25" style="background: rgb(250, 250, 250); padding: 5px;">Organization</div>
-                        <div flex="25" style="background: rgb(250, 250, 250); padding: 5px;">Role</div>
-                    </div>
-                    <md-list>
-                        <md-list-item ng-repeat="user in listUserCtrl.users track by user.accountId" ng-click="listUserCtrl.selectUser(user)">
-                            <div flex layout="row">
-                                <div flex="25" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{user.userName}}</div>
-                                <div flex="25" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{user.firstName}} {{user.lastName}}</div>
-                                <div flex="25" style="border-right: solid 1px rgb(225,225,225);padding: 5px;">{{user.organization}}</div>
-                                <div flex="25" style="border-right: solid 1px rgb(225,225,225);padding: 5px;">{{user.role}}</div>
-                            </div>
-                        </md-list-item>
-                    </md-list>
+                </div>
+                <div flex layout="row" layout-align="end">
+                    <md-button class="md-raised" ng-href="#/user/0">New</md-button>
+                </div>
+                <div layout="row" ng-if="listUserCtrl.selectedUser">
+                    <div flex>
+                        <launch-user-directive>
+                            <fieldset class="demo-fieldset" >
+                                <legend class="demo-legend">{{listUserCtrl.selectedUser.userName}}</legend>
+                                <div flex layout="row">
+                                    <div flex="75">
+                                        <md-list>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Username:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.userName}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Name:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.firstName.value}} {{userCtrl.lastName.value}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Organization:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.organization.name}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Account status:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>Active</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Role:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.role.name}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Phone:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.phone.value}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Mobile:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.mobile.value}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <div flex="100" layout="row">
+                                                    <div flex="30" layout-align="start center"><label>Email:</label></div>
+                                                    <div flex="70" layout-align="start center"><span>{{userCtrl.email.value}}</span></div>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+                                    </div>
+                                    <div flex="25">
+                                        <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/user/{{listUserCtrl.selectedUser.accountId}}">Edit</md-button></div>
+                                        <div flex="100" layout="column"><md-button class="md-raised" ng-click="userCtrl.changePassword()">Change Password</md-button></div>
+                                        <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/role/{{roleCtrl.role.id}}">Inactivate</md-button></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </launch-user-directive>
+                    </div>    
                 </div>
             </div>
-            <div flex layout="row" layout-align="end">
-                <md-button class="md-raised" ng-href="#/user/0">New</md-button>
-            </div>
-            <div layout="row" ng-if="listUserCtrl.selectedUser">
-                <div flex>
-                    <launch-user-directive>
-                        <fieldset class="demo-fieldset" >
-                            <legend class="demo-legend">{{listUserCtrl.selectedUser.userName}}</legend>
-                            <div flex layout="row">
-                                <div flex="75">
-                                    <md-list>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Username:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.userName}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Name:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.firstName.value}} {{userCtrl.lastName.value}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Organization:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.organization.name}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Account status:</label></div>
-                                                <div flex="70" layout-align="start center"><span>Active</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Role:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.role.name}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Phone:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.phone.value}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Mobile:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.mobile.value}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                        <md-list-item>
-                                            <div flex="100" layout="row">
-                                                <div flex="30" layout-align="start center"><label>Email:</label></div>
-                                                <div flex="70" layout-align="start center"><span>{{userCtrl.email.value}}</span></div>
-                                            </div>
-                                        </md-list-item>
-                                    </md-list>
-                                </div>
-                                <div flex="25">
-                                    <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/user/{{listUserCtrl.selectedUser.accountId}}">Edit</md-button></div>
-                                    <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/role/{{roleCtrl.role.id}}">Change Password</md-button></div>
-                                    <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/role/{{roleCtrl.role.id}}">Inactivate</md-button></div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </launch-user-directive>
-                </div>    
-            </div>
-        </div>
-    </md-card-content>
-</md-card>
+        </md-card-content>
+    </md-card>
 </launch-list-user-directive>

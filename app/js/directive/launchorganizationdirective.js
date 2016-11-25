@@ -33,11 +33,11 @@ var launchOrganizationDirective = function($route)
 					var parentOrganization = getOrganization(parentController.organization, parseInt($route.current.params.parentOrganizationId));
 					if (parseInt($route.current.params.organizationId))
 					{
-						controller.init(parentOrganization, null);
+						controller.init(parentController.jwtToken, parentOrganization, getOrganization(parentOrganization, parseInt($route.current.params.organizationId)));
 					}
 					else
 					{
-						controller.init(parentOrganization, getOrganization(parentOrganization, parseInt($route.current.params.organizationId)));
+						controller.init(parentController.jwtToken, parentOrganization, null);
 					}
 				}
 			);

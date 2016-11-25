@@ -1,6 +1,7 @@
-var userController = function($rootScope, $location, $filter, dataService)
+var userController = function($rootScope, $location, $filter, $mdPanel, dataService)
 {
 	var self = this;
+	self.jwtToken = null;
 	self.organizations = null;
 	self.roles = null;
 
@@ -15,8 +16,9 @@ var userController = function($rootScope, $location, $filter, dataService)
 	self.phone = null;
 	self.mobile = null;
 
-	this.init = function(organization, accountId)
+	this.init = function(jwtToken, organization, accountId)
 	{
+		self.jwtToken = jwtToken;
 		var organizations = [];
 		organizations.push({
 			id: organization.id,
@@ -28,7 +30,7 @@ var userController = function($rootScope, $location, $filter, dataService)
 		self.accountId = parseInt(accountId);
 		if (self.accountId)
 		{
-			dataService.getUserByAccountId(self.accountId).then(
+			dataService.getUserByAccountId(self.jwtToken, self.accountId).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -79,7 +81,7 @@ var userController = function($rootScope, $location, $filter, dataService)
 	{
 		if (self.organization)
 		{
-			dataService.getRolesByOwnerAndType(self.organization.id, "User").then(
+			dataService.getRolesByOwnerAndType(self.jwtToken, self.organization.id, "User").then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -149,7 +151,7 @@ var userController = function($rootScope, $location, $filter, dataService)
 
 		if (self.accountId === 0)
 		{
-			dataService.createUser(user).then(
+			dataService.createUser(self.jwtToken, user).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -162,7 +164,7 @@ var userController = function($rootScope, $location, $filter, dataService)
 		}
 		else
 		{
-			dataService.updateUser(user).then(
+			dataService.updateUser(self.jwtToken, user).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -173,7 +175,77 @@ var userController = function($rootScope, $location, $filter, dataService)
 				}
 			);
 		}
+	};
+
+	this.changePassword = function()
+	{
+		var position = $mdPanel.newPanelPosition().absolute().center();
+		var jwtToken = self.jwtToken;
+		var accountId = self.accountId;
+		$mdPanel.open({
+			controller: function(mdPanelRef)
+			{
+				this.newPassword = null;
+				this.verifyPassword = null;
+
+				this.save = function()
+				{
+					var self = this;
+					dataService.userChangePassword(jwtToken, accountId, this.newPassword, this.verifyPassword).then(
+						function(response)
+						{
+							if (response && response.data && response.data.code === 0)
+							{
+								$rootScope.$broadcast("showMessage", {
+									type: "success",
+									message: response.data.data
+								});
+								self.close();
+							}
+							else
+							{
+								$rootScope.$broadcast("showMessage", {
+									type: "error",
+									message: response.data.data
+								});
+								self.close();
+							}
+						},
+						function(response)
+						{
+							$rootScope.$broadcast("showMessage", {
+								type: "error",
+								message: "Password Change Failed!!!"
+							});
+							self.close();
+						}
+					);
+				};
+
+				this.close = function()
+				{
+					mdPanelRef && mdPanelRef.close().then(
+						function() 
+						{
+							mdPanelRef.destroy();
+						}
+					);
+				};
+			},
+			controllerAs: "changePasswordCtrl",
+			attachTo: angular.element(document.body), 
+			disableParentScroll: false,
+			templateUrl: "partials/user-change-password.html",
+			hasBackdrop: true,
+			panelClass: "bo-dialog",
+			position: position,
+			trapFocus: true,
+			zIndex: 150,
+			clickOutsideToClose: true,
+			escapeToClose: true,
+			focusOnOpen: true
+		});
 	};	
 };
 
-angular.module('trimark-backoffice').controller("UserCtrl", ["$rootScope", "$location", "$filter", "DataService", userController]);
+angular.module('trimark-backoffice').controller("UserCtrl", ["$rootScope", "$location", "$filter", "$mdPanel", "DataService", userController]);

@@ -3,9 +3,11 @@ var roleController = function($rootScope, $location, dataService)
 	var self = this;
 	self.role = null;
 	self.modules = null;
+	self.jwtToken = null;
 	
-	this.init = function(organization, modules, roleId)
+	this.init = function(jwtToken, organization, modules, roleId)
 	{
+		self.jwtToken = jwtToken;
 		self.modules = [];
 		var i, j;
 		for (i = 0; i < modules.length; i++)
@@ -50,7 +52,7 @@ var roleController = function($rootScope, $location, dataService)
 		}
 		else
 		{
-			dataService.getRole(roleId).then(
+			dataService.getRole(self.jwtToken, roleId).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -151,7 +153,7 @@ var roleController = function($rootScope, $location, dataService)
 		}
 		if (self.role.id === 0)
 		{
-			dataService.createRole(self.role).then(
+			dataService.createRole(self.jwtToken, self.role).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -164,7 +166,7 @@ var roleController = function($rootScope, $location, dataService)
 		}
 		else
 		{
-			dataService.updateRole(self.role).then(
+			dataService.updateRole(self.jwtToken, self.role).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)

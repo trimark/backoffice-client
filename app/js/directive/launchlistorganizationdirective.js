@@ -6,7 +6,7 @@ var launchListOrganizationDirective = function()
 		link: function(scope, element, attrs, controller)
 		{
 			var parentController = element.parent().controller();
-			controller.init(parentController.organization);
+			controller.init(parentController.jwtToken, parentController.organization);
 		}
 	};
 };

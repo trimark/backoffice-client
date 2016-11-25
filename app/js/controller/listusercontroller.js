@@ -4,9 +4,9 @@ var listUserController = function($rootScope, $timeout, dataService)
 	self.users = [];
 	self.selectedUser = null; 
 	
-	this.init = function(organization)
+	this.init = function(jwtToken, organization)
 	{
-		dataService.getUsers(organization.id).then(
+		dataService.getUsers(jwtToken, organization.id).then(
 			function(response)
 			{
 

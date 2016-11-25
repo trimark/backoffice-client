@@ -1,14 +1,8 @@
 var dataService = function($http)
 {
 	var self = this;
-	self.jwtToken = null;
-	self.serverUrl = "http://184.106.65.107:8003";
-	//self.serverUrl = "http://localhost:8003";
-
-	this.setJwtToken = function(jwtToken)
-	{
-		self.jwtToken = jwtToken;
-	};
+	//self.serverUrl = "http://184.106.65.107:8003";
+	self.serverUrl = "http://localhost:8003";
 
 	this.getAllOrganizations = function()
 	{
@@ -20,7 +14,7 @@ var dataService = function($http)
 		});
 	};
 
-	this.getChildOrganizations = function(organizationId)
+	this.getChildOrganizations = function(jwtToken, organizationId)
 	{
 		var self = this;
 		return $http(
@@ -28,25 +22,12 @@ var dataService = function($http)
 			method: 'GET',
 			url: self.serverUrl + "/organizations/listChildOrganizations/" + organizationId,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.getOrganization = function(organizationId)
-	{
-		var self = this;
-		return $http(
-		{
-			method: 'GET',
-			url: self.serverUrl + "/organizations/findById/" + organizationId,
-			headers: {
-				"Jwt-Token": self.jwtToken
-			}
-		});
-	};
-
-	this.createOrganization = function(data)
+	this.createOrganization = function(jwtToken, data)
 	{
 		var self = this;
 		return $http(
@@ -55,12 +36,12 @@ var dataService = function($http)
 			url: self.serverUrl + "/organizations/create",
 			data: data,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.updateOrganization = function(data)
+	this.updateOrganization = function(jwtToken, data)
 	{
 		var self = this;
 		return $http(
@@ -69,12 +50,12 @@ var dataService = function($http)
 			url: self.serverUrl + "/organizations/update",
 			data: data,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.getRolesByOwner = function(organizationId)
+	this.getRolesByOwner = function(jwtToken, organizationId)
 	{
 		var self = this;
 		return $http(
@@ -82,12 +63,12 @@ var dataService = function($http)
 			method: 'GET',
 			url: self.serverUrl + "/roles/listRolesByOwner/" + organizationId,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.getRolesByOwnerAndType = function(organizationId, roleType)
+	this.getRolesByOwnerAndType = function(jwtToken, organizationId, roleType)
 	{
 		var self = this;
 		return $http(
@@ -95,12 +76,12 @@ var dataService = function($http)
 			method: 'GET',
 			url: self.serverUrl + "/roles/listRolesByOwnerAndType/" + organizationId + "/" + roleType,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.getRole = function(roleId)
+	this.getRole = function(jwtToken, roleId)
 	{
 		var self = this;
 		return $http(
@@ -108,12 +89,12 @@ var dataService = function($http)
 			method: 'GET',
 			url: self.serverUrl + "/roles/findById/" + roleId,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.createRole = function(data)
+	this.createRole = function(jwtToken, data)
 	{
 		var self = this;
 		return $http(
@@ -122,12 +103,12 @@ var dataService = function($http)
 			url: self.serverUrl + "/roles/create",
 			data: data,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.updateRole = function(data)
+	this.updateRole = function(jwtToken, data)
 	{
 		var self = this;
 		return $http(
@@ -136,12 +117,12 @@ var dataService = function($http)
 			url: self.serverUrl + "/roles/update",
 			data: data,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.getUsers = function(organizationId)
+	this.getUsers = function(jwtToken, organizationId)
 	{
 		var self = this;
 		return $http(
@@ -149,12 +130,12 @@ var dataService = function($http)
 			method: 'GET',
 			url: self.serverUrl + "/users/listAllByOrganization/" + organizationId,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.getUserByAccountId = function(accountId)
+	this.getUserByAccountId = function(jwtToken, accountId)
 	{
 		var self = this;
 		return $http(
@@ -162,12 +143,12 @@ var dataService = function($http)
 			method: 'GET',
 			url: self.serverUrl + "/users/findByAccountId/" + accountId,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.createUser = function(data)
+	this.createUser = function(jwtToken, data)
 	{
 		var self = this;
 		return $http(
@@ -176,12 +157,12 @@ var dataService = function($http)
 			url: self.serverUrl + "/users/create",
 			data: data,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
 
-	this.updateUser = function(data)
+	this.updateUser = function(jwtToken, data)
 	{
 		var self = this;
 		return $http(
@@ -190,7 +171,24 @@ var dataService = function($http)
 			url: self.serverUrl + "/users/update",
 			data: data,
 			headers: {
-				"Jwt-Token": self.jwtToken
+				"Jwt-Token": jwtToken
+			}
+		});
+	};
+
+	this.userChangePassword = function(jwtToken, accountId, newPassword, verifyPassword)
+	{
+		var self = this;
+		return $http(
+		{
+			method: 'POST',
+			url: self.serverUrl + "/users/changePassword/" + accountId,
+			data: {
+				newPassword: newPassword,
+				verifyPassword: verifyPassword
+			},
+			headers: {
+				"Jwt-Token": jwtToken
 			}
 		});
 	};
@@ -210,7 +208,7 @@ var dataService = function($http)
 		});
 	};
 
-	this.changePassword = function(jwtToken, currentPassword, newPassword, verifyPassword)
+	this.myAccountChangePassword = function(jwtToken, currentPassword, newPassword, verifyPassword)
 	{
 		var self = this;
 		return $http(

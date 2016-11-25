@@ -9,7 +9,7 @@ var launchUserDirective = function($route)
 				function(event, next, current) 
 				{
 					var parentController = element.parent().controller();
-					controller.init(parentController.organization, $route.current.params.accountId);
+					controller.init(parentController.jwtToken, parentController.organization, $route.current.params.accountId);
 				}
 			);
 
@@ -17,7 +17,7 @@ var launchUserDirective = function($route)
 				function(event, accountId)
 				{
 					var parentController = element.parent().controller();
-					controller.init(parentController.organization, accountId);
+					controller.init(parentController.jwtToken, parentController.organization, accountId);
 				}
 			);
 		}

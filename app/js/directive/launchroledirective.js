@@ -1,3 +1,4 @@
+
 var launchRoleDirective = function($route)
 {
 	return {
@@ -9,7 +10,7 @@ var launchRoleDirective = function($route)
 				function(event, next, current) 
 				{
 					var parentController = element.parent().controller();
-					controller.init(parentController.organization, parentController.modules, $route.current.params.roleId);
+					controller.init(parentController.jwtToken, parentController.organization, parentController.modules, $route.current.params.roleId);
 				}
 			);
 
@@ -17,7 +18,7 @@ var launchRoleDirective = function($route)
 				function(event, roleId)
 				{
 					var parentController = element.parent().controller();
-					controller.init(parentController.organization, parentController.modules, roleId);
+					controller.init(parentController.jwtToken, parentController.organization, parentController.modules, roleId);
 				}
 			);
 		}

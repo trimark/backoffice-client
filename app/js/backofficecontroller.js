@@ -286,7 +286,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	{
 		var position = $mdPanel.newPanelPosition().absolute().center();
 		var jwtToken = self.jwtToken;
-		var mdPanelRef = $mdPanel.open({
+		$mdPanel.open({
 			controller: function(mdPanelRef)
 			{
 				this.currentPassword = null;
@@ -296,7 +296,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 				this.save = function()
 				{
 					var self = this;
-					dataService.changePassword(jwtToken, this.currentPassword, this.newPassword, this.verifyPassword).then(
+					dataService.myAccountChangePassword(jwtToken, this.currentPassword, this.newPassword, this.verifyPassword).then(
 						function(response)
 						{
 							if (response && response.data && response.data.code === 0)
@@ -340,7 +340,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 			controllerAs: "changePasswordCtrl",
 			attachTo: angular.element(document.body), 
 			disableParentScroll: false,
-			templateUrl: "partials/change-password.html",
+			templateUrl: "partials/my-account-change-password.html",
 			hasBackdrop: true,
 			panelClass: "bo-dialog",
 			position: position,
@@ -350,6 +350,19 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 			escapeToClose: true,
 			focusOnOpen: true
 		});
+	};
+
+	this.logout = function()
+	{
+		self.modules.length = 0;
+		self.user = null;
+		self.organization = null;
+		self.modulePermissions = null;
+		self.jwtToken = null;
+		self.isUserLoggedIn = false;
+		self.selectedMenu = null;
+		self.loginPanel = null;
+		self.init();
 	};
 
 	this.init = function()
@@ -415,7 +428,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	$scope.$on("showMessage",
 		function(event, params)
 		{
-			var position = $mdPanel.newPanelPosition().absolute().right();
+			//var position = $mdPanel.newPanelPosition().absolute().right();
 			// $mdPanel.open({
 			// 	attachTo: angular.element(document.body), 
 			// 	disableParentScroll: false,
@@ -434,13 +447,15 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 			// }, 100);
 
 			$timeout(function() {
+				var el = angular.element(document.getElementById("main-content"));
 				$mdToast.show({
 					hideDelay   : 6000,
 					position    : 'top right',
 					controller  : 'ToastCtrl',
 					templateUrl : 'partials/status.html',
 					toastClass  : 'status-' + params.type,
-					locals      : { params: params } 
+					locals      : { params: params },
+					parent 		: el
 				});
 			}, 1000);
 		}

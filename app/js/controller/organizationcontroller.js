@@ -3,10 +3,11 @@ var organizationController = function($rootScope, $scope, $location, dataService
 	var self = this;
 	self.organization = null;
 	self.roles = null;
+	self.jwtToken = null;
 
-	this.init = function(parentOrganization, organization)
+	this.init = function(jwtToken, parentOrganization, organization)
 	{
-		console.log("organizationController >>> ", parentOrganization);
+		self.jwtToken = jwtToken;
 		if (organization)
 		{
 			self.organization = {
@@ -31,13 +32,17 @@ var organizationController = function($rootScope, $scope, $location, dataService
 				role: null
 			};
 		}
-		dataService.getRolesByOwnerAndType(parentOrganization.id, "Organization").then(
+		dataService.getRolesByOwnerAndType(jwtToken, parentOrganization.id, "Organization").then(
 			function(response)
 			{
 				if (response && response.data && response.data.code === 0)
 				{
 					self.roles = response.data.data;
 				}
+			},
+			function(response)
+			{
+				console.log(response);
 			}
 		);
 	};
@@ -46,7 +51,7 @@ var organizationController = function($rootScope, $scope, $location, dataService
 	{
 		if (self.organization.id === 0)
 		{
-			dataService.createOrganization(self.organization).then(
+			dataService.createOrganization(self.jwtToken, self.organization).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)
@@ -59,7 +64,7 @@ var organizationController = function($rootScope, $scope, $location, dataService
 		}
 		else
 		{
-			dataService.updateOrganization(self.organization).then(
+			dataService.updateOrganization(self.jwtToken, self.organization).then(
 				function(response)
 				{
 					if (response && response.data && response.data.code === 0)

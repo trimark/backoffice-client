@@ -538,12 +538,12 @@ transition-delay: 0
 }
 
 md-toast {
+    position: absolute;
     top: 0;
-    position: fixed;
     right: 0;
-    border-radius: 0;
-    left: 321px;
+    left: 0;
     padding: 0;
+    border-radius: 0;
     text-align: center;
 }
 
