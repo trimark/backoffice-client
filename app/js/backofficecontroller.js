@@ -73,7 +73,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 					],
 					additionalPermissions: [{
 							id: "ACTIVATEINACTIVATE",
-							name: "Activate/Inactivate"
+							name: "Activate"
 						},
 						{
 							id: "SETPERMISSIONS",
@@ -112,7 +112,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 					],
 					additionalPermissions: [{
 							id: "ACTIVATEINACTIVATE",
-							name: "Activate/Inactivate"
+							name: "Activate"
 						},
 						{
 							id: "SETPERMISSIONS",
@@ -166,7 +166,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 					],
 					additionalPermissions: [{
 							id: "ACTIVATEINACTIVATE",
-							name: "Activate/Inactivate"
+							name: "Activate"
 						},
 						{
 							id: "EDITROLES",
@@ -247,7 +247,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 					],
 					additionalPermissions: [{
 							id: "ACTIVATEINACTIVATE",
-							name: "Activate/Inactivate"
+							name: "Activate"
 						},
 						{
 							id: "EDITROLES",
