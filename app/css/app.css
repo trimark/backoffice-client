@@ -94,7 +94,8 @@ md-toolbar h1 {
 }
 
 .bo-menu > li {
-		border-bottom: 1px solid rgb(255, 255, 255);
+	background: #fcfcfc;
+	border-bottom: 1px solid rgb(225,225,225);
 }
 
 .bo-menu .md-button {
@@ -257,6 +258,11 @@ span.name {
 	border: solid 1px rgb(225,225,225);	
 }
 
+.treeview-container .md-virtual-repeat-offsetter {
+	padding-top: 15px;
+	height: 200p
+}
+
 .treeview ul {
 	padding-left: 25px;
 	list-style: none;
@@ -318,6 +324,11 @@ span.name {
 	display: inline-block;
 }
 
+.md-sidenav-right {
+	box-shadow: 0 0 0;
+	border-right: 1px solid rgb(225,225,225);
+}
+
 md-list {
     padding: 0px !important;
 }
@@ -335,6 +346,31 @@ md-list-item.md-no-proxy, md-list-item .md-no-style {
 	padding: 0px !important;
 }
 
-md-content.md-default-theme, md-content {
+md-content.md-default-theme, md-content,
+md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content {
 	background-color: #fcfcfc;
+}
+
+.md-button.md-raised:not([disabled]) {
+    box-shadow: 0 0 0;
+}
+
+.md-button.md-default-theme.md-raised, .md-button.md-raised {
+	background: -moz-linear-gradient(top, #ffffff 0%, #e1e1e1 100%);
+	background: -webkit-linear-gradient(top, #ffffff 0%,#e1e1e1 100%);
+	background: linear-gradient(to bottom, #ffffff 0%,#e1e1e1 100%);
+	border: 1px solid #d7d7d7;
+	text-transform: initial;
+}
+
+.charcoal {
+	#333;
+}
+
+.dark-grey {
+	#666;
+}
+
+.light-grey {
+	#999;
 }
