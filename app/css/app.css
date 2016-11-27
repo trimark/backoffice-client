@@ -583,6 +583,10 @@ md-toast  .md-toast-text {
     color: #ffe9e9;
 }
 
+.layout-row > .flex-20 {
+	color: #666;
+}
+
 md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {
 	background-color: rgba(0,0,0,0.54);
 }
