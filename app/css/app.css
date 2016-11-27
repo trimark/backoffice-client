@@ -136,6 +136,10 @@ md-toolbar h1 {
 	font-size: 16px;
 }
 
+.left-panel {
+	padding-top: 61px;
+}
+
 .menu-toolbar {
 	background: transparent !important;
 }
@@ -438,7 +442,7 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
 .ac-gn-menuicon-bread  {
 	position: absolute;
 	z-index: 3;
-	top: 0;
+	top: 8px;
 	left: 0;
 	width: 48px;
 	height: 48px;
@@ -450,7 +454,7 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
 	display: block;
 	width: 17px;
 	height: 1px;
-	background: white;
+	background: #999;
 	position: absolute;
 	left: 16px;
 	z-index: 1;
@@ -585,4 +589,16 @@ md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-ico
 
 md-card.md-default-theme, md-card {
 	color: #333;
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape) {
+	md-toolbar {
+	    min-height: 64px;
+	}
+}
+
+@media  (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+	md-toolbar {
+	    min-height: 64px;
+	}
 }

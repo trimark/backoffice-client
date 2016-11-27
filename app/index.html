@@ -22,8 +22,8 @@
 			<!-- Container #3 -->
 			<md-sidenav  class="md-sidenav-right" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="toggleList()" >
 				<!-- Custom UsersList component -->
-				<md-content flex="" role="navigation" class="_md flex" d-disable-backdrop="true">				
-					<md-toolbar layout="row" class="menu-toolbar md layout-row _md-toolbar-transitions" ng-if="backOfficeCtrl.isUserLoggedIn">
+				<md-content flex="" role="navigation" class="_md flex left-panel">				
+					<!-- <md-toolbar layout="row" class="menu-toolbar md layout-row _md-toolbar-transitions" ng-if="backOfficeCtrl.isUserLoggedIn">
 						<label class="ac-gn-menuicon-label" ng-click="toggle()">
 							<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
 								<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
@@ -31,8 +31,8 @@
 							<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
 								<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
 							</span>
-						</label>						
-					</md-toolbar>
+						</label>
+					</md-toolbar> -->
 
 					<ul class="bo-menu">
 						<li ng-repeat="module in backOfficeCtrl.modules track by module.id">
@@ -46,8 +46,19 @@
 			<!-- Container #4 -->
 			<md-content id="main-content" md-scroll-y flex>
 				<md-toolbar layout="row" class="bo-toolbar" ng-if="backOfficeCtrl.isUserLoggedIn">
-					<md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
-					</md-button>
+					<md-toolbar layout="row" class="menu-toolbar md layout-row _md-toolbar-transitions" ng-if="backOfficeCtrl.isUserLoggedIn">
+						<label class="ac-gn-menuicon-label" ng-click="app.toggleList()" >
+							<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+								<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+							</span>
+							<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+								<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+							</span>
+						</label>
+					</md-toolbar>
+
+					<!-- <md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()" aria-label="Show User List">
+					</md-button> -->
 					<h1><!-- Trimark --></h1>
 				</md-toolbar>
 
