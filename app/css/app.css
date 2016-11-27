@@ -31,7 +31,7 @@
 
 button, select, html, textarea, input {
     font-family: myriadsetpro,"Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
-    color: #535353;
+    color: #333;
 }
 
 input[disabled], md-select[disabled] .md-select-value {
