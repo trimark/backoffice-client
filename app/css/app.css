@@ -578,3 +578,11 @@ md-toast  .md-toast-text {
     background: #d44343;
     color: #ffe9e9;
 }
+
+md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {
+	background-color: rgba(0,0,0,0.54);
+}
+
+md-card.md-default-theme, md-card {
+	color: #333;
+}
