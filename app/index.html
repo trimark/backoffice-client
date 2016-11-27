@@ -20,7 +20,7 @@
 		<!-- Container #2 -->
 		<div flex layout="row" ng-if="backOfficeCtrl.isUserLoggedIn">
 			<!-- Container #3 -->
-			<md-sidenav  class="md-sidenav-right" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" ng-click="toggleList()" >
+			<md-sidenav  class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left">
 				<!-- Custom UsersList component -->
 				<md-content flex="" role="navigation" class="_md flex left-panel">				
 					<!-- <md-toolbar layout="row" class="menu-toolbar md layout-row _md-toolbar-transitions" ng-if="backOfficeCtrl.isUserLoggedIn">
@@ -47,7 +47,7 @@
 			<md-content id="main-content" md-scroll-y flex>
 				<md-toolbar layout="row" class="bo-toolbar" ng-if="backOfficeCtrl.isUserLoggedIn">
 					<md-toolbar layout="row" class="menu-toolbar md layout-row _md-toolbar-transitions" ng-if="backOfficeCtrl.isUserLoggedIn">
-						<label class="ac-gn-menuicon-label" ng-click="app.toggleList()" >
+						<label class="ac-gn-menuicon-label" ng-click="backOfficeCtrl.toggleLeft()"  hide-gt-sm>
 							<span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
 								<span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
 							</span>

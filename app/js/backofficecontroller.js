@@ -1,4 +1,4 @@
-var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $element,  $timeout, $mdDialog, $mdToast, dataService)
+var backofficeController = function($rootScope, $scope, $route, $location, $mdPanel, $element,  $timeout, $mdDialog, $mdToast, $mdSidenav, dataService)
 {
 	var self = this;
 	self.modules = [];
@@ -373,6 +373,11 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 		self.init();
 	};
 
+	this.toggleLeft = function()
+	{
+		$mdSidenav('left').toggle();
+	};
+
 	this.init = function()
 	{
 		if (!self.isUserLoggedIn)
@@ -536,4 +541,4 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 };
 
 angular.module('trimark-backoffice').controller("BackofficeCtrl", ["$rootScope", "$scope", "$route", "$location", "$mdPanel", "$element", "$timeout",
-	"$mdDialog", "$mdToast", "DataService", backofficeController]);
+	"$mdDialog", "$mdToast", "$mdSidenav", "DataService", backofficeController]);
