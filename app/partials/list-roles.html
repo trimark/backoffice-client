@@ -31,86 +31,86 @@
                 </div>
             </div>
             <div flex layout="row" layout-align="end">
-                <md-button class="md-raised" ng-href="#/role/0">New Role</md-button>
+                <md-button class="md-raised" ng-href="#/role/create">New Role</md-button>
             </div>
             <div layout="row" ng-if="listRoleCtrl.selectedRole">
                 <div flex>
                     <launch-role-directive>
-                    <fieldset class="demo-fieldset" >
-                        <legend class="demo-legend">{{roleCtrl.role.organization.name}}/{{roleCtrl.role.name}}</legend>
-                        <div flex layout="row">
-                            <div flex="5" layout="row" layout-align="start center"><label>Type:</label></div>
-                            <div flex="10" layout="row" layout-align="start center"><span>{{roleCtrl.role.type}}</span></div>
-                            <div flex="85" layout="row" layout-align="end center"><span><md-button class="md-raised" ng-href="#/role/{{roleCtrl.role.id}}">Edit Role</md-button></span></div>
-                        </div>
-                        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-                            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                                <span>Child Organization Access</span>
+                        <fieldset class="demo-fieldset" >
+                            <legend class="demo-legend">{{roleCtrl.role.organization.name}}/{{roleCtrl.role.name}}</legend>
+                            <div flex layout="row">
+                                <div flex="5" layout="row" layout-align="start center"><label>Type:</label></div>
+                                <div flex="10" layout="row" layout-align="start center"><span>{{roleCtrl.role.type}}</span></div>
+                                <div flex="85" layout="row" layout-align="end center"><span><md-button class="md-raised" ng-href="#/role/update/{{roleCtrl.role.id}}">Edit Role</md-button></span></div>
                             </div>
-                            <div layout-wrap layout-gt-sm="row">
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFair Casino</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFair Casino</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFair Casino</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox></div>
-                            </div>
-                            <div layout="row" style="padding-left: 10px;">
-                                <md-checkbox md-no-ink class="md-primary">Automatically give access to new organizations</md-checkbox>
-                            </div>    
-                        </div>
-                        <div ng-repeat="module in roleCtrl.modules track by module.id">
-                            <div ng-repeat="entry in module.entries track by entry.id" ng-if="entry.hasSomePermission" flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
                                 <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                                    <span>{{entry.name}}</span>
+                                    <span>Child Organization Access</span>
+                                </div>
+                                <div layout-wrap layout-gt-sm="row">
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFair Casino</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFair Casino</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">BetFair Casino</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox></div>
+                                </div>
+                                <div layout="row" style="padding-left: 10px;">
+                                    <md-checkbox md-no-ink class="md-primary">Automatically give access to new organizations</md-checkbox>
+                                </div>    
+                            </div>
+                            <div ng-repeat="module in roleCtrl.modules track by module.id">
+                                <div ng-repeat="entry in module.entries track by entry.id" ng-if="entry.hasSomePermission" flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                                    <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                                        <span>{{entry.name}}</span>
+                                    </div>
+                                    <div layout="colum">
+                                        <md-chips ng-if="entry.selectedMainPermission">
+                                            <md-chip>Level {{entry.selectedMainPermission.name}}</md-chip>
+                                        </md-chips>
+                                        <md-chips ng-model="entry.selectedAdditionalPermissions" readonly="true">
+                                            <md-chip-template>{{$chip.name}}</md-chip-template>
+                                        </md-chips>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--
+                            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                                    <span>Roles</span>
                                 </div>
                                 <div layout="colum">
-                                    <md-chips ng-if="entry.selectedMainPermission">
-                                        <md-chip>Level {{entry.selectedMainPermission.name}}</md-chip>
-                                    </md-chips>
-                                    <md-chips ng-model="entry.selectedAdditionalPermissions" readonly="true">
-                                        <md-chip-template>{{$chip.name}}</md-chip-template>
-                                    </md-chips>
+                                    <div style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Level Full</md-checkbox></div>
+                                </div>    
+                            </div>
+                            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                                    <span>Users</span>
                                 </div>
+                                <div layout="colum">
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Change Password</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Profiles</md-checkbox></div>
+                                </div>    
                             </div>
-                        </div>
-                        <!--
-                        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-                            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                                <span>Roles</span>
+                            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                                    <span>Game Definitions</span>
+                                </div>
+                                <div layout="colum">
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Level Edit</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Game</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                                    <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Set Permissions</md-checkbox></div>
+                                </div>    
                             </div>
-                            <div layout="colum">
-                                <div style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Level Full</md-checkbox></div>
-                            </div>    
-                        </div>
-                        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-                            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                                <span>Users</span>
-                            </div>
-                            <div layout="colum">
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Change Password</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Profiles</md-checkbox></div>
-                            </div>    
-                        </div>
-                        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-                            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                                <span>Game Definitions</span>
-                            </div>
-                            <div layout="colum">
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Level Edit</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Game</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                                <div flex-gt-sm="20" style="padding: 10px;"><md-checkbox md-no-ink class="md-primary">Set Permissions</md-checkbox></div>
-                            </div>    
-                        </div>
-                        -->
-                    </fieldset>
+                            -->
+                        </fieldset>
                     </launch-role-directive>
                 </div>    
             </div>

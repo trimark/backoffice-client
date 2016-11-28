@@ -139,7 +139,11 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 						url: "#/myaccount", 
 						selected: false,
 						authenticate: true
-					}
+					},
+					entries: [{
+						regexp: /^\/myaccount$/,
+						allowedPermissions: ["READ", "UPDATE", "CREATE", "DELETE", "FULL", "ACTIVATEINACTIVATE", "EDITROLES"]
+					}]
 				},
 				{
 					id: "ORGANIZATIONS",
@@ -220,7 +224,19 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 						name: "Roles", 
 						url: "#/roles", 
 						selected: false
-					}
+					},
+					entries: [{
+						regexp: /^\/roles$/,
+						allowedPermissions: ["READ", "UPDATE", "CREATE", "DELETE", "FULL"]
+					},
+					{
+						regexp: /^\/role\/update\/(?:([^\/]+))$/,
+						allowedPermissions: ["UPDATE", "CREATE", "DELETE", "FULL"]
+					},
+					{
+						regexp: /^\/role\/create$/,
+						allowedPermissions: ["CREATE", "DELETE", "FULL"]
+					}]
 				},
 				{
 					id: "USERS",
@@ -267,7 +283,19 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 						name: "Users", 
 						url: "#/users", 
 						selected: false
-					}
+					},
+					entries: [{
+						regexp: /^\/users$/,
+						allowedPermissions: ["READ", "UPDATE", "CREATE", "DELETE", "FULL", "ACTIVATEINACTIVATE", "EDITROLES", "EDITPROFILE", "CHANGEPASSWORD"]
+					},
+					{
+						regexp: /^\/role\/update\/(?:([^\/]+))$/,
+						allowedPermissions: ["UPDATE", "CREATE", "DELETE", "FULL", "ACTIVATEINACTIVATE", "EDITROLES", "EDITPROFILE", "CHANGEPASSWORD"]
+					},
+					{
+						regexp: /^\/role\/create$/,
+						allowedPermissions: ["CREATE", "DELETE", "FULL", "ACTIVATEINACTIVATE", "EDITROLES", "EDITPROFILE", "CHANGEPASSWORD"]
+					}]
 				}
 			]
 		});
@@ -285,9 +313,11 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 
 	this.selectSubMenu = function(subMenu)
 	{
+		/*
 		self.breadCrumbs.length = 0;
 		self.breadCrumbs.push(self.selectedMenu.name);
 		self.breadCrumbs.push(subMenu.name);
+		*/
 	};
 
 	this.changePassword = function()
@@ -486,6 +516,10 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 								{
 									return false;
 								}
+								//self.selectedMenu = self.modules[i];
+								self.breadCrumbs.length = 0;
+								self.breadCrumbs.push(self.modules[i].name);
+								self.breadCrumbs.push(entries[j].name);
 								return true;
 							}
 							else

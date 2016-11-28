@@ -10,7 +10,8 @@ var launchRoleDirective = function($route)
 				function(event, next, current) 
 				{
 					var parentController = element.parent().controller();
-					controller.init(parentController.jwtToken, parentController.organization, parentController.modules, $route.current.params.roleId);
+					var roleId = $route.current.params.roleId ? $route.current.params.roleId : 0;
+					controller.init(parentController.jwtToken, parentController.organization, parentController.modules, roleId);
 				}
 			);
 

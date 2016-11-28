@@ -1,200 +1,200 @@
 <launch-role-directive>
-<md-card id="profile">
-    <md-card-heade>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>{{roleCtrl.role.id === 0 ? "New Role" : "Edit Role"}}</h2>
-            </div>
-        </md-toolbar>
-    </md-card-header>
-    <md-card-content>
-        <div layout="row">
-            <md-input-container class="md-block" flex="60">
-                <label>Role Name</label>
-                <input ng-model="roleCtrl.role.name">
-            </md-input-container>
-            <md-input-container class="md-block" flex="40">
-                <label>Type</label>
-                <md-select ng-model="roleCtrl.role.type">
-                    <md-option value="Organization">Organization</md-option>
-                    <md-option value="User">User</md-option>
-                </md-select>
-            </md-input-container>
-        </div>
-        <div layout="row">
-            <md-input-container class="md-block" flex>
-                <label>Role Description</label>
-                <input ng-model="roleCtrl.role.description">
-            </md-input-container>
-        </div>
-        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                <span>Game Definitions</span>
+    <md-card id="profile">
+        <md-card-heade>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>{{roleCtrl.role.id === 0 ? "New Role" : "Edit Role"}}</h2>
+                </div>
+            </md-toolbar>
+        </md-card-header>
+        <md-card-content>
+            <div layout="row">
+                <md-input-container class="md-block" flex="60">
+                    <label>Role Name</label>
+                    <input ng-model="roleCtrl.role.name">
+                </md-input-container>
+                <md-input-container class="md-block" flex="40">
+                    <label>Type</label>
+                    <md-select ng-model="roleCtrl.role.type">
+                        <md-option value="Organization">Organization</md-option>
+                        <md-option value="User">User</md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <div layout="row">
-                <div>
-                    <ul style="list-style: none">
-                        <li class="collapsed">
-                            <md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox>
-                            <ul class="sub" style="list-style: none">
-                                <li><md-checkbox md-no-ink class="md-primary">BetFairGroup A</md-checkbox></li>
-                                <li><md-checkbox md-no-ink class="md-primary">BetFairGroup B</md-checkbox></li>
-                                <li><md-checkbox md-no-ink class="md-primary">BetFairGroup C</md-checkbox></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul style="list-style: none">
-                        <li class="collapsed">
-                            <md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox>
-                            <ul class="sub" style="list-style: none">
-                                <li><md-checkbox md-no-ink class="md-primary">Bet365 A</md-checkbox></li>
-                                <li><md-checkbox md-no-ink class="md-primary">Bet365 B</md-checkbox></li>
-                                <li><md-checkbox md-no-ink class="md-primary">Bet365 C</md-checkbox></li>
-                                <li><md-checkbox md-no-ink class="md-primary">Bet365 D</md-checkbox></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>    
-        </div>
-        <div ng-repeat="module in roleCtrl.modules track by module.id" flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div ng-repeat="entry in module.entries track by entry.id" ng-if="entry.mainPermissions">
+                <md-input-container class="md-block" flex>
+                    <label>Role Description</label>
+                    <input ng-model="roleCtrl.role.description">
+                </md-input-container>
+            </div>
+            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
                 <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                    <span>{{entry.name}}</span>
+                    <span>Game Definitions</span>
+                </div>
+                <div layout="row">
+                    <div>
+                        <ul style="list-style: none">
+                            <li class="collapsed">
+                                <md-checkbox md-no-ink class="md-primary">BetFairGroup</md-checkbox>
+                                <ul class="sub" style="list-style: none">
+                                    <li><md-checkbox md-no-ink class="md-primary">BetFairGroup A</md-checkbox></li>
+                                    <li><md-checkbox md-no-ink class="md-primary">BetFairGroup B</md-checkbox></li>
+                                    <li><md-checkbox md-no-ink class="md-primary">BetFairGroup C</md-checkbox></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style: none">
+                            <li class="collapsed">
+                                <md-checkbox md-no-ink class="md-primary">Bet365</md-checkbox>
+                                <ul class="sub" style="list-style: none">
+                                    <li><md-checkbox md-no-ink class="md-primary">Bet365 A</md-checkbox></li>
+                                    <li><md-checkbox md-no-ink class="md-primary">Bet365 B</md-checkbox></li>
+                                    <li><md-checkbox md-no-ink class="md-primary">Bet365 C</md-checkbox></li>
+                                    <li><md-checkbox md-no-ink class="md-primary">Bet365 D</md-checkbox></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>    
+            </div>
+            <div ng-repeat="module in roleCtrl.modules track by module.id" flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                <div ng-repeat="entry in module.entries track by entry.id" ng-if="entry.mainPermissions">
+                    <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                        <span>{{entry.name}}</span>
+                    </div>
+                    <div layout="row">
+                        <div layout="row" layout-align="space-around center" flex="30">
+                            <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                            <div flex="80">
+                                <md-select ng-model="entry.selectedMainPermission" ng-model-options="{trackBy: '$value.id'}">
+                                    <md-option ng-repeat="mainPermission in entry.mainPermissions track by mainPermission.id" ng-value="mainPermission">{{mainPermission.name}}</md-option>
+                                </md-select>
+                            </div>
+                        </div>
+                        <div layout="row" layout-align="end center" flex="70">
+                            <div ng-repeat="additionalPermission in entry.additionalPermissions track by additionalPermission.name" style="padding-right: 10px;"><md-checkbox md-no-ink class="md-primary" ng-model="additionalPermission.allowed">{{additionalPermission.name}}</md-checkbox></div>
+                        </div>    
+                    </div>
+                 </div>       
+            </div>
+            <!--
+            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                    <span>Organizations</span>
                 </div>
                 <div layout="row">
                     <div layout="row" layout-align="space-around center" flex="30">
                         <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
                         <div flex="80">
-                            <md-select ng-model="entry.selectedMainPermission" ng-model-options="{trackBy: '$value.id'}">
-                                <md-option ng-repeat="mainPermission in entry.mainPermissions track by mainPermission.id" ng-value="mainPermission">{{mainPermission.name}}</md-option>
+                            <md-select ng-model="roleCtrl.userState">
+                                <md-option>Create</md-option>
+                                <md-option>Read</md-option>
+                                <md-option>Update</md-option>
+                                <md-option>Delete</md-option>
                             </md-select>
                         </div>
                     </div>
                     <div layout="row" layout-align="end center" flex="70">
-                        <div ng-repeat="additionalPermission in entry.additionalPermissions track by additionalPermission.name" style="padding-right: 10px;"><md-checkbox md-no-ink class="md-primary" ng-model="additionalPermission.allowed">{{additionalPermission.name}}</md-checkbox></div>
+                        <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                        <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                    </div>    
+                </div>    
+            </div>
+            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                    <span>Roles</span>
+                </div>
+                <div layout="row">
+                    <div layout="row" layout-align="space-around center" flex="30">
+                        <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                        <div flex="80">
+                            <md-select ng-model="roleCtrl.userState">
+                                <md-option>Create</md-option>
+                                <md-option>Read</md-option>
+                                <md-option>Update</md-option>
+                                <md-option>Delete</md-option>
+                            </md-select>
+                        </div>
                     </div>    
                 </div>
-             </div>       
-        </div>
-        <!--
-        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                <span>Organizations</span>
             </div>
-            <div layout="row">
-                <div layout="row" layout-align="space-around center" flex="30">
-                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
-                    <div flex="80">
-                        <md-select ng-model="roleCtrl.userState">
-                            <md-option>Create</md-option>
-                            <md-option>Read</md-option>
-                            <md-option>Update</md-option>
-                            <md-option>Delete</md-option>
-                        </md-select>
-                    </div>
+            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                    <span>Users</span>
                 </div>
-                <div layout="row" layout-align="end center" flex="70">
-                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
-                </div>    
-            </div>    
-        </div>
-        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                <span>Roles</span>
-            </div>
-            <div layout="row">
-                <div layout="row" layout-align="space-around center" flex="30">
-                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
-                    <div flex="80">
-                        <md-select ng-model="roleCtrl.userState">
-                            <md-option>Create</md-option>
-                            <md-option>Read</md-option>
-                            <md-option>Update</md-option>
-                            <md-option>Delete</md-option>
-                        </md-select>
+                <div layout="row">
+                    <div layout="row" layout-align="space-around center" flex="30">
+                        <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                        <div flex="80">
+                            <md-select ng-model="roleCtrl.userState">
+                                <md-option>Create</md-option>
+                                <md-option>Read</md-option>
+                                <md-option>Update</md-option>
+                                <md-option>Delete</md-option>
+                            </md-select>
+                        </div>
                     </div>
-                </div>    
-            </div>
-        </div>
-        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                <span>Users</span>
-            </div>
-            <div layout="row">
-                <div layout="row" layout-align="space-around center" flex="30">
-                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
-                    <div flex="80">
-                        <md-select ng-model="roleCtrl.userState">
-                            <md-option>Create</md-option>
-                            <md-option>Read</md-option>
-                            <md-option>Update</md-option>
-                            <md-option>Delete</md-option>
-                        </md-select>
-                    </div>
+                    <div layout="row" layout-wrap layout-align="center center" flex="70">
+                        <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                        <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                        <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Profile</md-checkbox></div>
+                        <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Change Password</md-checkbox></div>
+                    </div>    
                 </div>
-                <div layout="row" layout-wrap layout-align="center center" flex="70">
-                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
-                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Edit Profile</md-checkbox></div>
-                    <div style="padding-left: 10px;"><md-checkbox md-no-ink class="md-primary">Change Password</md-checkbox></div>
-                </div>    
             </div>
-        </div>
-        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                <span>Game Definitions</span>
-            </div>
-            <div layout="row">
-                <div layout="row" layout-align="space-around center" flex="30">
-                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
-                    <div flex="80">
-                        <md-select ng-model="roleCtrl.userState">
-                            <md-option>Create</md-option>
-                            <md-option>Read</md-option>
-                            <md-option>Update</md-option>
-                            <md-option>Delete</md-option>
-                        </md-select>
-                    </div>
+            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                    <span>Game Definitions</span>
                 </div>
-                <div layout="row" layout-align="end center" flex="70">
-                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
-                </div>    
-            </div>
-        </div>
-        <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
-            <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
-                <span>Game Configurations</span>
-            </div>
-            <div layout="row">
-                <div layout="row" layout-align="space-around center" flex="30">
-                    <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
-                    <div flex="80">
-                        <md-select ng-model="roleCtrl.userState">
-                            <md-option>Create</md-option>
-                            <md-option>Read</md-option>
-                            <md-option>Update</md-option>
-                            <md-option>Delete</md-option>
-                        </md-select>
+                <div layout="row">
+                    <div layout="row" layout-align="space-around center" flex="30">
+                        <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                        <div flex="80">
+                            <md-select ng-model="roleCtrl.userState">
+                                <md-option>Create</md-option>
+                                <md-option>Read</md-option>
+                                <md-option>Update</md-option>
+                                <md-option>Delete</md-option>
+                            </md-select>
+                        </div>
                     </div>
+                    <div layout="row" layout-align="end center" flex="70">
+                        <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                        <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                    </div>    
                 </div>
-                <div layout="row" layout-align="end center" flex="70">
-                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
-                    <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
-                </div>    
             </div>
-        </div>
-        -->
-    </md-card-content>
-    <md-card-footer>
-        <div flex layout="row" layout-align="end">
-            <md-button class="md-raised" ng-click="roleCtrl.save()">Save</md-button>
-            <md-button class="md-raised" ng-href="#/roles">Cancel</md-button>
-        </div>
-    </md-card-footer>
-</md-card>
+            <div flex style="border: solid 1px #f6f6f6; margin-top: 5px;">
+                <div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+                    <span>Game Configurations</span>
+                </div>
+                <div layout="row">
+                    <div layout="row" layout-align="space-around center" flex="30">
+                        <div flex="20" style="padding: 25px 10px;"><label>Level</label></div>
+                        <div flex="80">
+                            <md-select ng-model="roleCtrl.userState">
+                                <md-option>Create</md-option>
+                                <md-option>Read</md-option>
+                                <md-option>Update</md-option>
+                                <md-option>Delete</md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="end center" flex="70">
+                        <div flex="25"><md-checkbox md-no-ink class="md-primary">Activate/InActivate</md-checkbox></div>
+                        <div flex="25"><md-checkbox md-no-ink class="md-primary">Edit Roles</md-checkbox></div>
+                    </div>    
+                </div>
+            </div>
+            -->
+        </md-card-content>
+        <md-card-footer>
+            <div flex layout="row" layout-align="end">
+                <md-button class="md-raised" ng-click="roleCtrl.save()">Save</md-button>
+                <md-button class="md-raised" ng-href="#/roles">Cancel</md-button>
+            </div>
+        </md-card-footer>
+    </md-card>
 </launch-role-directive>

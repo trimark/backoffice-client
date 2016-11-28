@@ -33,7 +33,11 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 				templateUrl: 'partials/list-roles.html'
 			});
 
-			$routeProvider.when('/role/:roleId', {
+			$routeProvider.when('/role/create', {
+				templateUrl: 'partials/role.html'
+			});
+
+			$routeProvider.when('/role/update/:roleId', {
 				templateUrl: 'partials/role.html'
 			});
 
@@ -41,7 +45,11 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 				templateUrl: 'partials/list-users.html'
 			});
 
-			$routeProvider.when('/user/:accountId', {
+			$routeProvider.when('/user/create', {
+				templateUrl: 'partials/user.html'
+			});
+
+			$routeProvider.when('/user/update/:accountId', {
 				templateUrl: 'partials/user.html'
 			});
 

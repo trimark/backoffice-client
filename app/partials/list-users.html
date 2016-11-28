@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div flex layout="row" layout-align="end">
-                    <md-button class="md-raised" ng-href="#/user/0">New</md-button>
+                    <md-button class="md-raised" ng-href="#/user/create">New</md-button>
                 </div>
                 <div layout="row" ng-if="listUserCtrl.selectedUser">
                     <div flex>
@@ -94,7 +94,7 @@
                                         </md-list>
                                     </div>
                                     <div flex="25">
-                                        <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/user/{{listUserCtrl.selectedUser.accountId}}">Edit</md-button></div>
+                                        <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/user/update/{{listUserCtrl.selectedUser.accountId}}">Edit</md-button></div>
                                         <div flex="100" layout="column"><md-button class="md-raised" ng-click="userCtrl.changePassword()">Change Password</md-button></div>
                                         <div flex="100" layout="column"><md-button class="md-raised" ng-href="#/role/{{roleCtrl.role.id}}">Inactivate</md-button></div>
                                     </div>
