@@ -9,6 +9,7 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 				templateUrl: 'partials/gamehistory-settings.html'
 			});
 			$routeProvider.when('/gamehistory-report', {
+				templateUrl: 'partials/gamehistory-report.html'
 			});
 			$routeProvider.when('/royalties-settings', {
 				templateUrl: 'partials/royalties-settings.html'
