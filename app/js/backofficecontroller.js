@@ -7,7 +7,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	self.organization = null;
 	self.modulePermissions = null;
 	self.jwtToken = null;
-	self.isUserLoggedIn = true;
+	self.isUserLoggedIn = false;
 	self.selectedMenu = null;
 	self.loginPanel = null;
 
