@@ -1,0 +1,174 @@
+<md-card id="gameHistoryReport" ng-controller="GameHistoryReportCtrl as ctrl">
+	<md-card-header>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Game History</h2>
+			</div>
+		</md-toolbar>
+	</md-card-header>
+	<md-card-content>
+		<div>
+			<md-list>
+				<md-list-item style="margin-bottom: 10px;">
+					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+						<div flex="100">
+							<div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+								<span>Report Settings</span>
+							</div>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Player:</label>
+							 <md-chips ng-model="ctrl.selectedUserChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Period:</label>
+							 <md-chips ng-model="ctrl.periodChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Games:</label>
+							<md-chips ng-model="ctrl.gamesChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="start center" style="padding: 10px;">
+							<label flex="10">Grouping:</label>
+							<md-chips ng-model="ctrl.groupChips" readonly="true" md-removable="false"></md-chips>
+						</div>
+						<div flex layout="row" layout-align="end end" style="padding: 10px;">
+							<md-button class="md-raised" ng-href="#/gamehistory-settings">Edit Settings</md-button>
+						</div>
+					</div>
+				</md-list-item>
+				<md-list-item ng-if="ctrl.settings.showTotals" style="margin-bottom: 10px;">
+					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+						<div flex="100">
+							<div flex layout="row" style="background: #f6f6f6; padding: 10px;">
+								<span>Totals</span>
+							</div>
+						</div>
+						<div flex layout="row" layout-align="start start" style="padding: 10px;">
+							<div ng-if="exists('Player Details', ctrl.settings.selectedTotalsData)" flex="5"layout="column">
+								<div flex="10"layout="column">User id</div>
+								<div flex="10"layout="column">Name</div>
+								<div flex="10"layout="column">Email</div>
+								<div flex="10"layout="column">phone</div>
+							</div>
+							<div ng-if="exists('Player Details', ctrl.settings.selectedTotalsData)" flex="15"layout="column">
+								<div flex="10"layout="column">{{ctrl.settings.selectedUser.userId}}</div>
+								<div flex="10"layout="column">{{ctrl.settings.selectedUser.lastName}}, {{ctrl.settings.selectedUser.firstName}}</div>
+								<div flex="10"layout="column">{{ctrl.settings.selectedUser.email}}</div>
+								<div flex="10"layout="column">{{ctrl.settings.selectedUser.phone}}</div>
+							</div>
+							<div flex="10"layout="column">
+								<div ng-if="exists('Bet Count', ctrl.settings.selectedTotalsData)" flex row>Bet count</div>
+								<div ng-if="exists('Bets', ctrl.settings.selectedTotalsData)" flex row>Bets</div>
+								<div ng-if="exists('Wins', ctrl.settings.selectedTotalsData)" flex row>Wins</div>
+								<div ng-if="exists('Net Gaming', ctrl.settings.selectedTotalsData)" flex row>Net Gaming</div>
+							</div>
+
+							<div flex="10" layout="column" style="text-align: right;">
+								<div ng-if="exists('Bet Count', ctrl.settings.selectedTotalsData)"  flex row>{{ctrl.totals.betCount}}</div>
+								<div ng-if="exists('Bets', ctrl.settings.selectedTotalsData)" flex row>{{formatCurrency(ctrl.totals.bets)}}</div>
+								<div ng-if="exists('Wins', ctrl.settings.selectedTotalsData)" flex row>{{formatCurrency(ctrl.totals.wins)}}</div>
+								<div ng-if="exists('Net Gaming', ctrl.settings.selectedTotalsData)" flex row>{{formatCurrency(ctrl.totals.net)}}</div>
+							</div>
+							<!-- <div flex="5" layout="column"></div>
+							<div ng-if="exists('Royalty', ctrl.settings.selectedTotalsData)" flex layout="column">
+								<div flex row>Royalties: </div>
+								<div flex row ng-repeat="item in ctrl.totals.royaltiesPerBrand">
+									<span>{{item.id}}</span>
+									<span style="text-align: right;">{{formatCurrency(item.amount)}}</span>
+								</div>
+							</div>
+							<div ng-if="exists('Distributor Share', ctrl.settings.selectedTotalsData)" flex layout="column">
+								<div flex row>Distributor shares:</div>
+								<div flex row ng-repeat="item in ctrl.totals.sharesPerDistributor">
+									<span>{{item.id}}</span>
+									<span style="text-align: right;">{{formatCurrency(item.amount)}}</span>
+								</div>
+							</div>
+							<div ng-if="exists('Supplier Share', ctrl.settings.selectedTotalsData)" flex layout="column">
+								<div flex row>Supplier shares: </div>
+								<div flex row>{{formatCurrency(ctrl.totals.vendorShareAmount)}}</div>
+							</div> -->
+						</div>
+					</div>
+				</md-list-item>
+				<md-list-item style="margin-bottom: 10px" ng-repeat="(groupName, rows) in ctrl.data">
+					<div flex layout="column" layout-align="start"  style="border: solid 1px rgb(225,225,225);">
+						<div ng-if="ctrl.groupBy != 'all'" flex="100">
+							<div flex layout="row" style="background: #f6f6f6; border-bottom: solid 1px rgb(225,225,225); padding: 10px;">
+								<span>{{groupName}}</span>
+							</div>
+						</div>
+						<div flex style="font-size: 13px; border: solid 1px #f6f6f6;">
+							<div flex layout="row" style="font-size: 13px; border: solid 1px #rgb(225,225,225);">
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Date</div>
+								<div ng-if=" ctrl.groupBy != 'game'" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game</div>
+								<div ng-if=" ctrl.groupBy != 'game'" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game Type</div>
+								<div ng-if=" ctrl.groupBy != 'game'" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Game ID</div>
+								<div flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Wager ID</div>
+								<div ng-if="exists('Bet', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bet</div>
+								<div ng-if="exists('Bet Details', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Bet Details</div>
+								<div ng-if="exists('Cash Wins', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Cash Wins</div>
+								<div ng-if="exists('Other Wins', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Other Wins</div>
+								<div ng-if="exists('Win Details', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 10px;">Win Details</div>
+								<div ng-if="exists('Status', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 10px;">Status</div>
+
+
+
+
+								<div ng-if="exists('Net Gaming', ctrl.settings.selectedColumns)" flex="5" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Net</div>
+								<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Royalty</div>
+								<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;border-right: solid 1px rgb(225,225,225); padding: 5px;">Share (DI)</div>
+								<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="10" style="background: #f6f6f6;padding: 5px;">Share(Supplier)</div>
+							</div>
+							<md-list>
+								<md-list-item ng-repeat="row in rows.rows">
+									<div flex layout="row">
+										<div flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.dateString}}</div>
+										<div ng-if="ctrl.groupBy != 'game'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.game}}</div>
+										<div ng-if="ctrl.groupBy != 'game'" flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.gameType}}</div>
+										<div ng-if="ctrl.groupBy != 'game'" flex="5" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.gameId}}</div>
+										<div flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.wagerId}}</div>
+										<div ng-if="exists('Bet', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.bets)}}</div>
+
+										<div ng-if="exists('Bet Details', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.betDetails}}</div>
+										<div ng-if="exists('Cash Wins', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.wins)}}</div>
+										<div ng-if="exists('Other Wins', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{row.otherWins}}</div>
+										<div ng-if="exists('Win Details', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 10px;">{{row.winDetails}}</div>
+										<div ng-if="exists('Status', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 10px;">{{row.status}}</div>
+
+
+										<div ng-if="exists('Net Gaming', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.net)}}</div>
+										<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.royaltyAmount)}}</div>
+										<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.royaltyPercentage)}}</div>
+										<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(row.distShareAmount)}}</div>
+										<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.distSharePercentage)}}</div>
+										<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatPercentage(row.vendorSharePercentage)}}</div>							
+										<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(row.vendorShareAmount)}}</div>
+									</div>
+								</md-list-item>
+								<!-- <md-list-item>
+									<div flex layout="row" style="border-top: solid 1px rgb(225,225,225);">
+										<div ng-if="exists('Distributor', ctrl.settings.selectedColumns) && ctrl.groupBy != 'distributor' && ctrl.groupBy != 'operator' && ctrl.groupBy != 'brand'" flex="10" layout-align="end center" style="border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>
+										<div ng-if="exists('Operator', ctrl.settings.selectedColumns) && ctrl.groupBy != 'operator' && ctrl.groupBy != 'brand'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>
+										<div ng-if="ctrl.groupBy != 'brand'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>
+										<div ng-if="ctrl.groupBy != 'game'" flex="10" style="border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>
+										<div ng-if="exists('Bets', ctrl.settings.selectedColumns)" flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(rows.totals.bets)}}</div>
+										<div ng-if="exists('Wins', ctrl.settings.selectedColumns)" flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(rows.totals.wins)}}</div>
+										<div ng-if="exists('Net Gaming', ctrl.settings.selectedColumns)" flex="10" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(rows.totals.net)}}</div>
+										<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(rows.totals.royaltyAmount)}}</div>
+										<div ng-if="exists('Royalty', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>
+										<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;">{{formatCurrency(rows.totals.distShareAmount)}}</div>
+										<div ng-if="exists('Distributor Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>
+										<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; border-right: solid 1px rgb(225,225,225); padding: 5px;"></div>							
+										<div ng-if="exists('Supplier Share', ctrl.settings.selectedColumns)" flex="5" style="text-align: right; padding: 5px;">{{formatCurrency(rows.totals.vendorShareAmount)}}</div>
+									</div> -->
+								</md-list-item>
+							</md-list>
+						</div>
+					</div>
+				</md-list-item>
+			</md-list>
+			<div layout="row" layout-align="end end" style="text-align: right;">Report date: {{1288323623006 | date:'medium'}}</div>
+		</md-card-content>
+	</md-card>

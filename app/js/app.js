@@ -5,7 +5,11 @@ angular.module('trimark-backoffice', [ 'ngRoute', 'ivh.treeview','ngMaterial']).
 			$routeProvider.when('/', {
 				templateUrl: 'partials/home.html'
 			});
-
+			$routeProvider.when('/gamehistory-settings', {
+				templateUrl: 'partials/gamehistory-settings.html'
+			});
+			$routeProvider.when('/gamehistory-report', {
+			});
 			$routeProvider.when('/royalties-settings', {
 				templateUrl: 'partials/royalties-settings.html'
 			});

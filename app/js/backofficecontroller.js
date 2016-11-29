@@ -7,7 +7,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 	self.organization = null;
 	self.modulePermissions = null;
 	self.jwtToken = null;
-	self.isUserLoggedIn = false;
+	self.isUserLoggedIn = true;
 	self.selectedMenu = null;
 	self.loginPanel = null;
 
@@ -39,7 +39,7 @@ var backofficeController = function($rootScope, $scope, $route, $location, $mdPa
 					name: "Game History",
 					menu: {
 						name: "Game History", 
-						url: "/", 
+						url: "#/gamehistory-settings", 
 						selected: false
 					}
 				}
